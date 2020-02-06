@@ -9,7 +9,7 @@ import {
     Messages, Notifications
 } from 'components';
 
-import dashboardRoutes from 'routes/general.jsx';
+import dashboardRoutes from 'routes/blog.jsx';
 
 import { messages } from 'variables/topbar.jsx';
 import { notifications } from 'variables/topbar.jsx';

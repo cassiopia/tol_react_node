@@ -1,11 +1,11 @@
-import HospitalLayout from 'layouts/Hospital.jsx';
-import MusicLayout from 'layouts/Music.jsx';
-import SocialLayout from 'layouts/Social.jsx';
-import CrmLayout from 'layouts/Crm.jsx';
-import FreelanceLayout from 'layouts/Freelance.jsx';
-import GeneralLayout from 'layouts/General.jsx';
-import UniversityLayout from 'layouts/University.jsx';
-import EcommerceLayout from 'layouts/Ecommerce.jsx';
+// import HospitalLayout from 'layouts/Hospital.jsx';
+// import MusicLayout from 'layouts/Music.jsx';
+// import SocialLayout from 'layouts/Social.jsx';
+// import CrmLayout from 'layouts/Crm.jsx';
+// import FreelanceLayout from 'layouts/Freelance.jsx';
+// import GeneralLayout from 'layouts/General.jsx';
+// import UniversityLayout from 'layouts/University.jsx';
+// import EcommerceLayout from 'layouts/Ecommerce.jsx';
 import BlogLayout from 'layouts/Blog.jsx';
 import BlankPage from 'layouts/BlankPage.jsx';
 import LoginPage from 'layouts/LoginPage.jsx';
@@ -46,13 +46,13 @@ var indexRoutes = [
     { path: BASEDIR+"/503", name: "503", component: BlankPage },
     { path: BASEDIR+"/offline", name: "Offline", component: BlankPage },
 
-    { path: BASEDIR+"/hospital", name: "Hospital Dashboard", component: HospitalLayout },
-    { path: BASEDIR+"/music", name: "Music Dashboard", component: MusicLayout },
-    { path: BASEDIR+"/social", name: "Social Dashboard", component: SocialLayout },
-    { path: BASEDIR+"/crm", name: "CRM Dashboard", component: CrmLayout },
-    { path: BASEDIR+"/freelance", name: "Freelance Dashboard", component: FreelanceLayout },
-    { path: BASEDIR+"/university", name: "University Dashboard", component: UniversityLayout },
-    { path: BASEDIR+"/ecommerce", name: "Ecommerce Dashboard", component: EcommerceLayout },
+    // { path: BASEDIR+"/hospital", name: "Hospital Dashboard", component: HospitalLayout },
+    // { path: BASEDIR+"/music", name: "Music Dashboard", component: MusicLayout },
+    // { path: BASEDIR+"/social", name: "Social Dashboard", component: SocialLayout },
+    // { path: BASEDIR+"/crm", name: "CRM Dashboard", component: CrmLayout },
+    // { path: BASEDIR+"/freelance", name: "Freelance Dashboard", component: FreelanceLayout },
+    // { path: BASEDIR+"/university", name: "University Dashboard", component: UniversityLayout },
+    // { path: BASEDIR+"/ecommerce", name: "Ecommerce Dashboard", component: EcommerceLayout },
     { path: BASEDIR+"/blog", name: "Blog Dashboard", component: BlogLayout },
 
     { path: BASEDIR+"/defaultlayout", name: "Default Layout", component: DefaultLayout },
@@ -77,8 +77,8 @@ var indexRoutes = [
     { path: BASEDIR+"/layout15", name: "Layout 15", component: Layout15 },
 
 
-    { path: BASEDIR+"/", name: "Home", component: GeneralLayout },
-    { path: "/", name: "Home", component: GeneralLayout },
+    { path: BASEDIR+"/", name: "Home", component: BlogLayout },
+    { path: "/", name: "Home", component: BlogLayout },
 ];
 
 export default indexRoutes;

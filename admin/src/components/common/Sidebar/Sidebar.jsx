@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav } from 'reactstrap';
 
-import { Navmenudropdown } from 'components';
-import { Navmenugroup } from 'components';
+//import { Navmenudropdown } from 'components';
+//import { Navmenugroup } from 'components';
 
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -211,11 +211,7 @@ class Sidebar extends React.Component{
                                     return null;
                                 if(prop.type === "child")
                                     return null;
-                                if(prop.type === "navgroup")
-                                    return ( 
-                                      <Navmenugroup name={prop.name} key={key}>
-                                      </Navmenugroup>
-                                    );
+
                                 if(prop.type === "dropdown")
                                     return ( 
 
@@ -231,11 +227,6 @@ class Sidebar extends React.Component{
 
                                     );
 
-                                if(prop.type === "dropdown-backup")
-                                    return ( 
-                                      <Navmenudropdown name={prop.name} icon={prop.icon} path={prop.path} badge={prop.badge} child={prop.child} key={key} openclass={this.state.opendd === prop.name ? 'activethis': ''}  onClick={() => this.handleOpendd(prop.name)}>
-                                      </Navmenudropdown>
-                                    );
                                 return (
                                     <li className={this.activeRoute(prop.path) + ' nav-parent '} key={key} onClick={() => this.handleOpendd(prop.name)}>
                                         <NavLink to={prop.path} className="nav-link" activeClassName="active">

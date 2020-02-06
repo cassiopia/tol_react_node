@@ -1,11 +1,3 @@
-import General from 'views/general/Dashboard/General.jsx';
-import Hospital from 'views/hospital/Dashboard/Hospital.jsx';
-import Music from 'views/music/Dashboard/Music.jsx';
-import Crm from 'views/crm/Dashboard/Crm.jsx';
-import Social from 'views/social/Dashboard/Social.jsx';
-import Freelance from 'views/freelance/Dashboard/Freelance.jsx';
-import University from 'views/university/Dashboard/University.jsx';
-import Ecommerce from 'views/ecommerce/Dashboard/Ecommerce.jsx';
 import Blog from 'views/blog/Dashboard/Blog.jsx';
 
 import Blogs from 'views/blog/Blog/Blogs.jsx';
@@ -161,33 +153,9 @@ var dashRoutes = [
         { path: BASEDIR+"/blog/add-tag", component: AddTag, type: "child"},
         { path: BASEDIR+"/blog/edit-tag", component: EditTag, type: "child"},
 
-
-    { 
-        path: "#", name: "Multi Purpose", icon: "layers", type: "dropdown", parentid: "multipurpose",
-            child: [
-                { path: BASEDIR+"/dashboard", name: "General"},
-                { path: BASEDIR+"/hospital/dashboard", name: "Hospital"},
-                { path: BASEDIR+"/music/dashboard", name: "Music"},
-                { path: BASEDIR+"/crm/dashboard", name: "CRM"},
-                { path: BASEDIR+"/social/dashboard", name: "Social Media"},
-                { path: BASEDIR+"/freelance/dashboard", name: "Freelance"},
-                { path: BASEDIR+"/university/dashboard", name: "University"},
-                { path: BASEDIR+"/ecommerce/dashboard", name: "Ecommerce"},
-                { path: BASEDIR+"/blog/dashboard", name: "Blog"},
-            ]
-    },
-
-        { path: BASEDIR+"/dashboard", component: General, type: "child"},
-        { path: BASEDIR+"/hospital/dashboard", component: Hospital, type: "child"},
-        { path: BASEDIR+"/music/dashboard", component: Music, type: "child"},
-        { path: BASEDIR+"/crm/dashboard", component: Crm, type: "child"},
-        { path: BASEDIR+"/social/dashboard", component: Social, type: "child"},
-        { path: BASEDIR+"/freelance/dashboard", component: Freelance, type: "child"},
-        { path: BASEDIR+"/university/dashboard", component: University, type: "child"},
-        { path: BASEDIR+"/ecommerce/dashboard", component: Ecommerce, type: "child"},
         { path: BASEDIR+"/blog/dashboard", component: Blog, type: "child"},
 
-    //{ redirect: true, path: BASEDIR+"/", pathTo: "/dashboard", name: "Dashboard" }
+    { redirect: true, path: BASEDIR+"/", pathTo: "/dashboard", name: "Dashboard" }
 
 ];
 export default dashRoutes;
