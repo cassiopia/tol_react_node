@@ -1,7 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 backend/node_modules/*
+backend/dist/*
 client/node_modules/*
 admin/node_modules/*
 .idea/
-
-
