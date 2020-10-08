@@ -1,4 +1,5 @@
 #!/bin/bash
-nodemon backend/bin/www &
+gnome-terminal -- bash -c "cd backend && npm run-script watch"
+sleep 2s
 cd client 
 npm start 

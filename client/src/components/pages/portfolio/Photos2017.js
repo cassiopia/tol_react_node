@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import Breadcrumbs from "../../breadcrumbs/Breadcrumbs";
 
-class Portfolio extends Component {
+class Portfolio2017 extends Component {
 
     render() {
         return (
             <>
-                <Breadcrumbs title="Портфолио" link="portfolio"/>
+                <Breadcrumbs title="Фотографии 2017 года" link="photos2017"/>
                 <div className="row" data-animated="0">
                     <div className="col-md-12">
                         <div id="m-blog-content">
@@ -135,4 +135,4 @@ class Portfolio extends Component {
     }
 }
 
-export default Portfolio;
+export default Portfolio2017;

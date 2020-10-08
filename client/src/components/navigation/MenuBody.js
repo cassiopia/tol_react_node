@@ -13,16 +13,13 @@ class MenuBody extends Component {
                     <Link className="dropdown" data-hover="Портфолио" to="/contact">Портфолио &#9662;</Link>
                     <ul className="v-dropdown">
                         <li>
-                            <Link to="/portfolio" data-hover="2019">2019</Link>
+                            <Link to="/photos2019" data-hover="2019">2019</Link>
                         </li>
                         <li>
-                            <Link to="/portfolio" data-hover="2018">2018</Link>
+                            <Link to="/photos2018" data-hover="2018">2018</Link>
                         </li>
                         <li>
-                            <Link to="/portfolio" data-hover="2017">2017</Link>
-                        </li>
-                        <li>
-                            <Link to="/portfolio" data-hover="2019">2019</Link>
+                            <Link to="/photos2017" data-hover="2017">2017</Link>
                         </li>
                     </ul>
                 </li>
