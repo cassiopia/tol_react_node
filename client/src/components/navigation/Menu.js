@@ -8,8 +8,8 @@ class Menu extends Component {
         return (
             <>
                 <header>
-                    <nav class="navbar navbar-default">
-                        <div class="navbar-header">
+                    <nav className="navbar navbar-default">
+                        <div className="navbar-header">
                             <MenuHeader/>
                         </div>
                         <MenuBody/>

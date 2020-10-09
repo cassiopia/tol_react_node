@@ -29,7 +29,6 @@ exports.getAlbumInfo = function (request: any, response: any) {
         },
     })
         .then(function (resp: any) {
-            console.log(resp.data);
             response.send(resp.data);
         })
         .catch(function (err: any) {
@@ -40,8 +39,6 @@ exports.getAlbumInfo = function (request: any, response: any) {
 exports.getAlbumImages = function (request: any, response: any) {
     const albumHash = request.params.albumHash;
 
-    console.log('$$$$$$$$$$$$$$$$$4');
-
     axios({
         method: 'get',
         url: 'https://api.imgur.com/3/album/' + albumHash + '/images',
@@ -50,13 +47,9 @@ exports.getAlbumImages = function (request: any, response: any) {
         }
     })
         .then(function (resp: any) {
-            console.log('1111111');
-           // console.log(resp.data);
-            console.log(resp.headers);
             response.send(resp.data);
         })
         .catch(function (err: any) {
-            console.log('2222222');
             response.send(err);
         });
 };

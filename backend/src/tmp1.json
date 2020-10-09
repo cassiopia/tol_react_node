@@ -1,0 +1,4 @@
+index.js:1 Warning: lazy: Expected the result of a dynamic import() call. Instead received: [object Module]
+
+Your code should look like:
+const MyComponent = lazy(() => import('./MyComponent'))
