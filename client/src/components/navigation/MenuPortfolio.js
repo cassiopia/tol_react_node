@@ -14,6 +14,9 @@ export default function MenuPortfolio() {
             <li>
                 <Link to="/photos/2017" data-hover="2017">2017</Link>
             </li>
+            <li>
+                <Link to="/photos/2016" data-hover="2016">2016</Link>
+            </li>
         </ul>
     );
 }

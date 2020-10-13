@@ -15,6 +15,7 @@ export default function Photos() {
     const [isLoaded, setIsLoaded] = useState(false);
 
     const hashYearMap = {
+        2016: "nSUJArS",
         2017: "bd4URdO",
         2018: "47BjJf5",
         2019: "ReaaF1Y",
