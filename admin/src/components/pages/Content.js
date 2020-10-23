@@ -6,6 +6,7 @@ const About = lazy(() => import("./about/About"));
 const Blog = lazy(() => import("./blog/Blog"));
 const Contact = lazy(() => import("./contact/Contact"));
 const Portfolio = lazy(() => import("./portfolio/Portfolio"));
+const AlbumDetails = lazy(() => import("./portfolio/AlbumDetails"));
 
 class Content extends Component {
     render() {
@@ -17,6 +18,7 @@ class Content extends Component {
                     <Route path="/blog" component={Blog}/>
                     <Route path="/contact" component={Contact}/>
                     <Route path="/portfolio" component={Portfolio}/>
+                    <Route path="/albom-details" component={AlbumDetails}/>
                 </Suspense>
             </Switch>
 

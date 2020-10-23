@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import MenuHeader from '../navigation/MenuHeader';
-import MenuBody from '../navigation/MenuBody';
-import MenuFooter from '../navigation/MenuFooter';
+import MenuHeader from './MenuHeader';
+import MenuBody from './MenuBody';
+import MenuFooter from './MenuFooter';
 
 class Menu extends Component {
     render() {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Breadcrumbs from "../../breadcrumbs/Breadcrumbs";
+import Breadcrumbs from '../../breadcrumbs/Breadcrumbs';
 
 class Portfolio extends Component {
 

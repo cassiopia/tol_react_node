@@ -1,5 +1,5 @@
 #!/bin/bash
 gnome-terminal -- bash -c "cd backend && npm run-script watch"
-sleep 2s
+sleep 3s
 cd client 
 npm start 

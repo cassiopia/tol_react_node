@@ -1,14 +1,19 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Breadcrumbs from '../../breadcrumbs/Breadcrumbs';
+import AlbumsList from "./AlbumsList";
 
-class Portfolio extends Component {
+export default function Portfolio() {
 
-    render() {
-        return (
-            <div>
-             Portfolio page
+    return (
+        <>
+            <Breadcrumbs title="Портфолио" link="portfolio"/>
+            <div className="row" data-animated="0">
+                <div className="col-md-12">
+                    <div id="m-blog-content">
+                        <AlbumsList/>
+                    </div>
+                </div>
             </div>
-        );
-    }
+        </>
+    );
 }
-
-export default Portfolio;
