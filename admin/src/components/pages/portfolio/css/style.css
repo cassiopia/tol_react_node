@@ -1,0 +1,65 @@
+.pw-inner-portfolio {
+    border-top: none;
+    padding: 22px 20px 33px;
+}
+
+.pw-inner-portfolio h4 {
+    font-family: Roboto;
+    font-size: 17px;
+    color: #000;
+    font-weight: 300;
+    margin: 0 0 25px;
+    text-align: center;
+}
+
+.pw-inner-portfolio {
+    padding: 0px;
+    margin: 0 auto;
+    display: table;
+}
+
+.pw-inner-portfolio{
+    float: left;
+    margin: 0 12px;
+    list-style: none;
+}
+
+.pw-inner-portfolio a {
+    color: #75b209 !important;
+    width: 35px;
+    height: 35px;
+    padding: 7px 9px;
+    text-align: center;
+    font-size: 14px;
+    display: table;
+    border: 1px solid #75b209;
+    transform: rotate(45deg);
+}
+
+.pw-inner-portfolio a span {
+    transform: rotate(-45deg);
+    display: table;
+}
+
+.product-wrap:hover .pw-inner-portfolio {
+    background: #fff;
+    border-color: #fff;
+    transition: 0.3s;
+}
+
+.product-wrap:hover .pw-inner-portfolio h4 {
+    color: #fff;
+    transition: 0.3s;
+}
+
+.product-wrap:hover .pw-inner-portfolio a {
+    color: #fff;
+    border-color: #fff;
+    transition: 0.3s;
+}
+
+.pw-inner-portfolio a:hover {
+    color: #fff !important;
+    border: 1px solid #fff;
+    background: #75b209;
+}

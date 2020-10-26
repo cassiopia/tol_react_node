@@ -5,6 +5,9 @@ import {Link} from 'react-router-dom'
 // todo создать базу для внесения информации по альбому
 // todo создать функционал для редактирования альбома
 // todo навигацию сделать
+// todo сделать сортировку
+// todo сделать фильтр по тэгам (пока по году)
+
 
 export default function AlbumsList() {
 
@@ -31,17 +34,18 @@ export default function AlbumsList() {
 
     const renderDiv = (albumId, albumCover, albumTitle, albumDescription) => {
 
-        const albumImg = "https://i.imgur.com/" + albumCover + ".jpg";
+        const albumImg = `https://i.imgur.com/${albumCover}.jpg`;
+        const urlLinkDetails = `/albom-details?id=${albumId}&cover=${albumCover}&title=${albumTitle}&description=${albumDescription}`;
 
         return <div key={albumId} className="col-md-6" data-animated="0">
             <div className="item" key={albumId}>
                 <div className="mb-thumb">
                     <img src={albumImg} className="img-responsive" alt=""/>
                     <span className="rmore">
-                         <Link to="/albom-details" data-hover="Подробнее">Подробнее</Link>
+                         <Link to={urlLinkDetails} data-hover="Подробнее">Подробнее</Link>
                     </span>
                 </div>
-                <h4><Link to="/albom-details" data-hover={albumTitle}>{albumTitle}</Link></h4>
+                <h4><Link to={urlLinkDetails} data-hover={albumTitle}>{albumTitle}</Link></h4>
                 <p>{albumDescription}</p>
             </div>
         </div>
