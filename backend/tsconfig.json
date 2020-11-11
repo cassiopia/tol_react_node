@@ -3,6 +3,8 @@
     /* Basic Options */
     "target": "es6",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
     "module": "commonjs",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "preserveWatchOutput" : true,             /* Keep outdated console output in watch mode instead of clearing the screen */
+    "pretty": true,                           /* Stylize errors and messages using color and context. */
     // "lib": [],                             /* Specify library files to be included in the compilation. */
     // "allowJs": true,                       /* Allow javascript files to be compiled. */
     // "checkJs": true,                       /* Report errors in .js files. */
@@ -57,6 +59,14 @@
     /* Experimental Options */
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
+  },
+  // NEW: Options for file/directory watching
+  "watchOptions": {
+    "watchDirectory": "fixedpollinginterval",
+    "watchFile": "fixedpollinginterval",
+    // Poll files for updates more frequently
+    // when they're updated a lot.
+    "fallbackPolling": "dynamicPriority"
   },
   "include": [
     "src/**/*.ts"
