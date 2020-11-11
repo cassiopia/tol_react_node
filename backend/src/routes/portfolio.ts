@@ -1,26 +1,20 @@
-import express = require('express');
+module.exports = (app: any) => {
 
-const requestPromise = require('request-promise');
-// Create a new express app instance
-const app: express.Application = express();
+    const router = require("express").Router();
 
-const router = express.Router();
+    const photoController = require("../components/Portfolio/PhotoController");
 
-const portfolioController = require("../components/Portfolio/PortfolioController");
+    router.use("/get_album_info/:albumHash", photoController.getAlbumInfo);
 
-router.use (function (req, res, next) {
-    res.header ("Access-Control-Allow-Origin", "http://localhost:3001"); // обновляем в соответствии с доменом, из которого делаем запрос
-    res.header ("Access-Control-Allow-Origin", "http://localhost:3002");
-    res.header ("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+    router.use("/get_album_hashes", photoController.getAlbumHashes);
 
-router.use("/get_album_info/:albumHash", portfolioController.getAlbumInfo);
+    router.use("/get_album_images/:albumHash", photoController.getAlbumImages);
 
-router.use("/get_album_hashes", portfolioController.getAlbumHashes);
+    router.use("/get_albums", photoController.getAlbums);
 
-router.use("/get_album_images/:albumHash", portfolioController.getAlbumImages);
+    const albumController = require("../components/Portfolio/AlbumController");
 
-router.use("/get_albums", portfolioController.getAlbums);
+    router.post("/save_album", albumController.create);
 
-export default router;
+    app.use('/portfolio', router);
+};

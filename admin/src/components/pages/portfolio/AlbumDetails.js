@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import Breadcrumbs from "../../breadcrumbs/Breadcrumbs";
 import {useLocation} from 'react-router-dom'
 import {useForm} from "react-hook-form";
@@ -9,6 +8,7 @@ import EditableTagGroup from './EditableTagGroup';
 import 'quill/dist/quill.snow.css';
 import './css/style.css';
 import 'antd/dist/antd.css'
+import PortfolioService from "../../services/PortfolioService";
 
 
 // todo Наверное можно сделать это как-то изящнее, но пока так
@@ -27,13 +27,74 @@ const divButtonsStyle = {
 
 
 export default function AlbumDetails() {
+
+    let query = useQuery();
+
+    const albumImg = `https://i.imgur.com/${query.get('cover')}.jpg`;
+
+    const albumId = query.get('id');
+    const albumTitle = query.get('title');
+
+    //const albumDescription = query.get('description');
+    const albumDescription = 'Пока так, пока не научусь вставлять что-нибудь в базу';
+
+
     const [form] = Form.useForm();
     const {quill, quillRef} = useQuill();
 
     const onFinish = (values) => {
         console.log(values);
         console.log(quill.getText());
+
+        var data = {
+            album_id: albumId,
+            title: values.title,
+            description: quill.getText()
+        };
+
+        sendData(data);
     };
+
+    const sendData = (data) => {
+
+        console.log(data);
+
+        //todo Моет быть создать флаг, который проверит есть ли данные в бд или это пока онлиимгурданные?
+        PortfolioService.save(data)
+            .then(response => {
+
+                // setTutorial({
+                //     id: response.data.id,
+                //     title: response.data.title,
+                //     description: response.data.description,
+                //     published: response.data.published
+                // });
+                // setSubmitted(true);
+                // console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+
+        // todo Запилить по аналогии. Разбери по косточкам, мысли хорошие
+
+        // TutorialDataService.create(data)
+        //     .then(response => {
+        //         setTutorial({
+        //             id: response.data.id,
+        //             title: response.data.title,
+        //             description: response.data.description,
+        //             published: response.data.published
+        //         });
+        //         setSubmitted(true);
+        //         console.log(response.data);
+        //     })
+        //     .catch(e => {
+        //         console.log(e);
+        //     });
+
+    };
+
 
     const onReset = () => {
         form.resetFields();
@@ -45,18 +106,6 @@ export default function AlbumDetails() {
     function useQuery() {
         return new URLSearchParams(useLocation().search);
     }
-
-    let query = useQuery();
-
-    const albumImg = `https://i.imgur.com/${query.get('cover')}.jpg`;
-
-    // todo придумать интерфес для редактирования
-    // todo Добавить логику, если в БД пусто, то отображать то что пришло из запроса
-    const albumTitle = query.get('title');
-
-    //const albumDescription = query.get('description');
-    const albumDescription = 'Пока так, пока не научусь вставлять что-нибудь в базу';
-
 
     const {register, handleSubmit, setValue} = useForm();
     const onSubmit = data => console.log(data);

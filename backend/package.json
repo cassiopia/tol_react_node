@@ -24,15 +24,22 @@
   },
   "dependencies": {
     "@types/mocha": "^7.0.2",
+    "@types/node": "^14.14.6",
+    "@types/validator": "^13.1.0",
     "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "chai-http": "^4.3.0",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "hstore": "0.0.1",
     "morgan": "^1.10.0",
     "pg": "^8.4.1",
     "react-images": "^1.1.7",
     "react-photo-gallery": "^8.0.0",
+    "reflect-metadata": "^0.1.13",
     "request-promise": "^4.2.5",
-    "sql-bricks-postgres": "^0.5.0"
+    "sequelize": "^6.3.5",
+    "sequelize-typescript": "^1.1.0"
   }
 }
