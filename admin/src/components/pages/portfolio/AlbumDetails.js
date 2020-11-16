@@ -59,6 +59,8 @@ export default function AlbumDetails() {
 
         console.log(data);
 
+        // todo Редактор не дает поставить в тексте пробелы
+
         //todo Моет быть создать флаг, который проверит есть ли данные в бд или это пока онлиимгурданные?
         PortfolioService.save(data)
             .then(response => {

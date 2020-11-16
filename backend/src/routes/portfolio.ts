@@ -1,3 +1,5 @@
+import {AlbumController} from "../components/Portfolio/AlbumController";
+
 module.exports = (app: any) => {
 
     const router = require("express").Router();
@@ -12,9 +14,9 @@ module.exports = (app: any) => {
 
     router.use("/get_albums", photoController.getAlbums);
 
-    const albumController = require("../components/Portfolio/AlbumController");
+    const album = new AlbumController();
 
-    router.post("/save_album", albumController.create);
+    router.post("/save_album", album.create);
 
     app.use('/portfolio', router);
 };

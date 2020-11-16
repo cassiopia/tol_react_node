@@ -12,7 +12,6 @@ const server = app.listen(app.get("port"), () => {
     console.log("  Press CTRL-C to stop\n");
 });
 
-const dbModels = require("./models/index");
-dbModels.sequelize.sync();
+require("./models/index");
 
 export default server;

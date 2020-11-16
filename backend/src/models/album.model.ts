@@ -1,13 +1,44 @@
-module.exports = (sequelize: any, Sequelize: any) => {
-    return sequelize.define("album", {
+import {Model, DataTypes} from "sequelize";
+import {database} from "../config/database";
+
+export class Album extends Model {
+    public id!: number;
+    public album_id!: string;
+    public title!: string;
+    public description!: string;
+    // timestamps!
+    public readonly createdAt!: Date;
+    public readonly updatedAt!: Date;
+}
+
+export interface AlbumInterface {
+    album_id: string;
+    title: string;
+    description: string;
+}
+
+Album.init(
+    {
+        id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            autoIncrement: true,
+            primaryKey: true
+        },
         album_id: {
-            type: Sequelize.STRING
+            type: new DataTypes.STRING
         },
         title: {
-            type: Sequelize.STRING
+            type: new DataTypes.STRING
         },
         description: {
-            type: Sequelize.TEXT
+            type: new DataTypes.STRING
         }
-    });
-};
+    },
+    {
+        tableName: "album",
+        sequelize: database
+    }
+);
+
+
+Album.sync({force: true}).then(() => console.log("Album table created"));

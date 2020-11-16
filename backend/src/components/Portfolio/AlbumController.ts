@@ -1,35 +1,61 @@
-const dbModels = require("../../models/index");
-const Album = dbModels.album;
-//const Op = dbModels.Sequelize.Op;
+import { Request, Response } from 'express';
+import { Album, AlbumInterface } from '../../models/album.model';
+import { UpdateOptions, DestroyOptions } from 'sequelize';
 
-// Create and Save a new Album
-exports.create = (req: any, res: any) => {
-    // Validate request
-    // if (!req.body.title || !req.body.description) {
-    //     res.status(400).send({
-    //         message: "Content can not be empty!"
-    //     });
-    //     return;
+
+export class AlbumController{
+
+    public index (_req: Request, res: Response) {
+        Album.findAll<Album>({})
+            .then((nodes : Array<Album>) => res.json(nodes))
+            .catch((err : Error) => res.status(500).json(err))
+    }
+
+    public create (req: Request, res: Response) {
+        const params : AlbumInterface = req.body;
+
+        Album.create<Album>(params)
+            .then((node : Album) => res.status(201).json(node))
+            .catch((err : Error) => res.status(500).json(err))
+    }
+
+    // public show (req: Request, res: Response) {
+    //     const nodeId : number = req.params.id;
+    //
+    //     Album.findByPk<Album>(nodeId)
+    //         .then((node : Album|null) => {
+    //             if (node) {
+    //                 res.json(node)
+    //             } else {
+    //                 res.status(404).json({errors: ['Node not found']})
+    //             }
+    //         })
+    //         .catch((err : Error) => res.status(500).json(err))
     // }
 
-    console.log(req.body);
+    // public update (req: Request, res: Response) {
+    //     const nodeId : number = req.params.id;
+    //     const params : AlbumInterface = req.body;
+    //
+    //     const options : UpdateOptions = {
+    //         where: {id: nodeId},
+    //         limit: 1
+    //     };
+    //
+    //     Album.update(params, options)
+    //         .then(() => res.status(202).json({data: "success"}))
+    //         .catch((err : Error) => res.status(500).json(err))
+    // }
 
-    // Create a Album
-    const album = {
-        album_id: req.body.album_id,
-        title: req.body.title,
-        description: req.body.description
-    };
-
-   // Save Tutorial in the database
-    Album.create(album)
-        .then(function (data: any) {
-            res.send(data);
-        })
-        .catch(function (err: any) {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while creating the Album."
-            });
-        });
-};
+    // public delete (req: Request, res: Response) {
+    //     const nodeId : number = req.params.id;
+    //     const options : DestroyOptions = {
+    //         where: {id: nodeId},
+    //         limit: 1
+    //     };
+    //
+    //     Album.destroy(options)
+    //         .then(() => res.status(204).json({data: "success"}))
+    //         .catch((err : Error) => res.status(500).json(err))
+    // }
+}
