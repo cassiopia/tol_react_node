@@ -15,8 +15,53 @@ export class AlbumController{
         const params : AlbumInterface = req.body;
 
         Album.create<Album>(params)
-            .then((node : Album) => res.status(201).json(node))
+            .then((album : Album) => res.status(201).json(album))
             .catch((err : Error) => res.status(500).json(err))
+    }
+
+    //todo Довости метод до логического конца
+    public findByHashOrCreate(req: Request, res: Response) {
+
+        const albumHash: string = req.body.album_hash;
+
+        Album.findOrCreate({
+            where: { album_hash: albumHash },
+            defaults: {
+                album_hash: albumHash,
+                title: req.body.title,
+                description: req.body.description
+            }
+        }).then(([album, created]) => {
+
+            if(created) {
+                console.log('+++++++++');
+                console.log(album);
+            }
+            else {
+                console.log('----------');
+                console.log(album);
+            }
+
+        });
+
+    }
+
+    public getByAlbumHash(req: Request, res: Response) {
+
+        const albumHash: string = req.params.albumHash;
+
+
+        // todo Рабочий вариант
+        Album.findOne<Album>({where: {album_hash: albumHash}})
+            .then((album: Album | null) => {
+                if (album) {
+                    res.json(album)
+                } else {
+                    res.status(404).json({errors: ['Album not found']})
+                }
+            })
+            .catch((err: Error) => res.status(500).json(err))
+
     }
 
     // public show (req: Request, res: Response) {

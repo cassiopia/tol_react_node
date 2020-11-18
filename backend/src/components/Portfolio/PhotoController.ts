@@ -1,6 +1,9 @@
 // @ts-ignore
 const axios = require('axios');
 
+// todo Определить типы (вместо any)
+import { Request, Response } from 'express';
+
 const clientId = '6052db0e19156fa';
 
 const accessToken = '3eef1f3a555b4332d4714264d47a16bfb73e5376';

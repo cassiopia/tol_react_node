@@ -1,78 +1,34 @@
-[
-  {
-    "id": "bd4URdO",
-    "title": "Malta",
-    "description": null,
-    "datetime": 1585061624,
-    "cover": "9Ln9rBg",
-    "cover_edited": 0,
-    "cover_width": 1620,
-    "cover_height": 1080,
-    "account_url": "triponlife",
-    "account_id": 126491147,
-    "privacy": "public",
-    "layout": "blog",
-    "views": 343,
-    "link": "https://imgur.com/a/bd4URdO",
-    "favorite": false,
-    "nsfw": null,
-    "section": null,
-    "images_count": 12,
-    "in_gallery": true,
-    "is_ad": false,
-    "include_album_ads": false,
-    "is_album": true,
-    "order": 0
-  },
-  {
-    "id": "47BjJf5",
-    "title": "Spain",
-    "description": null,
-    "datetime": 1585061558,
-    "cover": "tTi9lsx",
-    "cover_edited": 0,
-    "cover_width": 1620,
-    "cover_height": 1080,
-    "account_url": "triponlife",
-    "account_id": 126491147,
-    "privacy": "public",
-    "layout": "blog",
-    "views": 94,
-    "link": "https://imgur.com/a/47BjJf5",
-    "favorite": false,
-    "nsfw": null,
-    "section": null,
-    "images_count": 15,
-    "in_gallery": true,
-    "is_ad": false,
-    "include_album_ads": false,
-    "is_album": true,
-    "order": 0
-  },
-  {
-    "id": "ReaaF1Y",
-    "title": "TianShan",
-    "description": null,
-    "datetime": 1585060705,
-    "cover": "6UYhvLL",
-    "cover_edited": 0,
-    "cover_width": 1620,
-    "cover_height": 1080,
-    "account_url": "triponlife",
-    "account_id": 126491147,
-    "privacy": "public",
-    "layout": "blog",
-    "views": 314,
-    "link": "https://imgur.com/a/ReaaF1Y",
-    "favorite": false,
-    "nsfw": null,
-    "section": null,
-    "images_count": 12,
-    "in_gallery": true,
-    "is_ad": false,
-    "include_album_ads": false,
-    "is_album": true,
-    "order": 0
-  }
-],"success": true, "status": 200
-}
+Album {
+[Node]   dataValues: {
+[Node]     id: 2,
+[Node]     album_hash: '47BjJf5',
+[Node]     title: 'Spain',
+[Node]     description: 'Пока так, пока не научусь вставлять что-нибудь в базу\n',
+[Node]     createdAt: 2020-11-17T13:04:23.972Z,
+[Node]     updatedAt: 2020-11-17T13:04:23.972Z
+[Node]   },
+[Node]   _previousDataValues: {
+[Node]     id: 2,
+[Node]     album_hash: '47BjJf5',
+[Node]     title: 'Spain',
+[Node]     description: 'Пока так, пока не научусь вставлять что-нибудь в базу\n',
+[Node]     createdAt: 2020-11-17T13:04:23.972Z,
+[Node]     updatedAt: 2020-11-17T13:04:23.972Z
+[Node]   },
+[Node]   _changed: Set(0) {},
+[Node]   _options: {
+[Node]     isNewRecord: false,
+[Node]     _schema: null,
+[Node]     _schemaDelimiter: '',
+[Node]     raw: true,
+[Node]     attributes: [
+[Node]       'id',
+[Node]       'album_hash',
+[Node]       'title',
+[Node]       'description',
+[Node]       'createdAt',
+[Node]       'updatedAt'
+[Node]     ]
+[Node]   },
+[Node]   isNewRecord: false
+[Node] }

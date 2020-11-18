@@ -18,5 +18,9 @@ module.exports = (app: any) => {
 
     router.post("/save_album", album.create);
 
+    router.post("/find_by_hash_or_create", album.findByHashOrCreate);
+
+    router.get("/get_by_album_hash/:albumHash", album.getByAlbumHash);
+
     app.use('/portfolio', router);
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import Breadcrumbs from "../../breadcrumbs/Breadcrumbs";
 import {useLocation} from 'react-router-dom'
 import {useForm} from "react-hook-form";
-import {Form, Input, Button} from 'antd';
+import {Form, Input, Button, message} from 'antd';
 import {useQuill} from 'react-quilljs';
 import EditableTagGroup from './EditableTagGroup';
 import 'quill/dist/quill.snow.css';
@@ -21,7 +21,8 @@ const divButtonsStyle = {
     "textAlign": "center"
 };
 
-// todo Разобраться как нода должна общаться с базой
+
+// todo jдумать что должно происходить по нажатию на кнопку reset
 // todo редусмотреть что в описание может быть ссылка на отчет. Сделать атк что бы привела в нужный рздел
 // todo добавить возможность добавлять тэги
 
@@ -42,24 +43,32 @@ export default function AlbumDetails() {
     const [form] = Form.useForm();
     const {quill, quillRef} = useQuill();
 
-    const onFinish = (values) => {
-        console.log(values);
-        console.log(quill.getText());
+    // todo Со временем разобраться как отцентрировать относительно формы
+    const successMessage = () => {
+        message.success({
+            content: 'Изменения успешно сохранены!',
+            className: 'successMessage',
+            style: {
+                marginTop: '70vh'
+            }
+        });
+    };
 
+
+    const onFinish = (values) => {
         var data = {
-            album_id: albumId,
+            album_hash: albumId,
             title: values.title,
             description: quill.getText()
         };
 
         sendData(data);
+        successMessage();
     };
 
     const sendData = (data) => {
 
-        console.log(data);
-
-        // todo Редактор не дает поставить в тексте пробелы
+        //console.log(data);
 
         //todo Моет быть создать флаг, который проверит есть ли данные в бд или это пока онлиимгурданные?
         PortfolioService.save(data)
@@ -162,9 +171,7 @@ export default function AlbumDetails() {
                                         <Form.Item
                                             label="Описание"
                                         >
-                                            <div>
-                                                <div ref={quillRef}/>
-                                            </div>
+                                            <div ref={quillRef}/>
                                         </Form.Item>
                                     </div>
                                     <div className="col-md-12">

@@ -12,6 +12,7 @@ export class Album extends Model {
 }
 
 export interface AlbumInterface {
+    // todo Заменить на album_hash и протестировать
     album_id: string;
     title: string;
     description: string;
@@ -24,7 +25,7 @@ Album.init(
             autoIncrement: true,
             primaryKey: true
         },
-        album_id: {
+        album_hash: {
             type: new DataTypes.STRING
         },
         title: {
@@ -41,4 +42,5 @@ Album.init(
 );
 
 
-Album.sync({force: true}).then(() => console.log("Album table created"));
+//Album.sync({ force: true }).then(() => console.log("Album table created"));
+Album.sync().then(() => console.log("Album table created"));

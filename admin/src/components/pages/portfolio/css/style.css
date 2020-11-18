@@ -111,3 +111,12 @@
     margin: 25px 0 25px;
     text-align: center;
 }
+
+/*Пока пустой*/
+.successMessage {
+
+}
+
+.ant-message-success .anticon {
+    color: #75b209;
+}
