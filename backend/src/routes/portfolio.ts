@@ -16,9 +16,7 @@ module.exports = (app: any) => {
 
     const album = new AlbumController();
 
-    router.post("/save_album", album.create);
-
-    router.post("/find_by_hash_or_create", album.findByHashOrCreate);
+    router.post("/save_album", album.save);
 
     router.get("/get_by_album_hash/:albumHash", album.getByAlbumHash);
 

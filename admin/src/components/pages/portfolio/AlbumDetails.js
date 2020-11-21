@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from "react";
 import Breadcrumbs from "../../breadcrumbs/Breadcrumbs";
 import {useLocation} from 'react-router-dom'
 import {useForm} from "react-hook-form";
@@ -33,15 +33,49 @@ export default function AlbumDetails() {
 
     const albumImg = `https://i.imgur.com/${query.get('cover')}.jpg`;
 
-    const albumId = query.get('id');
+    const albumHash = query.get('id');
     const albumTitle = query.get('title');
+    const albumDescription = query.get('description');
 
-    //const albumDescription = query.get('description');
-    const albumDescription = 'Пока так, пока не научусь вставлять что-нибудь в базу';
-
+    // todo Пока не ясно, нужен ли мне этотт объект теперь
+    const [album, setAlbum] = useState([]);
 
     const [form] = Form.useForm();
     const {quill, quillRef} = useQuill();
+
+    let setAlbumData;
+    setAlbumData = () => {
+        PortfolioService.getAlbum(albumHash)
+            .then(response => {
+                setAlbum(response.data);
+                setForm(response.data.title, response.data.description);
+            })
+            .catch(e => {
+                let title = '';
+                let description = '';
+
+                if (albumTitle && albumTitle !== 'null') {
+                    title = albumTitle;
+                }
+                if (albumDescription && albumDescription !== 'null') {
+                    description = albumDescription;
+                }
+                setForm(title, description);
+            });
+    };
+
+    const setForm = (title, description) => {
+        form.setFieldsValue({
+            title: title,
+            description: description
+        });
+
+        if (quill) {
+            quill.setContents([
+                {insert: description}
+            ]);
+        }
+    };
 
     // todo Со временем разобраться как отцентрировать относительно формы
     const successMessage = () => {
@@ -54,10 +88,9 @@ export default function AlbumDetails() {
         });
     };
 
-
     const onFinish = (values) => {
         var data = {
-            album_hash: albumId,
+            album_hash: albumHash,
             title: values.title,
             description: quill.getText()
         };
@@ -67,11 +100,8 @@ export default function AlbumDetails() {
     };
 
     const sendData = (data) => {
-
-        //console.log(data);
-
-        //todo Моет быть создать флаг, который проверит есть ли данные в бд или это пока онлиимгурданные?
-        PortfolioService.save(data)
+        //todo Привести  в порядок метод
+        PortfolioService.saveAlbum(data)
             .then(response => {
 
                 // setTutorial({
@@ -131,13 +161,9 @@ export default function AlbumDetails() {
         setValue("EditorInput", e.target.value);
     };
 
-
-    React.useEffect(() => {
-        if (quill) {
-            quill.clipboard.dangerouslyPasteHTML(albumDescription);
-        }
+    useEffect(() => {
+        setAlbumData();
     }, [quill]);
-
 
     return (
         <>
@@ -162,7 +188,7 @@ export default function AlbumDetails() {
                                         <Form.Item
                                             name="title"
                                             label="Заголовок"
-                                            initialValue={albumTitle}
+
                                         >
                                             <Input/>
                                         </Form.Item>

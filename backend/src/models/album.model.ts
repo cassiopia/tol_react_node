@@ -3,7 +3,7 @@ import {database} from "../config/database";
 
 export class Album extends Model {
     public id!: number;
-    public album_id!: string;
+    public album_hash!: string;
     public title!: string;
     public description!: string;
     // timestamps!
@@ -13,7 +13,7 @@ export class Album extends Model {
 
 export interface AlbumInterface {
     // todo Заменить на album_hash и протестировать
-    album_id: string;
+    album_hash: string;
     title: string;
     description: string;
 }
