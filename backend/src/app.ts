@@ -25,5 +25,6 @@ app.get('/', function (req, res) {
 });
 
 require("./routes/portfolio")(app);
+require("./routes/tag")(app);
 
 export default app;

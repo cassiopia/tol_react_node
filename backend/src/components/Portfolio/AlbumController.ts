@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {Album, AlbumInterface} from '../../models/album.model';
+import {Album, AlbumInterface} from '../../models/Album.model';
 import {UpdateOptions, DestroyOptions} from 'sequelize';
 
 
@@ -40,9 +40,17 @@ export class AlbumController {
                         description: req.body.description
                     },
                     {where: {album_hash: albumHash}}
-                ).then(() => res.status(202).json({data: "success"}))
-                    .catch((err: Error) => res.status(500).json(err));
+                ).then(
+                    () => res.send({id: album.getDataValue('id'), message: "success"})
+
+                ).catch((err: Error) => res.status(500).json(err));
             }
+            else {
+               // () => res.status(202).json({id: album.getDataValue('id'), message: "success"});
+                res.send({id: album.getDataValue('id'), message: "success"});
+            }
+
+            //res.send(album.getDataValue('id'));
         })
             .catch((err: Error) => res.status(500).json(err));
     }
@@ -57,7 +65,7 @@ export class AlbumController {
                     res.json(album)
                 } else {
                     // todo ожет быть писать эту ситуацию в лог?...
-                   // res.status(404).json({errors: ['Album not found']})
+                    res.status(404).json({errors: ['Album not found']})
                 }
             })
             .catch((err: Error) => res.status(500).json(err))

@@ -7,20 +7,9 @@ import {useQuill} from 'react-quilljs';
 import EditableTagGroup from './EditableTagGroup';
 import 'quill/dist/quill.snow.css';
 import './css/style.css';
+import './css/tags.css';
 import 'antd/dist/antd.css'
 import PortfolioService from "../../services/PortfolioService";
-
-
-// todo Наверное можно сделать это как-то изящнее, но пока так
-const buttonStyle = {
-    "backgroundColor": "#75b209",
-    "border": "#75b209"
-};
-
-const divButtonsStyle = {
-    "textAlign": "center"
-};
-
 
 // todo jдумать что должно происходить по нажатию на кнопку reset
 // todo редусмотреть что в описание может быть ссылка на отчет. Сделать атк что бы привела в нужный рздел
@@ -37,6 +26,11 @@ export default function AlbumDetails() {
     const albumTitle = query.get('title');
     const albumDescription = query.get('description');
 
+    const tagTypeYear = "year";
+    const tagTypeCountry = "country";
+
+    const pageTypePortfolio = "portfolio";
+
     // todo Пока не ясно, нужен ли мне этотт объект теперь
     const [album, setAlbum] = useState([]);
 
@@ -45,7 +39,7 @@ export default function AlbumDetails() {
 
     let setAlbumData;
     setAlbumData = () => {
-        PortfolioService.getAlbum(albumHash)
+          PortfolioService.getAlbum(albumHash)
             .then(response => {
                 setAlbum(response.data);
                 setForm(response.data.title, response.data.description);
@@ -96,49 +90,31 @@ export default function AlbumDetails() {
         };
 
         sendData(data);
-        successMessage();
     };
 
     const sendData = (data) => {
-        //todo Привести  в порядок метод
+
         PortfolioService.saveAlbum(data)
             .then(response => {
-
-                // setTutorial({
-                //     id: response.data.id,
-                //     title: response.data.title,
-                //     description: response.data.description,
-                //     published: response.data.published
-                // });
-                // setSubmitted(true);
-                // console.log(response.data);
+                successMessage();
+                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
             });
-
-        // todo Запилить по аналогии. Разбери по косточкам, мысли хорошие
-
-        // TutorialDataService.create(data)
-        //     .then(response => {
-        //         setTutorial({
-        //             id: response.data.id,
-        //             title: response.data.title,
-        //             description: response.data.description,
-        //             published: response.data.published
-        //         });
-        //         setSubmitted(true);
-        //         console.log(response.data);
-        //     })
-        //     .catch(e => {
-        //         console.log(e);
-        //     });
-
     };
 
 
     const onReset = () => {
-        form.resetFields();
+        // todo Нужно возвращать к старому значению
+        //form.resetFields();
+
+        if (quill) {
+            // todo Нужно возвращать к старому значению
+            // quill.setContents([
+            //     {insert: ''}
+            // ]);
+        }
     };
 
     // todo Предусмотреть ссылку для возврата к списку альбомов
@@ -176,11 +152,25 @@ export default function AlbumDetails() {
                             <div className="mb-thumb">
                                 <img src={albumImg} className="img-responsive" alt=""/>
                             </div>
+                            <div className="row">
+                                <div className="tagsYearRowDiv col-md-12">
+                                    <span className="tagsYearLabelDiv">Год: </span>
+                                    <span className="tagsYearContentDiv">
+                                        <EditableTagGroup tagType={tagTypeYear} pageType={pageTypePortfolio} itemId={albumHash}/>
+                                    </span>
+                                </div>
+                            </div>
 
                             <div className="row">
-                                <div className="tagsDiv col-md-12">
-                                    <EditableTagGroup/>
+                                <div className="tagsCountryRowDiv col-md-12">
+                                    <span className="tagsCountryLabelDiv">Страна: </span>
+                                    <span className="tagsCountryContentDiv">
+                                        <EditableTagGroup tagType={tagTypeCountry} pageType={pageTypePortfolio} itemId={albumHash}/>
+                                    </span>
                                 </div>
+                            </div>
+
+                            <div className="row">
 
                                 <Form form={form} name="control-hooks" onFinish={onFinish}>
 
@@ -200,13 +190,14 @@ export default function AlbumDetails() {
                                             <div ref={quillRef}/>
                                         </Form.Item>
                                     </div>
+
                                     <div className="col-md-12">
-                                        <Form.Item style={divButtonsStyle}>
-                                            <Button style={buttonStyle} type="primary" htmlType="submit">
-                                                Submit
+                                        <Form.Item className="divButtons">
+                                            <Button type="primary" htmlType="submit">
+                                                Отправить
                                             </Button>
                                             <Button htmlType="button" onClick={onReset}>
-                                                Reset
+                                                Откатить изменения
                                             </Button>
                                         </Form.Item>
                                     </div>

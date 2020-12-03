@@ -1,14 +1,25 @@
-/*Пока пустой*/
-.successMessage {
+.addArticleDiv {
+    margin: 0 0 25px;
+    text-align: center;
+}
 
+.imgDiv {
+    margin: 0 0 25px;
 }
 
 .divButtons {
     text-align: center;
 }
 
-.ant-message-success .anticon {
+.article-comment-form button a {
+    color: #fff;
+    border: 2px solid #75b209;
+}
+
+.article-comment-form button:hover a {
     color: #75b209;
+    border: 0 solid #75b209;
+    background: #fff;
 }
 
 .ant-btn-primary {
@@ -16,7 +27,6 @@
     background-color: #75b209;
     border: #75b209;
 }
-
 .ant-btn-primary:hover,
 .ant-btn-primary:focus {
     color: #fff;
@@ -26,4 +36,3 @@
 .ant-btn {
     color: #40a9ff;
 }
-

@@ -1,46 +1,40 @@
 import {Model, DataTypes} from "sequelize";
 import {database} from "../config/database";
 
-export class Album extends Model {
+export class Tag extends Model {
     public id!: number;
-    public album_hash!: string;
     public title!: string;
-    public description!: string;
+    public type!: string;
     // timestamps!
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
 
-export interface AlbumInterface {
-    // todo Заменить на album_hash и протестировать
-    album_hash: string;
+export interface TagInterface {
     title: string;
-    description: string;
+    type: string;
 }
 
-Album.init(
+Tag.init(
     {
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
             autoIncrement: true,
             primaryKey: true
         },
-        album_hash: {
-            type: new DataTypes.STRING
-        },
         title: {
             type: new DataTypes.STRING
         },
-        description: {
+        type: {
             type: new DataTypes.STRING
         }
     },
     {
-        tableName: "album",
+        tableName: "tag",
         sequelize: database
     }
 );
 
 
 //Album.sync({ force: true }).then(() => console.log("Album table created"));
-Album.sync().then(() => console.log("Album table created"));
+Tag.sync().then(() => console.log("Tag table created"));

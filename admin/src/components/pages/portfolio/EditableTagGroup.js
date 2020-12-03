@@ -3,6 +3,8 @@ import 'antd/dist/antd.css';
 import './css/tags.css';
 import {Tag, Input, Tooltip} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
+import TagService from "../../services/TagService";
+import PortfolioService from "../../services/PortfolioService";
 
 
 class EditableTagGroup extends React.Component {
@@ -13,6 +15,23 @@ class EditableTagGroup extends React.Component {
         editInputIndex: -1,
         editInputValue: '',
     };
+
+    componentDidMount() {
+        TagService.getTags(this.props.itemId, this.props.pageType, this.props.tagType)
+            .then(response => {
+                //console.log(response.data);
+                //console.log(tags);
+                // this.setState({
+                //     tags,
+                //     inputVisible: false,
+                //     inputValue: '',
+                // });
+            })
+            .catch(e => {
+                console.log(e);
+            });
+
+    }
 
     handleClose = removedTag => {
         const tags = this.state.tags.filter(tag => tag !== removedTag);
@@ -34,12 +53,27 @@ class EditableTagGroup extends React.Component {
         if (inputValue && tags.indexOf(inputValue) === -1) {
             tags = [...tags, inputValue];
         }
-        console.log(tags);
-        this.setState({
-            tags,
-            inputVisible: false,
-            inputValue: '',
-        });
+
+        var data = {
+            title: this.state.inputValue,
+            tag_type: this.props.tagType,
+            page_type: this.props.pageType,
+            item_id: this.props.itemId
+        };
+
+        TagService.addTag(data)
+            .then(response => {
+                console.log(response.data);
+                console.log(tags);
+                this.setState({
+                    tags,
+                    inputVisible: false,
+                    inputValue: '',
+                });
+            })
+            .catch(e => {
+                console.log(e);
+            });
     };
 
     handleEditInputChange = e => {
@@ -47,6 +81,29 @@ class EditableTagGroup extends React.Component {
     };
 
     handleEditInputConfirm = () => {
+        console.log('Заходим на редактирование');
+        console.log(this.state.editInputValue);
+        var data = {
+            title: this.state.editInputValue,
+            tag_type: this.props.tagType,
+            page_type: this.props.pageType,
+            item_id: this.props.itemId
+        };
+
+        TagService.editTag(data)
+            .then(response => {
+                //console.log(response.data);
+                //console.log(tags);
+                // this.setState({
+                //     tags,
+                //     inputVisible: false,
+                //     inputValue: '',
+                // });
+            })
+            .catch(e => {
+                console.log(e);
+            });
+
         this.setState(({tags, editInputIndex, editInputValue}) => {
             const newTags = [...tags];
             newTags[editInputIndex] = editInputValue;
@@ -71,6 +128,7 @@ class EditableTagGroup extends React.Component {
         const {tags, inputVisible, inputValue, editInputIndex, editInputValue} = this.state;
         return (
             <>
+                {/*{console.log(this.props.type)}*/}
                 {tags.map((tag, index) => {
                     if (editInputIndex === index) {
                         return (

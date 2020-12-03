@@ -14,3 +14,29 @@
     background: transparent;
     border-style: dashed;
 }
+
+.tagsYearRowDiv {
+    margin: 25px 0 25px;
+}
+
+.tagsCountryRowDiv {
+    margin: 0 0 25px;
+}
+
+.tagsYearLabelDiv {
+    margin-left: 50px;
+    font-weight: 700;
+}
+
+.tagsYearContentDiv {
+    margin-left: 5px;
+}
+
+.tagsCountryLabelDiv {
+    margin-left: 25px;
+    font-weight: 700;
+}
+
+.tagsCountryContentDiv {
+    margin-left: 5px;
+}
