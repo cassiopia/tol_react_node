@@ -23,9 +23,6 @@ PageTag.init(
         },
         tag_id: {
             type: new DataTypes.INTEGER
-        },
-        page_type: {
-            type: new DataTypes.STRING
         }
     },
     {
@@ -35,5 +32,5 @@ PageTag.init(
 );
 
 
-//Album.sync({ force: true }).then(() => console.log("Album table created"));
-PageTag.sync().then(() => console.log("PageTag table created"));
+PageTag.sync({ force: true }).then(() => console.log("PageTag table created"));
+//PageTag.sync().then(() => console.log("PageTag table created"));

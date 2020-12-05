@@ -10,6 +10,9 @@ export default function MenuBody() {
                 <Link to="/portfolio" data-hover="Портфолио">Портфолио</Link>
             </li>
             <li>
+                <Link to="/page/portfolio" data-hover="Новый тип страницы">Новый тип страницы</Link>
+            </li>
+            <li>
                 <Link to="/blog" data-hover="Блог">Блог</Link>
             </li>
             <li>

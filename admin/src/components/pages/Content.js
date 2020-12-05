@@ -9,6 +9,7 @@ const ArticleDetails = lazy(() => import("./blog/ArticleDetails"));
 const Contact = lazy(() => import("./contact/Contact"));
 const Portfolio = lazy(() => import("./portfolio/Portfolio"));
 const AlbumDetails = lazy(() => import("./portfolio/AlbumDetails"));
+const Page = lazy(() => import("./Page"));
 
 class Content extends Component {
     render() {
@@ -22,6 +23,7 @@ class Content extends Component {
                     <Route path="/article-details" component={ArticleDetails}/>
                     <Route path="/contact" component={Contact}/>
                     <Route path="/portfolio" component={Portfolio}/>
+                    {/*<Route path="/page/portfolio" component={Page}/>*/}
                     <Route path="/albom-details" component={AlbumDetails}/>
                 </Suspense>
             </Switch>
