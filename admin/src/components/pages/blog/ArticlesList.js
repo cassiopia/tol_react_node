@@ -8,14 +8,13 @@ export default function ArticlesList() {
     return (
         <>
         <div className="row">
-
             <div className="addArticleDiv col-md-12">
-
                 <div className="article-comment-form">
-                    {/*todo Убрать спец эффекты возникающие при клике: оранжевую рамку вокруг кромки, возможность кликнуть только на линку, мимолетную рамку вокруг линки*/}
-                    <button type="submit">
-                        <Link to="/add-article" data-hover="Добавить статью">Добавить статью</Link>
-                    </button>
+                    <Link to="/add-article" data-hover="Добавить статью">
+                        <button type="submit">
+                            Добавить статью
+                        </button>
+                    </Link>
                 </div>
             </div>
 
