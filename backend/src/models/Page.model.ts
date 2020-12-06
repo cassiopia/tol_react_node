@@ -13,7 +13,7 @@ export class Page extends Model {
 }
 
 export interface PageInterface {
-    album_hash: string;
+    //album_hash: string;
     title: string;
     description: string;
     page_type: string;

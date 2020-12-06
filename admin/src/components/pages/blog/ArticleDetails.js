@@ -2,11 +2,14 @@ import Breadcrumbs from "../../breadcrumbs/Breadcrumbs";
 import React from "react";
 import {Button, Form, Input, message} from "antd";
 import {useQuill} from "react-quilljs";
-import BlogService from "../../services/BlogService";
+//import BlogService from "../../services/BlogService";
+import PageService from "../../services/PageService";
 import {useLocation} from "react-router-dom";
 import 'quill/dist/quill.snow.css';
 import 'antd/dist/antd.css';
 import './css/style.css';
+
+const pageTypeBlog = "blog";
 
 
 export default function ArticleDetails() {
@@ -16,18 +19,18 @@ export default function ArticleDetails() {
     const {quill, quillRef} = useQuill();
 
     let query = useQuery();
-    //const albumId = query.get('id');
-    const albumId = 1;
+    const albumId = query.get('id');
 
     const onFinish = (values) => {
         var data = {
-            article_id: albumId,
+            id: albumId,
             title: values.title,
-            description: quill.getText()
+            description: quill.getText(),
+            page_type: pageTypeBlog
         };
 
         sendData(data);
-        successMessage();
+
     };
 
     const onReset = () => {
@@ -43,40 +46,17 @@ export default function ArticleDetails() {
     };
 
     const sendData = (data) => {
-        //todo Привести  в порядок метод
-        BlogService.saveAlbum(data)
-            .then(response => {
 
-                // setTutorial({
-                //     id: response.data.id,
-                //     title: response.data.title,
-                //     description: response.data.description,
-                //     published: response.data.published
-                // });
-                // setSubmitted(true);
-                // console.log(response.data);
+        PageService.savePage(data)
+            .then(response => {
+                //todo Пока не знаю нужно ли мне это тут
+                //setForm(response.data.title, response.data.description);
+                successMessage();
             })
             .catch(e => {
+               errorMessage();
                 console.log(e);
             });
-
-        // todo Запилить по аналогии. Разбери по косточкам, мысли хорошие
-
-        // TutorialDataService.create(data)
-        //     .then(response => {
-        //         setTutorial({
-        //             id: response.data.id,
-        //             title: response.data.title,
-        //             description: response.data.description,
-        //             published: response.data.published
-        //         });
-        //         setSubmitted(true);
-        //         console.log(response.data);
-        //     })
-        //     .catch(e => {
-        //         console.log(e);
-        //     });
-
     };
 
     function useQuery() {
@@ -107,10 +87,20 @@ export default function ArticleDetails() {
         });
     };
 
+    const errorMessage = () => {
+        message.error({
+            content: 'Ошибка сохранения данных!',
+            className: 'errorMessage',
+            style: {
+                marginTop: '70vh'
+            }
+        });
+    };
+
 
     return (
         <>
-            <Breadcrumbs title="Информация о cтатье" link="aticle-details"/>
+            <Breadcrumbs title={albumId ? 'Подробнее о статье' : 'Добавить статью'} link="aticle-details"/>
 
             <div className="row" data-animated="0">
                 <div className="col-md-12">

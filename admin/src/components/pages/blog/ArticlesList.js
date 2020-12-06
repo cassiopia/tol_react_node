@@ -10,7 +10,7 @@ export default function ArticlesList() {
         <div className="row">
             <div className="addArticleDiv col-md-12">
                 <div className="article-comment-form">
-                    <Link to="/add-article" data-hover="Добавить статью">
+                    <Link to="/article-details" data-hover="Добавить статью">
                         <button type="submit">
                             Добавить статью
                         </button>
@@ -23,9 +23,9 @@ export default function ArticlesList() {
                     <div className="mb-thumb">
                         <img src="img/blog/1.jpg" className="img-responsive" alt=""/>
                         <div className="date">18<span>aug</span></div>
-                        <span className="rmore"><a href="/article-details">Подробнее</a></span>
+                        <span className="rmore"><a href="/article-details?id=1">Подробнее</a></span>
                     </div>
-                    <h4><a href="/article-details">Improving and Removing Envato Market Image
+                    <h4><a href="/article-details?id=1">Improving and Removing Envato Market Image
                         Watermarking</a></h4>
 
                     <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit
@@ -38,9 +38,9 @@ export default function ArticlesList() {
                     <div className="mb-thumb">
                         <img src="img/blog/2.jpg" className="img-responsive" alt=""/>
                         <div className="date">06<span>aug</span></div>
-                        <span className="rmore"><a href="/article-details">Подробнее</a></span>
+                        <span className="rmore"><a href="/article-details?id=2">Подробнее</a></span>
                     </div>
-                    <h4><a href="/article-details">A More Balanced Envato MarketImportant
+                    <h4><a href="/article-details?id=2">A More Balanced Envato MarketImportant
                         Changes!</a></h4>
 
                     <p>This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit

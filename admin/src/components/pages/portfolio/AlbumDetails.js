@@ -45,6 +45,8 @@ export default function AlbumDetails() {
                 setForm(response.data.title, response.data.description);
             })
             .catch(e => {
+
+                // todo в новой версии эта штука думаю будет не актуальна
                 let title = '';
                 let description = '';
 

@@ -12,6 +12,14 @@ const getPage = (pageType, ) => {
     //return http.get("/portfolio/get_by_album_hash/"+ albumHash);
 };
 
+const savePage = data => {
+    if (!data.id) {
+        return http.post("/page/create_page", data);
+    } else {
+        return http.put("/page/update_page", data);
+    }
+};
+
 const create = data => {
     // return http.post("/tutorials", data);
 };

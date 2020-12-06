@@ -19,7 +19,7 @@ class Content extends Component {
                     <Route exact path="/" component={Home}/>
                     <Route path="/about" component={About}/>
                     <Route path="/blog" component={Blog}/>
-                    <Route path="/add-article" component={AddArticle}/>
+                    {/*<Route path="/add-article" component={AddArticle}/>*/}
                     <Route path="/article-details" component={ArticleDetails}/>
                     <Route path="/contact" component={Contact}/>
                     <Route path="/portfolio" component={Portfolio}/>
