@@ -25,4 +25,20 @@ export class PageController {
                 (err: Error) => res.status(500).json(err)
             )
     }
+
+    public getAllByPageType(req: Request, res: Response) {
+
+        Page.findAll<Page>(
+            {where: {page_type: req.params.pageType}})
+            .then(
+                (page) => {
+                    if (page) {
+                        res.json(page);
+                    } else {
+                        res.status(404).json({errors: ["Pages not found"]});
+                    }
+                }
+            )
+            .catch((err: Error) => res.status(500).json(err));
+    }
 }
