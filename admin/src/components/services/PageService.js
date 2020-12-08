@@ -4,6 +4,10 @@ const getByPageType = (pageType) => {
     return http.get("/page/get_by_page_type/" + pageType);
 };
 
+const getOneById = (pageId) => {
+    return http.get("/page/get_one_by_id/" + pageId);
+};
+
 const savePage = data => {
     if (!data.id) {
         return http.post("/page/create_page", data);
@@ -14,6 +18,7 @@ const savePage = data => {
 
 export default {
     getByPageType,
+    getOneById,
     savePage
 };
 

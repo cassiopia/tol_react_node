@@ -37,8 +37,7 @@ export default function AlbumDetails() {
     const [form] = Form.useForm();
     const {quill, quillRef} = useQuill();
 
-    let setAlbumData;
-    setAlbumData = () => {
+    const setAlbumData = () => {
           PortfolioService.getAlbum(albumHash)
             .then(response => {
                 setAlbum(response.data);

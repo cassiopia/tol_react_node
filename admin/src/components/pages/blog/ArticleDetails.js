@@ -1,29 +1,42 @@
 import Breadcrumbs from "../../breadcrumbs/Breadcrumbs";
-import React from "react";
-import {Button, Form, Input, message} from "antd";
+import React, {useEffect, useState} from "react";
+import {Button, Form, Input} from "antd";
 import {useQuill} from "react-quilljs";
-//import BlogService from "../../services/BlogService";
 import PageService from "../../services/PageService";
 import {useLocation} from "react-router-dom";
 import 'quill/dist/quill.snow.css';
 import 'antd/dist/antd.css';
 import './css/style.css';
+import Notification from '../../notification/Notification';
 
 const pageTypeBlog = "blog";
 
-
 export default function ArticleDetails() {
 
+    const [article, setArticle] = useState([]);
     const [form] = Form.useForm();
     // todo Разобраться как сделать полее воода больше
     const {quill, quillRef} = useQuill();
 
     let query = useQuery();
-    const albumId = query.get('id');
+    const articleId = query.get('id');
+
+    const setArticleData = () => {
+        PageService.getOneById(articleId)
+            .then(response => {
+                setArticle(response.data);
+                setForm(response.data.title, response.data.description);
+            })
+            .catch(e => {
+                Notification.errorNotification('Ошибка загрузки данных!');
+                console.log(e);
+            });
+    };
+
 
     const onFinish = (values) => {
         var data = {
-            id: albumId,
+            id: articleId,
             title: values.title,
             description: quill.getText(),
             page_type: pageTypeBlog
@@ -49,12 +62,10 @@ export default function ArticleDetails() {
 
         PageService.savePage(data)
             .then(response => {
-                //todo Пока не знаю нужно ли мне это тут
-                //setForm(response.data.title, response.data.description);
-                successMessage();
+                Notification.successNotification('Изменения успешно сохранены!');
             })
             .catch(e => {
-               errorMessage();
+                Notification.errorNotification('Ошибка сохранения данных!');
                 console.log(e);
             });
     };
@@ -76,31 +87,15 @@ export default function ArticleDetails() {
         }
     };
 
-    // todo Со временем разобраться как отцентрировать относительно формы
-    const successMessage = () => {
-        message.success({
-            content: 'Изменения успешно сохранены!',
-            className: 'successMessage',
-            style: {
-                marginTop: '70vh'
-            }
-        });
-    };
-
-    const errorMessage = () => {
-        message.error({
-            content: 'Ошибка сохранения данных!',
-            className: 'errorMessage',
-            style: {
-                marginTop: '70vh'
-            }
-        });
-    };
-
+    useEffect(() => {
+        if (articleId) {
+            setArticleData();
+        }
+    }, [quill]);
 
     return (
         <>
-            <Breadcrumbs title={albumId ? 'Подробнее о статье' : 'Добавить статью'} link="aticle-details"/>
+            <Breadcrumbs title={articleId ? 'Подробнее о статье' : 'Добавить статью'} link="aticle-details"/>
 
             <div className="row" data-animated="0">
                 <div className="col-md-12">
@@ -152,4 +147,5 @@ export default function ArticleDetails() {
 
         </>
     );
+
 }

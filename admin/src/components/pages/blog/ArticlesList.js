@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import './css/style.css';
 import PageService from "../../services/PageService";
+import Notification from "../../notification/Notification";
 
 const pageTypeBlog = "blog";
 
@@ -20,6 +21,7 @@ export default function ArticlesList() {
             .catch(e => {
                 setIsLoaded(true);
                 setError(error);
+                Notification.errorNotification('Ошибка загрузки данных!');
             });
     };
 

@@ -41,4 +41,18 @@ export class PageController {
             )
             .catch((err: Error) => res.status(500).json(err));
     }
+
+    public getOneById(req: Request, res: Response) {
+
+        Page.findOne<Page>({where: {id: req.params.pageId}})
+            .then((page: Page | null) => {
+                if (page) {
+                    res.json(page)
+                } else {
+                    res.status(404).json({errors: ['Page not found']})
+                }
+            })
+            .catch((err: Error) => res.status(500).json(err));
+    }
+
 }
