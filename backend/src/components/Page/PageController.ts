@@ -29,7 +29,7 @@ export class PageController {
     public getAllByPageType(req: Request, res: Response) {
 
         Page.findAll<Page>(
-            {where: {page_type: req.params.pageType}})
+            {where: {pageType: req.params.pageType}})
             .then(
                 (page) => {
                     if (page) {

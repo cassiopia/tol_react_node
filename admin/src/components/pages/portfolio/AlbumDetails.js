@@ -85,7 +85,7 @@ export default function AlbumDetails() {
 
     const onFinish = (values) => {
         var data = {
-            album_hash: albumHash,
+            albumHash: albumHash,
             title: values.title,
             description: quill.getText()
         };

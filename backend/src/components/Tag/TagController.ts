@@ -12,19 +12,19 @@ export class TagController {
 
     public addTag(req: Request, res: Response) {
 
-        const itemId: string = req.body.item_id;
+        const itemId: string = req.body.itemId;
 
         const isCreated: boolean = true;
 
         var pageTagItemId: number = 0;
 
-        if (req.body.page_type === pageTypePortfolio) {
+        if (req.body.pageType === pageTypePortfolio) {
 
             // Проверяем создан ли альбом в БД сайта. Создаем если нет и возвращаем id альбома
             Album.findOrCreate({
-                where: {album_hash: itemId},
+                where: {albumHash: itemId},
                 defaults: {
-                    album_hash: itemId,
+                    albumHash: itemId,
                 }
             }).then(([album, created]) => {
                 pageTagItemId = album.getDataValue('id');
@@ -38,13 +38,13 @@ export class TagController {
 
             Tag.create({
                 title: req.body.title,
-                type: req.body.tag_type,
+                type: req.body.tagType,
 
             }).then(tag => {
                 PageTag.create({
-                    item_id: pageTagItemId,
-                    tag_id: tag.getDataValue('id'),
-                    page_type: req.body.page_type,
+                    itemId: pageTagItemId,
+                    tagId: tag.getDataValue('id'),
+                    pageType: req.body.pageType,
 
                 }).then(() => res.status(202).json({data: "success"}))
                     .catch((err: Error) => res.status(500).json(err));
@@ -68,48 +68,44 @@ export class TagController {
 
 
     public getTags(req: Request, res: Response) {
-        console.log('!!!!!!!!!!!!!+++++');
-        //{ itemId: 'bd4URdO', tagType: 'country', pageType: 'portfolio' }
-
         console.log(req.params);
 
         var pageTagItemId: number = 0;
 
-        if (req.params.pageType === pageTypePortfolio) {
+        // if (req.params.pageType === pageTypePortfolio) {
+        //
+        //     //проверяем есть ли альбом
+        //     Album.findOne<Album>({where: {album_hash: req.params.itemId}})
+        //         .then((album: Album | null) => {
+        //             if (album) {
+        //                 pageTagItemId = album.getDataValue('id');
+        //             } else {
+        //                 res.status(404).json({errors: ['Album not found']});
+        //             }
+        //         })
+        //         .catch((err: Error) => res.status(500).json(err));
+        //
+        // } else {
+        //     res.status(404).json({data: "item not found"});
+        // }
 
-            console.log('!!!!!!!!!!!!!ффффффф');
-            //проверяем есть ли альбом
-            Album.findOne<Album>({where: {album_hash: req.params.itemId}})
-                .then((album: Album | null) => {
-                    if (album) {
-                        pageTagItemId = album.getDataValue('id');
-                    } else {
-                        res.status(404).json({errors: ['Album not found']});
-                    }
-                })
-                .catch((err: Error) => res.status(500).json(err));
+        if (req.params.itemId) {
+            console.log('Проверка!');
 
-        } else {
-            res.status(404).json({data: "item not found"});
-        }
-
-        if (!pageTagItemId) {
-            console.log('!!!!!!!!!!!!!sssssss');
-
-            // todo Разобраться как с джойнами сделать запрос. Учесть не только тип страницы, но и тип тэга
-
-            Tag.findAll<Tag>({
-                include: [{
-                    model: PageTag,
-                    where: {
-                        item_id: 1
-                    }
-                }]
-            }).then(tag => {
-                console.log('!!!!!!!!!!!!!++++++++++');
-                console.log(tag);
-                res.send(tag);
-            });
+            // // todo Разобраться как с джойнами сделать запрос. Учесть не только тип страницы, но и тип тэга
+            //
+            // Tag.findAll<Tag>({
+            //     include: [{
+            //         model: PageTag,
+            //         where: {
+            //             item_id: 1
+            //         }
+            //     }]
+            // }).then(tag => {
+            //     console.log('!!!!!!!!!!!!!++++++++++');
+            //     console.log(tag);
+            //     res.send(tag);
+            // });
             //
             // Tag.create({
             //     title: req.body.title,
@@ -125,8 +121,9 @@ export class TagController {
             //         .catch((err: Error) => res.status(500).json(err));
             //
             // }).catch((err: Error) => res.status(500).json(err));
-        } else {
-            res.status(404).json({data: "item not found"});
+            // } else {
+            //     res.status(404).json({data: "item not found"});
+            // }
         }
 
 

@@ -1,11 +1,10 @@
 import {Model, DataTypes} from "sequelize";
 import {database} from "../config/database";
+import {Tag} from './Tag.model';
+import {Page} from './Page.model';
 
 export class PageTag extends Model {
     public id!: number;
-    public item_id!: number;
-    public tag_id!: number;
-    public page_type!: string;
     // timestamps!
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
@@ -17,12 +16,6 @@ PageTag.init(
             type: DataTypes.INTEGER.UNSIGNED,
             autoIncrement: true,
             primaryKey: true
-        },
-        item_id: {
-            type: new DataTypes.INTEGER
-        },
-        tag_id: {
-            type: new DataTypes.INTEGER
         }
     },
     {
@@ -31,6 +24,8 @@ PageTag.init(
     }
 );
 
+Page.belongsToMany(Tag, {through: PageTag});
+Tag.belongsToMany(Page, {through: PageTag});
 
-PageTag.sync({ force: true }).then(() => console.log("PageTag table created"));
-//PageTag.sync().then(() => console.log("PageTag table created"));
+//PageTag.sync({ force: true }).then(() => console.log("PageTag table created"));
+PageTag.sync().then(() => console.log("PageTag table created"));

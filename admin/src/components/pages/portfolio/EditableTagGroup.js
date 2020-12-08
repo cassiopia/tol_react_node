@@ -56,9 +56,9 @@ class EditableTagGroup extends React.Component {
 
         var data = {
             title: this.state.inputValue,
-            tag_type: this.props.tagType,
-            page_type: this.props.pageType,
-            item_id: this.props.itemId
+            tagType: this.props.tagType,
+            pageType: this.props.pageType,
+            itemId: this.props.itemId
         };
 
         TagService.addTag(data)
@@ -85,9 +85,9 @@ class EditableTagGroup extends React.Component {
         console.log(this.state.editInputValue);
         var data = {
             title: this.state.editInputValue,
-            tag_type: this.props.tagType,
-            page_type: this.props.pageType,
-            item_id: this.props.itemId
+            tagType: this.props.tagType,
+            pageType: this.props.pageType,
+            itemId: this.props.itemId
         };
 
         TagService.editTag(data)

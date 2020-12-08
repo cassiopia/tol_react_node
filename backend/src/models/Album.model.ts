@@ -3,7 +3,7 @@ import {database} from "../config/database";
 
 export class Album extends Model {
     public id!: number;
-    public album_hash!: string;
+    public albumHash!: string;
     public title!: string;
     public description!: string;
     // timestamps!
@@ -12,7 +12,7 @@ export class Album extends Model {
 }
 
 export interface AlbumInterface {
-    album_hash: string;
+    albumHash: string;
     title: string;
     description: string;
 }
@@ -24,7 +24,7 @@ Album.init(
             autoIncrement: true,
             primaryKey: true
         },
-        album_hash: {
+        albumHash: {
             type: new DataTypes.STRING
         },
         title: {

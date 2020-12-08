@@ -21,12 +21,12 @@ export class AlbumController {
 
     public save(req: Request, res: Response) {
 
-        const albumHash: string = req.body.album_hash;
+        const albumHash: string = req.body.albumHash;
 
         Album.findOrCreate({
-            where: {album_hash: albumHash},
+            where: {albumHash: albumHash},
             defaults: {
-                album_hash: albumHash,
+                albumHash: albumHash,
                 title: req.body.title,
                 description: req.body.description
             }
@@ -39,7 +39,7 @@ export class AlbumController {
                         title: req.body.title,
                         description: req.body.description
                     },
-                    {where: {album_hash: albumHash}}
+                    {where: {albumHash: albumHash}}
                 ).then(
                     () => res.send({id: album.getDataValue('id'), message: "success"})
 
@@ -59,7 +59,7 @@ export class AlbumController {
 
         const albumHash: string = req.params.albumHash;
 
-        Album.findOne<Album>({where: {album_hash: albumHash}})
+        Album.findOne<Album>({where: {albumHash: albumHash}})
             .then((album: Album | null) => {
                 if (album) {
                     res.json(album)

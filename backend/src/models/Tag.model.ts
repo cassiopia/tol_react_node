@@ -36,5 +36,5 @@ Tag.init(
 );
 
 
-//Album.sync({ force: true }).then(() => console.log("Album table created"));
+//Tag.sync({ force: true }).then(() => console.log("Tag table created"));
 Tag.sync().then(() => console.log("Tag table created"));

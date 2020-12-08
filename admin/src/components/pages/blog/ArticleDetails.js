@@ -8,8 +8,12 @@ import 'quill/dist/quill.snow.css';
 import 'antd/dist/antd.css';
 import './css/style.css';
 import Notification from '../../notification/Notification';
+import EditableTagGroup from "../portfolio/EditableTagGroup";
 
 const pageTypeBlog = "blog";
+
+const tagTypeYear = "year";
+const tagTypeCountry = "country";
 
 export default function ArticleDetails() {
 
@@ -39,7 +43,7 @@ export default function ArticleDetails() {
             id: articleId,
             title: values.title,
             description: quill.getText(),
-            page_type: pageTypeBlog
+            pageType: pageTypeBlog
         };
 
         sendData(data);
@@ -104,6 +108,29 @@ export default function ArticleDetails() {
                             <div className="imgDiv mb-thumb">
                                 <img src="img/blog/1-big.jpg" className="img-responsive" alt=""/>
                             </div>
+
+                            {articleId &&
+                            <>
+                                <div className="row">
+                                    <div className="tagsYearRowDiv col-md-12">
+                                        <span className="tagsYearLabelDiv">Год: </span>
+                                        <span className="tagsYearContentDiv">
+                                                <EditableTagGroup tagType={tagTypeYear} pageType={pageTypeBlog}
+                                                                  itemId={articleId}/>
+                                            </span>
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="tagsCountryRowDiv col-md-12">
+                                        <span className="tagsCountryLabelDiv">Страна: </span>
+                                        <span className="tagsCountryContentDiv">
+                                            <EditableTagGroup tagType={tagTypeCountry} pageType={pageTypeBlog} itemId={articleId}/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </>
+                            }
 
                             <div className="row">
 

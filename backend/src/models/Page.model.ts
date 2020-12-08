@@ -3,20 +3,19 @@ import {database} from "../config/database";
 
 export class Page extends Model {
     public id!: number;
-    public album_hash!: string;
+    public albumHash!: string;
     public title!: string;
     public description!: string;
-    public page_type!: string;
+    public pageType!: string;
     // timestamps!
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
 
 export interface PageInterface {
-    //album_hash: string;
     title: string;
     description: string;
-    page_type: string;
+    pageType: string;
 }
 
 Page.init(
@@ -26,7 +25,7 @@ Page.init(
             autoIncrement: true,
             primaryKey: true
         },
-        album_hash: {
+        albumHash: {
             type: new DataTypes.STRING
         },
         title: {
@@ -36,7 +35,7 @@ Page.init(
             type: new DataTypes.STRING
         }
         ,
-        page_type: {
+        pageType: {
             type: new DataTypes.STRING
         }
     },
@@ -47,5 +46,5 @@ Page.init(
 );
 
 
-//Album.sync({ force: true }).then(() => console.log("Album table created"));
+//Page.sync({ force: true }).then(() => console.log("Page table created"));
 Page.sync().then(() => console.log("Page table created"));
