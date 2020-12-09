@@ -86,7 +86,6 @@ class EditableTagGroup extends React.Component {
         var data = {
             title: this.state.editInputValue,
             tagType: this.props.tagType,
-            pageType: this.props.pageType,
             itemId: this.props.itemId
         };
 

@@ -1,40 +1,17 @@
 import {Request, Response} from 'express';
-import {Tag, TagInterface} from '../../models/Tag.model';
-import {Album} from '../../models/Album.model';
+import {Tag} from '../../models/Tag.model';
 import {PageTag} from "../../models/PageTag.model";
 
 const pageTypePortfolio: string = "portfolio";
+const pageTypeBlog: string = "blog";
 
-// todo Не забыть про редактирование тэга
 
-// todo Разбить на подметоды
 export class TagController {
 
     public addTag(req: Request, res: Response) {
-
         const itemId: string = req.body.itemId;
 
-        const isCreated: boolean = true;
-
-        var pageTagItemId: number = 0;
-
-        if (req.body.pageType === pageTypePortfolio) {
-
-            // Проверяем создан ли альбом в БД сайта. Создаем если нет и возвращаем id альбома
-            Album.findOrCreate({
-                where: {albumHash: itemId},
-                defaults: {
-                    albumHash: itemId,
-                }
-            }).then(([album, created]) => {
-                pageTagItemId = album.getDataValue('id');
-
-            }).catch((err: Error) => res.status(500).json(err));
-        } else {
-            res.status(404).json({data: "item not found"});
-        }
-
-        if (!pageTagItemId) {
+        if (itemId) {
 
             Tag.create({
                 title: req.body.title,
@@ -42,16 +19,15 @@ export class TagController {
 
             }).then(tag => {
                 PageTag.create({
-                    itemId: pageTagItemId,
-                    tagId: tag.getDataValue('id'),
-                    pageType: req.body.pageType,
-
+                    pageId: itemId,
+                    tagId: tag.getDataValue('id')
                 }).then(() => res.status(202).json({data: "success"}))
                     .catch((err: Error) => res.status(500).json(err));
 
             }).catch((err: Error) => res.status(500).json(err));
+
         } else {
-            res.status(404).json({data: "item not found"});
+            res.status(404).json({data: "Page not found"});
         }
 
     }

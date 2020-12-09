@@ -24,8 +24,14 @@ PageTag.init(
     }
 );
 
-Page.belongsToMany(Tag, {through: PageTag});
-Tag.belongsToMany(Page, {through: PageTag});
+Page.belongsToMany(Tag, {
+    through: PageTag,
+    foreignKey: 'pageId'
+});
+Tag.belongsToMany(Page, {
+    through: PageTag,
+    foreignKey: 'tagId'
+});
 
 //PageTag.sync({ force: true }).then(() => console.log("PageTag table created"));
 PageTag.sync().then(() => console.log("PageTag table created"));
