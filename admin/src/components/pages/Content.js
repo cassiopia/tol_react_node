@@ -24,7 +24,7 @@ class Content extends Component {
                     <Route path="/contact" component={Contact}/>
                     <Route path="/portfolio" component={Portfolio}/>
                     {/*<Route path="/page/portfolio" component={Page}/>*/}
-                    <Route path="/albom-details" component={AlbumDetails}/>
+                    <Route path="/album-details" component={AlbumDetails}/>
                 </Suspense>
             </Switch>
 

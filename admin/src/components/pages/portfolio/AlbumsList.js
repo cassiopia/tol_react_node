@@ -36,7 +36,7 @@ export default function AlbumsList() {
     const renderDiv = (albumId, albumCover, albumTitle, albumDescription) => {
 
         const albumImg = `https://i.imgur.com/${albumCover}.jpg`;
-        const urlLinkDetails = `/albom-details?id=${albumId}&cover=${albumCover}&title=${albumTitle}&description=${albumDescription}`;
+        const urlLinkDetails = `/album-details?id=${albumId}&cover=${albumCover}&title=${albumTitle}&description=${albumDescription}`;
 
         return <div key={albumId} className="col-md-6" data-animated="0">
             <div className="item" key={albumId}>

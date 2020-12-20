@@ -19,6 +19,7 @@ import PortfolioService from "../../services/PortfolioService";
 export default function AlbumDetails() {
 
     let query = useQuery();
+    const albumId = query.get('id');
 
     const albumImg = `https://i.imgur.com/${query.get('cover')}.jpg`;
 
@@ -144,7 +145,7 @@ export default function AlbumDetails() {
 
     return (
         <>
-            <Breadcrumbs title="Информация об альбоме" link="album-details"/>
+            <Breadcrumbs title={albumId ? 'Подробнее о альбоме' : 'Добавить альбом'} link="album-details"/>
 
             <div className="row" data-animated="0">
                 <div className="col-md-12">
@@ -153,23 +154,28 @@ export default function AlbumDetails() {
                             <div className="mb-thumb">
                                 <img src={albumImg} className="img-responsive" alt=""/>
                             </div>
-                            <div className="row">
-                                <div className="tagsYearRowDiv col-md-12">
-                                    <span className="tagsYearLabelDiv">Год: </span>
-                                    <span className="tagsYearContentDiv">
-                                        <EditableTagGroup tagType={tagTypeYear} pageType={pageTypePortfolio} itemId={albumHash}/>
-                                    </span>
+                            {albumId &&
+                            <>
+                                <div className="row">
+                                    <div className="tagsYearRowDiv col-md-12">
+                                        <span className="tagsYearLabelDiv">Год: </span>
+                                        <span className="tagsYearContentDiv">
+                                                <EditableTagGroup tagType={tagTypeYear} pageType={pageTypePortfolio}
+                                                                  itemId={albumId}/>
+                                            </span>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="row">
-                                <div className="tagsCountryRowDiv col-md-12">
-                                    <span className="tagsCountryLabelDiv">Страна: </span>
-                                    <span className="tagsCountryContentDiv">
-                                        <EditableTagGroup tagType={tagTypeCountry} pageType={pageTypePortfolio} itemId={albumHash}/>
-                                    </span>
+                                <div className="row">
+                                    <div className="tagsCountryRowDiv col-md-12">
+                                        <span className="tagsCountryLabelDiv">Страна: </span>
+                                        <span className="tagsCountryContentDiv">
+                                            <EditableTagGroup tagType={tagTypeCountry} pageType={pageTypePortfolio} itemId={albumId}/>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
+                            </>
+                            }
 
                             <div className="row">
 

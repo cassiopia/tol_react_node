@@ -99,7 +99,7 @@ export default function ArticleDetails() {
 
     return (
         <>
-            <Breadcrumbs title={articleId ? 'Подробнее о статье' : 'Добавить статью'} link="aticle-details"/>
+            <Breadcrumbs title={articleId ? 'Подробнее о статье' : 'Добавить статью'} link="article-details"/>
 
             <div className="row" data-animated="0">
                 <div className="col-md-12">
