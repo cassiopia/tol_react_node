@@ -1,15 +1,15 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import './css/tags.css';
+import '../pages/portfolio/css/tags.css';
 import {Tag, Input, Tooltip} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
-import TagService from "../../services/TagService";
-import PortfolioService from "../../services/PortfolioService";
+import TagService from "../services/TagService";
 
 
 class EditableTagGroup extends React.Component {
     state = {
-        tags: ['Unremovable', 'Tag 2', 'Tag 3'],
+       // tags: ['Unremovable', 'Tag 2', 'Tag 3'],
+        tags: [],
         inputVisible: false,
         inputValue: '',
         editInputIndex: -1,
@@ -19,19 +19,28 @@ class EditableTagGroup extends React.Component {
     componentDidMount() {
         TagService.getTags(this.props.itemId, this.props.pageType, this.props.tagType)
             .then(response => {
-                //console.log(response.data);
-                //console.log(tags);
-                // this.setState({
-                //     tags,
-                //     inputVisible: false,
-                //     inputValue: '',
-                // });
+                const tagTitleList = this.getTagTitleList(response.data);
+                console.log(tagTitleList);
+
+                this.setState(
+                    {
+                        tagTitleList,
+                        inputVisible: false,
+                        inputValue: '',
+                    }
+                );
             })
             .catch(e => {
                 console.log(e);
             });
 
     }
+
+    getTagTitleList = data => {
+        return data.map((tag, index) => {
+            return tag.title;
+        });
+    };
 
     handleClose = removedTag => {
         const tags = this.state.tags.filter(tag => tag !== removedTag);
@@ -64,7 +73,7 @@ class EditableTagGroup extends React.Component {
         TagService.addTag(data)
             .then(response => {
                 console.log(response.data);
-                console.log(tags);
+                //console.log(tags);
                 this.setState({
                     tags,
                     inputVisible: false,
@@ -124,6 +133,8 @@ class EditableTagGroup extends React.Component {
     };
 
     render() {
+        console.log('11111111');
+        console.log(this.state);
         const {tags, inputVisible, inputValue, editInputIndex, editInputValue} = this.state;
         return (
             <>

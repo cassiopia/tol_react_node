@@ -8,7 +8,7 @@ import 'quill/dist/quill.snow.css';
 import 'antd/dist/antd.css';
 import './css/style.css';
 import Notification from '../../notification/Notification';
-import EditableTagGroup from "../portfolio/EditableTagGroup";
+import EditableTagGroup from "../../tag/EditableTagGroup";
 
 const pageTypeBlog = "blog";
 

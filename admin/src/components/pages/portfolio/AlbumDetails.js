@@ -4,7 +4,7 @@ import {useLocation} from 'react-router-dom'
 import {useForm} from "react-hook-form";
 import {Form, Input, Button, message} from 'antd';
 import {useQuill} from 'react-quilljs';
-import EditableTagGroup from './EditableTagGroup';
+import EditableTagGroup from '../../tag/EditableTagGroup';
 import 'quill/dist/quill.snow.css';
 import './css/style.css';
 import './css/tags.css';
