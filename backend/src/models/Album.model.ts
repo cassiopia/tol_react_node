@@ -39,7 +39,3 @@ Album.init(
         sequelize: database
     }
 );
-
-
-//Album.sync({ force: true }).then(() => console.log("Album table created"));
-Album.sync().then(() => console.log("Album table created"));

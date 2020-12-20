@@ -21,7 +21,7 @@ export interface PageInterface {
 Page.init(
     {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
@@ -40,11 +40,7 @@ Page.init(
         }
     },
     {
-        tableName: "pages",
+        tableName: "Page",
         sequelize: database
     }
 );
-
-
-//Page.sync({ force: true }).then(() => console.log("Page table created"));
-Page.sync().then(() => console.log("Page table created"));

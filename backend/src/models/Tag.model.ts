@@ -18,7 +18,7 @@ export interface TagInterface {
 Tag.init(
     {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
@@ -30,11 +30,7 @@ Tag.init(
         }
     },
     {
-        tableName: "tag",
+        tableName: "Tag",
         sequelize: database
     }
 );
-
-
-//Tag.sync({ force: true }).then(() => console.log("Tag table created"));
-Tag.sync().then(() => console.log("Tag table created"));

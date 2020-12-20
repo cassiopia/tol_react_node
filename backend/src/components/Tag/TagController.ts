@@ -33,20 +33,20 @@ export class TagController {
     }
 
     public editTag(req: Request, res: Response) {
-        Tag.update(
-            {
-                title: req.body.title,
-            },
-            {where: {id: req.body.tagId, type: req.body.tagType}}
-        ).then(() => res.status(202).json({data: "success"}))
-            .catch((err: Error) => res.status(500).json(err));
+        // Tag.update(
+        //     {
+        //         title: req.body.title,
+        //     },
+        //     {where: {id: req.body.tagId, type: req.body.tagType}}
+        // ).then(() => res.status(202).json({data: "success"}))
+        //     .catch((err: Error) => res.status(500).json(err));
     }
 
 
     public getTags(req: Request, res: Response) {
         console.log(req.params);
 
-        var pageTagItemId: number = 0;
+        //var pageTagItemId: number = 0;
 
         // if (req.params.pageType === pageTypePortfolio) {
         //
@@ -69,12 +69,12 @@ export class TagController {
             console.log('Проверка!');
 
             // // todo Разобраться как с джойнами сделать запрос. Учесть не только тип страницы, но и тип тэга
-            //
+
             // Tag.findAll<Tag>({
             //     include: [{
             //         model: PageTag,
             //         where: {
-            //             item_id: 1
+            //             PageId: req.params.itemId
             //         }
             //     }]
             // }).then(tag => {
@@ -82,24 +82,6 @@ export class TagController {
             //     console.log(tag);
             //     res.send(tag);
             // });
-            //
-            // Tag.create({
-            //     title: req.body.title,
-            //     type: req.body.tag_type,
-            //
-            // }).then(tag => {
-            //     PageTag.create({
-            //         item_id: pageTagItemId,
-            //         tag_id: tag.getDataValue('id'),
-            //         page_type: req.body.page_type,
-            //
-            //     }).then(() => res.status(202).json({data: "success"}))
-            //         .catch((err: Error) => res.status(500).json(err));
-            //
-            // }).catch((err: Error) => res.status(500).json(err));
-            // } else {
-            //     res.status(404).json({data: "item not found"});
-            // }
         }
 
 
