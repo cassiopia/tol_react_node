@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import './css/style.css';
 
 // todo создать базу для внесения информации по альбому
 // todo создать функционал для редактирования альбома
@@ -70,6 +71,15 @@ export default function AlbumsList() {
         return (
 
             <div className="row">
+                <div className="addAlbumDiv col-md-12">
+                    <div className="article-comment-form">
+                        <Link to="/album-details" data-hover="Добавить альбом">
+                            <button type="submit">
+                                Добавить альбом
+                            </button>
+                        </Link>
+                    </div>
+                </div>
 
                 {albumList}
                 <div className="page-nav" data-animated="0">

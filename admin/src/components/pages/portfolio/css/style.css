@@ -1,3 +1,25 @@
+.addAlbumDiv {
+    margin: 0 0 25px;
+    text-align: center;
+}
+
+/*Коряво конечно, но стили тащаться из общего сss*/
+.article-comment-form button {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.article-comment-form button a {
+    color: #fff;
+    border: 2px solid #75b209;
+}
+
+.article-comment-form button:hover a {
+    color: #75b209;
+    border: 0 solid #75b209;
+    background: #fff;
+}
+
 .divButtons {
     text-align: center;
 }
@@ -21,4 +43,5 @@
 .ant-btn {
     color: #40a9ff;
 }
+
 
