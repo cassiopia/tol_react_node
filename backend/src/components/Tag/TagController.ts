@@ -60,7 +60,7 @@ export class TagController {
                 }]
             }).then(tag => {
                 console.log(tag);
-                res.send(tag);
+                res.json(tag);
             }).catch((err: Error) => res.status(500).json(err));
         }
 
