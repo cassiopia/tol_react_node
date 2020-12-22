@@ -63,29 +63,26 @@ class EditableTagGroup extends React.Component {
         let {tags} = this.state;
         if (inputValue && tags.indexOf(inputValue) === -1) {
             tags = [...tags, inputValue];
-        }
 
-        var data = {
-            title: this.state.inputValue,
-            tagType: this.props.tagType,
-            pageType: this.props.pageType,
-            itemId: this.props.itemId
-        };
+            var data = {
+                title: this.state.inputValue,
+                tagType: this.props.tagType,
+                pageType: this.props.pageType,
+                itemId: this.props.itemId
+            };
 
-        TagService.addTag(data)
-            .then(response => {
-                // todo : баг дает на сервере сохранить одинаковое значение, хотя фронт вроде не пропускает
-                console.log(response.data);
-                //console.log(tags);
-                this.setState({
-                    tags,
-                    inputVisible: false,
-                    inputValue: '',
+            TagService.addTag(data)
+                .then(response => {
+                    this.setState({
+                        tags,
+                        inputVisible: false,
+                        inputValue: '',
+                    });
+                })
+                .catch(e => {
+                    console.log(e);
                 });
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        }
     };
 
     handleEditInputChange = e => {
@@ -141,33 +138,33 @@ class EditableTagGroup extends React.Component {
 
         return (
             <>
-              {tags && (
-                        tags.map((tag, index) => {
-                            if (editInputIndex === index) {
-                                return (
-                                    <Input
-                                        ref={this.saveEditInputRef}
-                                        key={tag}
-                                        size="small"
-                                        className="tag-input"
-                                        value={editInputValue}
-                                        onChange={this.handleEditInputChange}
-                                        onBlur={this.handleEditInputConfirm}
-                                        onPressEnter={this.handleEditInputConfirm}
-                                    />
-                                );
-                            }
-
-                            const isLongTag = tag.length > 20;
-
-                            const tagElem = (
-                                <Tag
-                                    color="#75b209"
-                                    className="edit-tag"
+                {tags && (
+                    tags.map((tag, index) => {
+                        if (editInputIndex === index) {
+                            return (
+                                <Input
+                                    ref={this.saveEditInputRef}
                                     key={tag}
-                                    closable={true}
-                                    onClose={() => this.handleClose(tag)}
-                                >
+                                    size="small"
+                                    className="tag-input"
+                                    value={editInputValue}
+                                    onChange={this.handleEditInputChange}
+                                    onBlur={this.handleEditInputConfirm}
+                                    onPressEnter={this.handleEditInputConfirm}
+                                />
+                            );
+                        }
+
+                        const isLongTag = tag.length > 20;
+
+                        const tagElem = (
+                            <Tag
+                                color="#75b209"
+                                className="edit-tag"
+                                key={tag}
+                                closable={true}
+                                onClose={() => this.handleClose(tag)}
+                            >
                   <span
                       onDoubleClick={e => {
                           if (index !== 0) {
@@ -180,18 +177,18 @@ class EditableTagGroup extends React.Component {
                   >
                     {isLongTag ? `${tag.slice(0, 20)}...` : tag}
                   </span>
-                                </Tag>
-                            );
-                            return isLongTag ? (
-                                <Tooltip title={tag} key={tag}>
-                                    {tagElem}
-                                </Tooltip>
-                            ) : (
-                                tagElem
-                            );
-                        })
+                            </Tag>
+                        );
+                        return isLongTag ? (
+                            <Tooltip title={tag} key={tag}>
+                                {tagElem}
+                            </Tooltip>
+                        ) : (
+                            tagElem
+                        );
+                    })
 
-               )}
+                )}
 
                 {inputVisible && (
                     <Input
