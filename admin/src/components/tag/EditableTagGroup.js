@@ -16,6 +16,7 @@ class EditableTagGroup extends React.Component {
             inputValue: '',
             editInputIndex: -1,
             editInputValue: '',
+            editInputId: '',
         };
     }
 
@@ -26,9 +27,7 @@ class EditableTagGroup extends React.Component {
 
                 this.setState(
                     {
-                        tags: tagTitleList,
-                        // inputVisible: false,
-                        // inputValue: '',
+                        tags: response.data
                     }
                 );
             })
@@ -90,37 +89,36 @@ class EditableTagGroup extends React.Component {
     };
 
     handleEditInputConfirm = () => {
-        console.log('Заходим на редактирование');
-        console.log(this.state.editInputValue);
-        var data = {
-            title: this.state.editInputValue,
-            tagType: this.props.tagType,
-            itemId: this.props.itemId
-        };
 
-        TagService.editTag(data)
-            .then(response => {
-                //console.log(response.data);
-                //console.log(tags);
-                // this.setState({
-                //     tags,
-                //     inputVisible: false,
-                //     inputValue: '',
-                // });
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        this.setState(({tags, editInputIndex, editInputValue, editInputId}) => {
 
-        this.setState(({tags, editInputIndex, editInputValue}) => {
-            const newTags = [...tags];
-            newTags[editInputIndex] = editInputValue;
+            if (editInputValue && tags.indexOf(editInputValue) === -1) {
 
-            return {
-                tags: newTags,
-                editInputIndex: -1,
-                editInputValue: '',
-            };
+                const newTags = [...tags];
+
+                newTags[editInputIndex]['title'] = editInputValue;
+
+                var data = {
+                    title: this.state.editInputValue,
+                    tagId: this.state.editInputId,
+                    tagType: this.props.tagType
+                };
+
+                TagService.editTag(data)
+                    .then(response => {
+                        console.log(response.data);
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
+
+                return {
+                    tags: newTags,
+                    editInputIndex: -1,
+                    editInputValue: '',
+                };
+            }
+
         });
     };
 
@@ -144,7 +142,7 @@ class EditableTagGroup extends React.Component {
                             return (
                                 <Input
                                     ref={this.saveEditInputRef}
-                                    key={tag}
+                                    key={tag.title}
                                     size="small"
                                     className="tag-input"
                                     value={editInputValue}
@@ -161,26 +159,30 @@ class EditableTagGroup extends React.Component {
                             <Tag
                                 color="#75b209"
                                 className="edit-tag"
-                                key={tag}
+                                key={tag.title}
                                 closable={true}
-                                onClose={() => this.handleClose(tag)}
+                                onClose={() => this.handleClose(tag.title)}
                             >
                   <span
                       onDoubleClick={e => {
                           if (index !== 0) {
-                              this.setState({editInputIndex: index, editInputValue: tag}, () => {
+                              this.setState({
+                                  editInputIndex: index,
+                                  editInputValue: tag.title,
+                                  editInputId: tag.id
+                              }, () => {
                                   this.editInput.focus();
                               });
                               e.preventDefault();
                           }
                       }}
                   >
-                    {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+                    {isLongTag ? `${tag.title.slice(0, 20)}...` : tag.title}
                   </span>
                             </Tag>
                         );
                         return isLongTag ? (
-                            <Tooltip title={tag} key={tag}>
+                            <Tooltip title={tag.title} key={tag.title}>
                                 {tagElem}
                             </Tooltip>
                         ) : (

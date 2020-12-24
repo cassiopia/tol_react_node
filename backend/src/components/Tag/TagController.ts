@@ -3,10 +3,6 @@ import {Tag} from '../../models/Tag.model';
 import {Page} from '../../models/Page.model';
 import {PageTag} from "../../models/PageTag.model";
 
-const pageTypePortfolio: string = "portfolio";
-const pageTypeBlog: string = "blog";
-
-
 export class TagController {
 
     public addTag(req: Request, res: Response) {
@@ -34,13 +30,14 @@ export class TagController {
     }
 
     public editTag(req: Request, res: Response) {
-        // Tag.update(
-        //     {
-        //         title: req.body.title,
-        //     },
-        //     {where: {id: req.body.tagId, type: req.body.tagType}}
-        // ).then(() => res.status(202).json({data: "success"}))
-        //     .catch((err: Error) => res.status(500).json(err));
+
+        Tag.update(
+            {
+                title: req.body.title,
+            },
+            {where: {id: req.body.tagId, type: req.body.tagType}}
+        ).then(() => res.status(202).json({data: "success"}))
+            .catch((err: Error) => res.status(500).json(err));
     }
 
 
@@ -63,8 +60,6 @@ export class TagController {
                 res.json(tag);
             }).catch((err: Error) => res.status(500).json(err));
         }
-
-
     }
 
 }
