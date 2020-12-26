@@ -30,8 +30,7 @@ Tag.init(
         }
     },
     {
-        // todo название таблицы должно быть с маленькой буквы и таблица Page тоже
-        tableName: "Tag",
+        tableName: "tag",
         sequelize: database
     }
 );

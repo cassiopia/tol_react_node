@@ -40,7 +40,7 @@ Page.init(
         }
     },
     {
-        tableName: "Page",
+        tableName: "page",
         sequelize: database
     }
 );

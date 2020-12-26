@@ -16,8 +16,8 @@ export class TagController {
 
             }).then(tag => {
                 PageTag.create({
-                    PageId: itemId,
-                    TagId: tag.getDataValue('id')
+                    pageId: itemId,
+                    tagId: tag.getDataValue('id')
                 }).then(() => res.status(202).json(tag))
                     .catch((err: Error) => res.status(500).json(err));
 
@@ -39,7 +39,6 @@ export class TagController {
         ).then(() => res.status(202).json({data: "success"}))
             .catch((err: Error) => res.status(500).json(err));
     }
-
 
     public getTags(req: Request, res: Response) {
 

@@ -5,6 +5,10 @@ import {Tag, Input, Tooltip} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import TagService from "../services/TagService";
 
+//todo Баги:
+// todo Первый тэг не редактируется
+// todo Нельзя отменить редактирование тэга
+//todo Может быть нужно проверять редактирую ли я текущий элемент
 
 class EditableTagGroup extends React.Component {
 
