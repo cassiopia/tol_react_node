@@ -23,7 +23,6 @@ class EditableTagGroup extends React.Component {
     componentDidMount() {
         TagService.getTags(this.props.itemId, this.props.pageType, this.props.tagType)
             .then(response => {
-                const tagTitleList = this.getTagTitleList(response.data);
 
                 this.setState(
                     {
@@ -36,12 +35,6 @@ class EditableTagGroup extends React.Component {
             });
 
     }
-
-    getTagTitleList = data => {
-        return data.map((tag, index) => {
-            return tag.title;
-        });
-    };
 
     handleClose = removedTag => {
         const tags = this.state.tags.filter(tag => tag !== removedTag);
@@ -60,11 +53,11 @@ class EditableTagGroup extends React.Component {
     handleInputConfirm = () => {
         const {inputValue} = this.state;
         let {tags} = this.state;
-        if (inputValue && tags.indexOf(inputValue) === -1) {
-            tags = [...tags, inputValue];
+
+        if (this.isTagDuplication(tags, inputValue)) {
 
             var data = {
-                title: this.state.inputValue,
+                title: inputValue,
                 tagType: this.props.tagType,
                 pageType: this.props.pageType,
                 itemId: this.props.itemId
@@ -72,6 +65,8 @@ class EditableTagGroup extends React.Component {
 
             TagService.addTag(data)
                 .then(response => {
+                    tags = [...tags, response.data];
+
                     this.setState({
                         tags,
                         inputVisible: false,
@@ -89,18 +84,17 @@ class EditableTagGroup extends React.Component {
     };
 
     handleEditInputConfirm = () => {
-
         this.setState(({tags, editInputIndex, editInputValue, editInputId}) => {
 
-            if (editInputValue && tags.indexOf(editInputValue) === -1) {
+            if (this.isTagDuplication(tags, editInputValue)) {
 
                 const newTags = [...tags];
 
                 newTags[editInputIndex]['title'] = editInputValue;
 
                 var data = {
-                    title: this.state.editInputValue,
-                    tagId: this.state.editInputId,
+                    title: editInputValue,
+                    tagId: editInputId,
                     tagType: this.props.tagType
                 };
 
@@ -130,6 +124,16 @@ class EditableTagGroup extends React.Component {
         this.editInput = input;
     };
 
+    isTagDuplication = (tags, inputValue) => {
+        const tagTitleList = this.getTagTitleList(tags);
+        return !!(inputValue && tagTitleList.indexOf(inputValue) === -1);
+    };
+
+    getTagTitleList = data => {
+        return data.map((tag, index) => {
+            return tag.title;
+        });
+    };
 
     render() {
         const {tags, inputVisible, inputValue, editInputIndex, editInputValue} = this.state;

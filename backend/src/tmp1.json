@@ -1,34 +1,51 @@
-Album {
-[Node]   dataValues: {
-[Node]     id: 2,
-[Node]     album_hash: '47BjJf5',
-[Node]     title: 'Spain',
-[Node]     description: 'Пока так, пока не научусь вставлять что-нибудь в базу\n',
-[Node]     createdAt: 2020-11-17T13:04:23.972Z,
-[Node]     updatedAt: 2020-11-17T13:04:23.972Z
-[Node]   },
-[Node]   _previousDataValues: {
-[Node]     id: 2,
-[Node]     album_hash: '47BjJf5',
-[Node]     title: 'Spain',
-[Node]     description: 'Пока так, пока не научусь вставлять что-нибудь в базу\n',
-[Node]     createdAt: 2020-11-17T13:04:23.972Z,
-[Node]     updatedAt: 2020-11-17T13:04:23.972Z
-[Node]   },
-[Node]   _changed: Set(0) {},
-[Node]   _options: {
-[Node]     isNewRecord: false,
-[Node]     _schema: null,
-[Node]     _schemaDelimiter: '',
-[Node]     raw: true,
-[Node]     attributes: [
-[Node]       'id',
-[Node]       'album_hash',
-[Node]       'title',
-[Node]       'description',
-[Node]       'createdAt',
-[Node]       'updatedAt'
-[Node]     ]
-[Node]   },
-[Node]   isNewRecord: false
-[Node] }
+{
+  "name": "SequelizeForeignKeyConstraintError",
+  "parent": {
+    "length": 328,
+    "name": "error",
+    "severity": "ОШИБКА",
+    "code": "23503",
+    "detail": "Ключ (pageId)=(1) отсутствует в таблице \"Page\".",
+    "schema": "public",
+    "table": "page_tag",
+    "constraint": "page_tag_pageId_fkey",
+    "file": "ri_triggers.c",
+    "line": "3266",
+    "routine": "ri_ReportViolation",
+    "sql": "INSERT INTO \"page_tag\" (\"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\") VALUES (DEFAULT,$1,$2,$3,$4) RETURNING \"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\";",
+    "parameters": [
+      "2020-12-24 14:39:14.909 +00:00",
+      "2020-12-24 14:39:14.909 +00:00",
+      "1",
+      3
+    ]
+  },
+  "original": {
+    "length": 328,
+    "name": "error",
+    "severity": "ОШИБКА",
+    "code": "23503",
+    "detail": "Ключ (pageId)=(1) отсутствует в таблице \"Page\".",
+    "schema": "public",
+    "table": "page_tag",
+    "constraint": "page_tag_pageId_fkey",
+    "file": "ri_triggers.c",
+    "line": "3266",
+    "routine": "ri_ReportViolation",
+    "sql": "INSERT INTO \"page_tag\" (\"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\") VALUES (DEFAULT,$1,$2,$3,$4) RETURNING \"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\";",
+    "parameters": [
+      "2020-12-24 14:39:14.909 +00:00",
+      "2020-12-24 14:39:14.909 +00:00",
+      "1",
+      3
+    ]
+  },
+  "sql": "INSERT INTO \"page_tag\" (\"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\") VALUES (DEFAULT,$1,$2,$3,$4) RETURNING \"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\";",
+  "parameters": [
+    "2020-12-24 14:39:14.909 +00:00",
+    "2020-12-24 14:39:14.909 +00:00",
+    "1",
+    3
+  ],
+  "fields": null
+}

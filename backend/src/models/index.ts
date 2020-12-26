@@ -5,12 +5,12 @@ import {database} from "../config/database";
 
 Page.belongsToMany(Tag, {
     through: PageTag,
-    foreignKey: 'pageId'
+    foreignKey: 'PageId'
 });
 
 Tag.belongsToMany(Page, {
     through: PageTag,
-    foreignKey: 'tagId'
+    foreignKey: 'TagId'
 });
 
 //database.sync({ force: true }).then(() => console.log("All models were synchronized successfully."));

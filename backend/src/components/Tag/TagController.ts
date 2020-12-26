@@ -16,9 +16,9 @@ export class TagController {
 
             }).then(tag => {
                 PageTag.create({
-                    pageId: itemId,
-                    tagId: tag.getDataValue('id')
-                }).then(() => res.status(202).json({data: "success"}))
+                    PageId: itemId,
+                    TagId: tag.getDataValue('id')
+                }).then(() => res.status(202).json(tag))
                     .catch((err: Error) => res.status(500).json(err));
 
             }).catch((err: Error) => res.status(500).json(err));
