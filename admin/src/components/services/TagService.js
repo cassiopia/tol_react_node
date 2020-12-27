@@ -9,12 +9,16 @@ const addTag = data => {
 };
 
 const editTag = data => {
-    // todo Пока не отображу реальный список тэгов, не смогу это сделать корректно
     return http.put("/tag/edit_tag", data);
+};
+
+const remove = id => {
+    return http.delete(`/tag/${id}`);
 };
 
 export default {
     getTags,
     addTag,
-    editTag
+    editTag,
+    remove
 };

@@ -36,10 +36,16 @@ class EditableTagGroup extends React.Component {
 
     }
 
-    handleClose = removedTag => {
-        const tags = this.state.tags.filter(tag => tag !== removedTag);
-        console.log(tags);
-        this.setState({tags});
+    handleClose = removedTagId => {
+        const tags = this.state.tags.filter(tag => tag !== removedTagId);
+
+        TagService.remove(removedTagId)
+            .then(response => {
+                this.setState({tags});
+            })
+            .catch(e => {
+                console.log(e);
+            });
     };
 
     showInput = () => {
@@ -171,7 +177,7 @@ class EditableTagGroup extends React.Component {
                                 className="edit-tag"
                                 key={tag.title}
                                 closable={true}
-                                onClose={() => this.handleClose(tag.title)}
+                                onClose={() => this.handleClose(tag.id)}
                             >
                   <span
                       onDoubleClick={e => {

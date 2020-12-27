@@ -61,4 +61,29 @@ export class TagController {
         }
     }
 
+    public deleteTag(req: Request, res: Response) {
+
+        const id = req.params.id;
+
+        Tag.destroy({
+            where: { id: id }
+        })
+            .then(num => {
+                if (num == 1) {
+                    res.send({
+                        message: "Tag was deleted successfully!"
+                    });
+                } else {
+                    res.send({
+                        message: `Cannot delete tag with id=${id}. Maybe tag was not found!`
+                    });
+                }
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: "Could not delete tag with id=" + id
+                });
+            });
+    }
+
 }
