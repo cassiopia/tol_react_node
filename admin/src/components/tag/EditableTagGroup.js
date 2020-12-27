@@ -5,8 +5,6 @@ import {Tag, Input, Tooltip} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import TagService from "../services/TagService";
 
-//todo Баги:
-// todo Первый тэг не редактируется
 
 class EditableTagGroup extends React.Component {
 
@@ -177,16 +175,14 @@ class EditableTagGroup extends React.Component {
                             >
                   <span
                       onDoubleClick={e => {
-                          if (index !== 0) {
-                              this.setState({
-                                  editInputIndex: index,
-                                  editInputValue: tag.title,
-                                  editInputId: tag.id
-                              }, () => {
-                                  this.editInput.focus();
-                              });
-                              e.preventDefault();
-                          }
+                          this.setState({
+                              editInputIndex: index,
+                              editInputValue: tag.title,
+                              editInputId: tag.id
+                          }, () => {
+                              this.editInput.focus();
+                          });
+                          e.preventDefault();
                       }}
                   >
                     {isLongTag ? `${tag.title.slice(0, 20)}...` : tag.title}
