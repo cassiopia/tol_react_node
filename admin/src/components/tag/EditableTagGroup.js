@@ -7,8 +7,6 @@ import TagService from "../services/TagService";
 
 //todo Баги:
 // todo Первый тэг не редактируется
-// todo Нельзя отменить редактирование тэга
-//todo Может быть нужно проверять редактирую ли я текущий элемент
 
 class EditableTagGroup extends React.Component {
 
@@ -90,9 +88,9 @@ class EditableTagGroup extends React.Component {
     handleEditInputConfirm = () => {
         this.setState(({tags, editInputIndex, editInputValue, editInputId}) => {
 
-            if (this.isTagDuplication(tags, editInputValue)) {
+            const newTags = [...tags];
 
-                const newTags = [...tags];
+            if ((newTags[editInputIndex]['title'] !== editInputValue) && this.isTagDuplication(tags, editInputValue)) {
 
                 newTags[editInputIndex]['title'] = editInputValue;
 
@@ -112,6 +110,12 @@ class EditableTagGroup extends React.Component {
 
                 return {
                     tags: newTags,
+                    editInputIndex: -1,
+                    editInputValue: '',
+                };
+            } else {
+                return {
+                    tags: tags,
                     editInputIndex: -1,
                     editInputValue: '',
                 };
