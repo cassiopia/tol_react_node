@@ -10,6 +10,7 @@ module.exports = (app: any) => {
     router.put("/update_page", page.update);
     router.get("/get_by_page_type/:pageType", page.getAllByPageType);
     router.get("/get_one_by_id/:pageId", page.getOneById);
+    router.delete("/:id", page.softDeletePage);
 
     app.use('/page', router);
 };

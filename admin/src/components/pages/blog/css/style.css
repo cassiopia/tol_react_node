@@ -41,3 +41,7 @@
 .ant-btn {
     color: #40a9ff;
 }
+
+.mp-thumb:hover .link {
+    z-index: 10;
+}

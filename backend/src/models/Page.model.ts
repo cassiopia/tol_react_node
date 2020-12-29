@@ -10,6 +10,7 @@ export class Page extends Model {
     // timestamps!
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
+    public deletedAt!: Date;
 }
 
 export interface PageInterface {
@@ -33,14 +34,17 @@ Page.init(
         },
         description: {
             type: new DataTypes.STRING
-        }
-        ,
+        },
         pageType: {
             type: new DataTypes.STRING
-        }
+        },
+        deletedAt:  {
+            type:  new DataTypes.DATE
+        },
     },
     {
         tableName: "page",
-        sequelize: database
+        sequelize: database,
+        paranoid: true
     }
 );

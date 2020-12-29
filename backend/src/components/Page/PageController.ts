@@ -55,4 +55,30 @@ export class PageController {
             .catch((err: Error) => res.status(500).json(err));
     }
 
+    public softDeletePage(req: Request, res: Response) {
+
+        const id = req.params.id;
+
+        Page.destroy({
+            where: {
+                id: id
+            }
+        }).then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Page was soft deleted successfully!"
+                });
+            } else {
+                res.send({
+                    message: `Cannot delete page with id=${id}. Maybe tag was not found!`
+                });
+            }
+        })
+            .catch(err => {
+                res.status(500).send({
+                    message: "Could not delete page with id=" + id
+                });
+            });
+    }
+
 }

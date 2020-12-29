@@ -12,7 +12,7 @@ export default function ArticlesList() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [articles, setArticles] = useState([]);
 
-    const fetchData = () => {
+    const retrieveArticles = () => {
         PageService.getByPageType(pageTypeBlog)
             .then(response => {
                 setIsLoaded(true);
@@ -26,8 +26,22 @@ export default function ArticlesList() {
     };
 
     useEffect(() => {
-        fetchData();
+        retrieveArticles();
     }, []);
+
+
+    const removePage = (articleId) => {
+         //eslint-disable-next-line no-restricted-globals
+        event.preventDefault();
+
+        PageService.remove(articleId)
+            .then(response => {
+                retrieveArticles();
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
 
     const renderDiv = (articleId, articleTitle, articleDescription) => {
 
@@ -35,11 +49,17 @@ export default function ArticlesList() {
 
         return <div key={articleId} className="col-md-6" data-animated="0">
             <div className="item" key={articleId}>
-                <div className="mb-thumb">
+                <div className="mp-thumb">
                     <img src="img/blog/1.jpg" className="img-responsive" alt=""/>
+
                     <span className="rmore">
                          <Link to={urlLinkDetails} data-hover="Подробнее">Подробнее</Link>
                     </span>
+                    <div className="overlay1-hr">
+                        <a href="/" onClick={()=>removePage(articleId)} className="link">
+                            <i className="fa fa-trash-o fa-lg"></i>
+                        </a>
+                    </div>
                 </div>
                 <h4><Link to={urlLinkDetails} data-hover={articleTitle}>{articleTitle}</Link></h4>
                 <p>{articleDescription}</p>
@@ -65,27 +85,29 @@ export default function ArticlesList() {
 
         return (
 
-            <div className="row">
-                <div className="addArticleDiv col-md-12">
-                    <div className="article-comment-form">
-                        <Link to="/article-details" data-hover="Добавить статью">
-                            <button type="submit">
-                                Добавить статью
-                            </button>
-                        </Link>
+            <>
+                <div className="row">
+                    <div className="addArticleDiv col-md-12">
+                        <div className="article-comment-form">
+                            <Link to="/article-details" data-hover="Добавить статью">
+                                <button type="submit">
+                                    Добавить статью
+                                </button>
+                            </Link>
+                        </div>
                     </div>
-                </div>
 
-                {articleList}
-                <div className="page-nav" data-animated="0">
-                    <ul>
-                        <li className="active"><a href="#"><span>1</span></a></li>
-                        <li><a href="#"><span>2</span></a></li>
-                        <li><a href="#"><span>3</span></a></li>
-                    </ul>
-                </div>
+                    {articleList}
+                    <div className="page-nav" data-animated="0">
+                        <ul>
+                            <li className="active"><a href="#"><span>1</span></a></li>
+                            <li><a href="#"><span>2</span></a></li>
+                            <li><a href="#"><span>3</span></a></li>
+                        </ul>
+                    </div>
 
-            </div>
+                </div>
+            </>
 
         )
     }
