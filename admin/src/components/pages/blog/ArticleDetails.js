@@ -181,8 +181,7 @@ export default function ArticleDetails() {
                                 </>
                                 }
 
-                                {/*todo Придумать как добавить отступ когда нету  тэгов */}
-                                <div className="row">
+                                <div className={articleId ? 'row' : 'divMargin row'}>
 
                                     <div className="col-md-12">
                                         <Form.Item
