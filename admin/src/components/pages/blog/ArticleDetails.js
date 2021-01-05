@@ -18,6 +18,11 @@ const tagTypeCountry = "country";
 export default function ArticleDetails() {
 
     const [article, setArticle] = useState([]);
+    // todo cделать поле обязательным
+    const [isImagePreview, setImagePreview] = useState(false);
+    const [imageSrc, setImageSrc] = useState("");
+    const [previewImgSrc, setPreviewImgSrc] = useState("");
+
     const [form] = Form.useForm();
     // todo Разобраться как сделать полее воода больше
     const {quill, quillRef} = useQuill();
@@ -91,6 +96,22 @@ export default function ArticleDetails() {
         }
     };
 
+
+    function showPreview(e) {
+        if (e.target.value.length > 0) {
+            setPreviewImgSrc(e.target.value);
+            setImageSrc(e.target.value);
+            setImagePreview(true);
+        }
+    }
+
+    const resetImagePreview = (e) => {
+        e.preventDefault();
+        setPreviewImgSrc("");
+        setImagePreview(false);
+        setImageSrc("");
+    };
+
     useEffect(() => {
         if (articleId) {
             setArticleData();
@@ -105,8 +126,29 @@ export default function ArticleDetails() {
                 <div className="col-md-12">
                     <div id="m-blog-content">
                         <article className="item">
-                            <div className="imgDiv mb-thumb">
-                                <img src="img/blog/1-big.jpg" className="img-responsive" alt=""/>
+                            {/*todo Подумать что ли кнопку очистить*/}
+                            <div className="row">
+                                <div className="col-md-12 imgDivLabel">
+                                    <label htmlFor="imageSrcInput">Ссылка на изображение:</label>
+                                </div>
+                                <div className="col-md-12">
+
+                                    <Input name="imageSrcInput" id="imageSrcInput" onChange={showPreview}
+                                           value={imageSrc}/>
+
+                                    <div className={isImagePreview ? 'mp-thumb imgDivPreview' : 'mp-thumb'}>
+
+                                        <img id="imageFilePreview" src={previewImgSrc}
+                                             className="img-responsive"
+                                             alt=""/>
+
+                                        <div className="overlay1-hr">
+                                            <a href="/" onClick={resetImagePreview} className="link">
+                                                <i className="fa fa-trash-o fa-lg"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             {articleId &&
@@ -125,7 +167,8 @@ export default function ArticleDetails() {
                                     <div className="tagsCountryRowDiv col-md-12">
                                         <span className="tagsCountryLabelDiv">Страна: </span>
                                         <span className="tagsCountryContentDiv">
-                                            <EditableTagGroup tagType={tagTypeCountry} pageType={pageTypeBlog} itemId={articleId}/>
+                                            <EditableTagGroup tagType={tagTypeCountry} pageType={pageTypeBlog}
+                                                              itemId={articleId}/>
                                         </span>
                                     </div>
                                 </div>

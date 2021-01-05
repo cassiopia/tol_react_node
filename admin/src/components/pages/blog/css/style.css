@@ -3,8 +3,12 @@
     text-align: center;
 }
 
-.imgDiv {
-    margin: 0 0 25px;
+.imgDivLabel {
+    text-align: center;
+}
+
+.imgDivPreview{
+    margin: 25px 0 0;
 }
 
 .divButtons {
