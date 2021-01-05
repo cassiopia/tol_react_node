@@ -18,7 +18,6 @@ const tagTypeCountry = "country";
 export default function ArticleDetails() {
 
     const [article, setArticle] = useState([]);
-    // todo cделать поле обязательным
     const [isImagePreview, setImagePreview] = useState(false);
     const [imageSrc, setImageSrc] = useState("");
     const [previewImgSrc, setPreviewImgSrc] = useState("");
@@ -126,58 +125,64 @@ export default function ArticleDetails() {
                 <div className="col-md-12">
                     <div id="m-blog-content">
                         <article className="item">
-                            {/*todo Подумать что ли кнопку очистить*/}
-                            <div className="row">
-                                <div className="col-md-12 imgDivLabel">
-                                    <label htmlFor="imageSrcInput">Ссылка на изображение:</label>
-                                </div>
-                                <div className="col-md-12">
+                            <Form form={form} name="control-hooks" onFinish={onFinish}>
 
-                                    <Input name="imageSrcInput" id="imageSrcInput" onChange={showPreview}
-                                           value={imageSrc}/>
+                                <div className="row">
+                                    <div className="col-md-12 imgDivLabel">
+                                        {/*todo Разобраться как сделать * у лэйбла. antd разметка при данном положенеии лэйбла не подходит*/}
+                                        <label
+                                            htmlFor="imageSrcInput"
 
-                                    <div className={isImagePreview ? 'mp-thumb imgDivPreview' : 'mp-thumb'}>
+                                        >
+                                            Ссылка на изображение:
+                                        </label>
+                                    </div>
+                                    <div className="col-md-12">
 
-                                        <img id="imageFilePreview" src={previewImgSrc}
-                                             className="img-responsive"
-                                             alt=""/>
+                                        <Input name="imageSrcInput" id="imageSrcInput" onChange={showPreview}
+                                               value={imageSrc} required="true" />
 
-                                        <div className="overlay1-hr">
-                                            <a href="/" onClick={resetImagePreview} className="link">
-                                                <i className="fa fa-trash-o fa-lg"></i>
-                                            </a>
+                                        <div className={isImagePreview ? 'mp-thumb imgDivPreview' : 'mp-thumb'}>
+
+                                            <img id="imageFilePreview" src={previewImgSrc}
+                                                 className="img-responsive"
+                                                 alt=""/>
+
+                                            <div className="overlay1-hr">
+                                                <a href="/" onClick={resetImagePreview} className="link">
+                                                    <i className="fa fa-trash-o fa-lg"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {articleId &&
-                            <>
-                                <div className="row">
-                                    <div className="tagsYearRowDiv col-md-12">
-                                        <span className="tagsYearLabelDiv">Год: </span>
-                                        <span className="tagsYearContentDiv">
+                                {articleId &&
+                                <>
+                                    <div className="row">
+                                        <div className="tagsYearRowDiv col-md-12">
+                                            <span className="tagsYearLabelDiv">Год: </span>
+                                            <span className="tagsYearContentDiv">
                                                 <EditableTagGroup tagType={tagTypeYear} pageType={pageTypeBlog}
                                                                   itemId={articleId}/>
                                             </span>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className="row">
-                                    <div className="tagsCountryRowDiv col-md-12">
-                                        <span className="tagsCountryLabelDiv">Страна: </span>
-                                        <span className="tagsCountryContentDiv">
+                                    <div className="row">
+                                        <div className="tagsCountryRowDiv col-md-12">
+                                            <span className="tagsCountryLabelDiv">Страна: </span>
+                                            <span className="tagsCountryContentDiv">
                                             <EditableTagGroup tagType={tagTypeCountry} pageType={pageTypeBlog}
                                                               itemId={articleId}/>
                                         </span>
+                                        </div>
                                     </div>
-                                </div>
-                            </>
-                            }
+                                </>
+                                }
 
-                            <div className="row">
-
-                                <Form form={form} className="formDiv" name="control-hooks" onFinish={onFinish}>
+                                {/*todo Придумать как добавить отступ когда нету  тэгов */}
+                                <div className="row">
 
                                     <div className="col-md-12">
                                         <Form.Item
@@ -206,11 +211,9 @@ export default function ArticleDetails() {
                                             </Button>
                                         </Form.Item>
                                     </div>
-
-                                </Form>
-                            </div>
+                                </div>
+                            </Form>
                         </article>
-
                     </div>
                 </div>
             </div>
