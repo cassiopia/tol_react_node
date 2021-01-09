@@ -17,8 +17,6 @@ const savePage = data => {
 };
 
 const remove = id => {
-    console.log('fhgfhgfhgfhgfh');
-    console.log(id);
     return http.delete(`/page/${id}`);
 };
 

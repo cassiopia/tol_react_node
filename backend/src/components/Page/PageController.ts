@@ -1,5 +1,7 @@
 import {Request, Response} from 'express';
 import {Page, PageInterface} from '../../models/Page.model';
+import {PageImage} from '../../models/PageImage.model';
+
 
 export class PageController {
 
@@ -7,10 +9,27 @@ export class PageController {
         const params: PageInterface = req.body;
 
         Page.create<Page>(params)
-            .then((page: Page) => res.status(201).json(page))
+            .then(
+                (page: Page) => {
+                    const pageId = page.getDataValue('id');
+
+                    if (pageId) {
+                        PageImage.create({
+                            pageId: pageId,
+                            imageSrc: req.body.imageSrc
+                        }).then((pageImage: PageImage) => res.status(201).json(pageImage))
+                            .catch((err: Error) => res.status(500).json(err))
+                    } else {
+                        res.send({
+                            message: `Cannot create page!`
+                        });
+                    }
+                }
+            )
             .catch((err: Error) => res.status(500).json(err))
     }
 
+    // todo Картинку тоже обновлять
     public update(req: Request, res: Response) {
         Page.update(
             {
@@ -26,6 +45,7 @@ export class PageController {
             )
     }
 
+    // todo Картинку же ещё тащить нужно...
     public getAllByPageType(req: Request, res: Response) {
 
         Page.findAll<Page>(

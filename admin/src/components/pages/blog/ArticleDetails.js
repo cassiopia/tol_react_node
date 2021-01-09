@@ -43,15 +43,16 @@ export default function ArticleDetails() {
 
 
     const onFinish = (values) => {
+
         var data = {
             id: articleId,
             title: values.title,
             description: quill.getText(),
-            pageType: pageTypeBlog
+            pageType: pageTypeBlog,
+            imageSrc: imageSrc
         };
 
         sendData(data);
-
     };
 
     const onReset = () => {
@@ -132,15 +133,15 @@ export default function ArticleDetails() {
                                         {/*todo Разобраться как сделать * у лэйбла. antd разметка при данном положенеии лэйбла не подходит*/}
                                         <label
                                             htmlFor="imageSrcInput"
-
                                         >
                                             Ссылка на изображение:
                                         </label>
                                     </div>
                                     <div className="col-md-12">
 
+                                        {/*todo В таком "не как все инпуте" картинка в values не приходит*/}
                                         <Input name="imageSrcInput" id="imageSrcInput" onChange={showPreview}
-                                               value={imageSrc} required="true" />
+                                               value={imageSrc} required />
 
                                         <div className={isImagePreview ? 'mp-thumb imgDivPreview' : 'mp-thumb'}>
 
