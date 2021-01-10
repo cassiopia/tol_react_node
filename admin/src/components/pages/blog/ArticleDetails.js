@@ -32,8 +32,12 @@ export default function ArticleDetails() {
     const setArticleData = () => {
         PageService.getOneById(articleId)
             .then(response => {
-                setArticle(response.data);
-                setForm(response.data.title, response.data.description);
+                const data = response.data;
+                setArticle(data);
+                setForm(data.title, data.description);
+                setPreviewImgSrc(data.PageImages[0].imageSrc);
+                setImageSrc(data.PageImages[0].imageSrc);
+                setImagePreview(true);
             })
             .catch(e => {
                 Notification.errorNotification('Ошибка загрузки данных!');
@@ -126,7 +130,6 @@ export default function ArticleDetails() {
                 <div className="col-md-12">
                     <div id="m-blog-content">
                         <article className="item">
-                            <Form form={form} name="control-hooks" onFinish={onFinish}>
 
                                 <div className="row">
                                     <div className="col-md-12 imgDivLabel">
@@ -139,7 +142,6 @@ export default function ArticleDetails() {
                                     </div>
                                     <div className="col-md-12">
 
-                                        {/*todo В таком "не как все инпуте" картинка в values не приходит*/}
                                         <Input name="imageSrcInput" id="imageSrcInput" onChange={showPreview}
                                                value={imageSrc} required />
 
@@ -182,6 +184,7 @@ export default function ArticleDetails() {
                                 </>
                                 }
 
+                            <Form form={form} name="control-hooks" onFinish={onFinish}>
                                 <div className={articleId ? 'row' : 'divMargin row'}>
 
                                     <div className="col-md-12">

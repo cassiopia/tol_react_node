@@ -64,7 +64,18 @@ export class PageController {
 
     public getOneById(req: Request, res: Response) {
 
-        Page.findOne<Page>({where: {id: req.params.pageId}})
+        Page.findOne<Page>(
+            {
+                where: {
+                    id: req.params.pageId
+                },
+                include: [{
+                    model: PageImage,
+                    where: {
+                        id: req.params.pageId
+                    }
+                }]
+            })
             .then((page: Page | null) => {
                 if (page) {
                     res.json(page)
