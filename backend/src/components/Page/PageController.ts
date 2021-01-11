@@ -62,11 +62,17 @@ export class PageController {
             )
     }
 
-    // todo Картинку же ещё тащить нужно...
     public getAllByPageType(req: Request, res: Response) {
 
         Page.findAll<Page>(
-            {where: {pageType: req.params.pageType}})
+            {
+                where: {
+                    pageType: req.params.pageType
+                },
+                include: [{
+                    model: PageImage
+                }]
+            })
             .then(
                 (page) => {
                     if (page) {
@@ -88,9 +94,9 @@ export class PageController {
                 },
                 include: [{
                     model: PageImage,
-                    where: {
-                        id: req.params.pageId
-                    }
+                    // where: {
+                    //     id: req.params.pageId
+                    // }
                 }]
             })
             .then((page: Page | null) => {

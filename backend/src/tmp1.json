@@ -1,51 +1,59 @@
-{
-  "name": "SequelizeForeignKeyConstraintError",
-  "parent": {
-    "length": 328,
-    "name": "error",
-    "severity": "ОШИБКА",
-    "code": "23503",
-    "detail": "Ключ (pageId)=(1) отсутствует в таблице \"Page\".",
-    "schema": "public",
-    "table": "page_tag",
-    "constraint": "page_tag_pageId_fkey",
-    "file": "ri_triggers.c",
-    "line": "3266",
-    "routine": "ri_ReportViolation",
-    "sql": "INSERT INTO \"page_tag\" (\"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\") VALUES (DEFAULT,$1,$2,$3,$4) RETURNING \"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\";",
-    "parameters": [
-      "2020-12-24 14:39:14.909 +00:00",
-      "2020-12-24 14:39:14.909 +00:00",
-      "1",
-      3
+[
+  {
+    "id": 2,
+    "albumHash": null,
+    "title": "22222",
+    "description": "22222\n",
+    "pageType": "blog",
+    "deletedAt": null,
+    "createdAt": "2021-01-10T23:57:15.002Z",
+    "updatedAt": "2021-01-10T23:57:15.002Z",
+    "PageImages": [
+      {
+        "id": 2,
+        "imageSrc": "https://i.imgur.com/7jP9i2A.jpg",
+        "pageId": 2,
+        "createdAt": "2021-01-10T23:57:15.014Z",
+        "updatedAt": "2021-01-10T23:57:15.014Z"
+      }
     ]
   },
-  "original": {
-    "length": 328,
-    "name": "error",
-    "severity": "ОШИБКА",
-    "code": "23503",
-    "detail": "Ключ (pageId)=(1) отсутствует в таблице \"Page\".",
-    "schema": "public",
-    "table": "page_tag",
-    "constraint": "page_tag_pageId_fkey",
-    "file": "ri_triggers.c",
-    "line": "3266",
-    "routine": "ri_ReportViolation",
-    "sql": "INSERT INTO \"page_tag\" (\"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\") VALUES (DEFAULT,$1,$2,$3,$4) RETURNING \"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\";",
-    "parameters": [
-      "2020-12-24 14:39:14.909 +00:00",
-      "2020-12-24 14:39:14.909 +00:00",
-      "1",
-      3
+  {
+    "id": 1,
+    "albumHash": null,
+    "title": "11111222",
+    "description": "11111222\n",
+    "pageType": "blog",
+    "deletedAt": null,
+    "createdAt": "2021-01-10T23:56:56.679Z",
+    "updatedAt": "2021-01-10T23:59:21.508Z",
+    "PageImages": [
+      {
+        "id": 1,
+        "imageSrc": "https://i.imgur.com/YyqU5Sb.jpg",
+        "pageId": 1,
+        "createdAt": "2021-01-10T23:56:56.695Z",
+        "updatedAt": "2021-01-10T23:59:21.518Z"
+      }
     ]
   },
-  "sql": "INSERT INTO \"page_tag\" (\"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\") VALUES (DEFAULT,$1,$2,$3,$4) RETURNING \"id\",\"createdAt\",\"updatedAt\",\"pageId\",\"tagId\";",
-  "parameters": [
-    "2020-12-24 14:39:14.909 +00:00",
-    "2020-12-24 14:39:14.909 +00:00",
-    "1",
-    3
-  ],
-  "fields": null
-}
+  {
+    "id": 3,
+    "albumHash": null,
+    "title": "33333222",
+    "description": "33332222\n",
+    "pageType": "blog",
+    "deletedAt": null,
+    "createdAt": "2021-01-10T23:57:46.649Z",
+    "updatedAt": "2021-01-11T00:01:38.587Z",
+    "PageImages": [
+      {
+        "id": 3,
+        "imageSrc": "https://i.imgur.com/CASdYk9.jpg",
+        "pageId": 3,
+        "createdAt": "2021-01-10T23:57:46.657Z",
+        "updatedAt": "2021-01-11T00:01:38.595Z"
+      }
+    ]
+  }
+]

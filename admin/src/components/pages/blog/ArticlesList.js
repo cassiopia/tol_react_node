@@ -43,14 +43,14 @@ export default function ArticlesList() {
             });
     };
 
-    const renderDiv = (articleId, articleTitle, articleDescription) => {
+    const renderDiv = (articleId, articleTitle, articleDescription, articleImage) => {
 
         const urlLinkDetails = `/article-details?id=${articleId}`;
 
         return <div key={articleId} className="col-md-6" data-animated="0">
             <div className="item" key={articleId}>
                 <div className="mp-thumb">
-                    <img src="img/blog/1.jpg" className="img-responsive" alt=""/>
+                    <img src={articleImage} className="img-responsive" alt=""/>
 
                     <span className="rmore">
                          <Link to={urlLinkDetails} data-hover="Подробнее">Подробнее</Link>
@@ -77,9 +77,9 @@ export default function ArticlesList() {
         const articleList = articles.map((article, index) => {
 
             if ((index) % 2 === 0) {
-                return renderDiv(article.id, article.title, article.description);
+                return renderDiv(article.id, article.title, article.description, article.PageImages[0].imageSrc);
             } else {
-                return renderDiv(article.id, article.title, article.description);
+                return renderDiv(article.id, article.title, article.description, article.PageImages[0].imageSrc);
             }
         });
 
