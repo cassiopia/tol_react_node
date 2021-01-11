@@ -29,16 +29,33 @@ export class PageController {
             .catch((err: Error) => res.status(500).json(err))
     }
 
-    // todo Картинку тоже обновлять
     public update(req: Request, res: Response) {
-        Page.update(
+        const pageId = req.body.id;
+
+        Page.update<Page>(
             {
                 title: req.body.title,
                 description: req.body.description
             },
-            {where: {id: req.body.id}}
+            {where: {id: pageId}}
         ).then(
-            (page) => res.status(202).json(page)
+            (page) => {
+                if (pageId) {
+                    PageImage.update<PageImage>(
+                        {
+                            imageSrc: req.body.imageSrc
+                        },
+                        {where: {id: pageId}}
+                    ).then(
+                        (page) => res.status(202).json(page)
+                    )
+                        .catch((err: Error) => res.status(500).json(err))
+                } else {
+                    res.send({
+                        message: `Cannot update page!`
+                    });
+                }
+            }
         )
             .catch(
                 (err: Error) => res.status(500).json(err)
