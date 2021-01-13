@@ -24,7 +24,7 @@ const successNotification = (message, description = '') => {
             width: "auto",
             marginTop: '60vh'
         },
-        duration: 0,
+        duration: 1,
         icon: <CheckCircleOutlined style={{color: '#75b209'}}/>,
     });
 };

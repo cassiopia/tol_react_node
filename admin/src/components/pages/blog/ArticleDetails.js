@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Form, Input} from "antd";
 import {useQuill} from "react-quilljs";
 import PageService from "../../services/PageService";
-import {useLocation} from "react-router-dom";
+import {useLocation, useHistory} from "react-router-dom";
 import 'quill/dist/quill.snow.css';
 import 'antd/dist/antd.css';
 import './css/style.css';
@@ -17,8 +17,6 @@ const tagTypeCountry = "country";
 
 // todo Доработать:
 // todo 1. Сделать добавление тэгов на странице создания страницы. Сохранять в БД при нажатиии на кнопку сохранить. Возможно сделать опцию, что бы не потерять существующие наработки
-// todo 2. После создания страницы и возможно? редактирования перекидывать на страницу списка постов
-// todo 3. Закрывать всплывающее сообщение при переходе на другую страницу
 
 export default function ArticleDetails() {
 
@@ -32,6 +30,8 @@ export default function ArticleDetails() {
     const {quill, quillRef} = useQuill();
 
     let query = useQuery();
+    let history = useHistory();
+
     const articleId = query.get('id');
 
     const setArticleData = () => {
@@ -81,6 +81,7 @@ export default function ArticleDetails() {
         PageService.savePage(data)
             .then(response => {
                 Notification.successNotification('Изменения успешно сохранены!');
+                history.push('/blog');
             })
             .catch(e => {
                 Notification.errorNotification('Ошибка сохранения данных!');
