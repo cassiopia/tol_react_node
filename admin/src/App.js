@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Menu from './components/navigation/Menu';
-import Content from './components/pages/Content';
+import Route from './components/routes/Route';
 
 class App extends Component {
     render() {
@@ -11,7 +11,7 @@ class App extends Component {
                 </div>
 
                 <div className="col-md-9 m-right">
-                    <Content/>
+                    <Route/>
                 </div>
             </>
 
