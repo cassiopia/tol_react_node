@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import Menu from '../../navigation/Menu';
 
-const DashboardLayout = ({children, ...rest}) => {
+const DefaultLayout = ({children, ...rest}) => {
     return (
         <>
             <div className="col-md-3 m-left">
@@ -11,7 +11,6 @@ const DashboardLayout = ({children, ...rest}) => {
 
             <div className="col-md-9 m-right">
                 <div className="page page-dashboard">
-                    <div className="sidebar">This is the Second Layout</div>
                     <div className="main">{children}</div>
                 </div>
             </div>
@@ -23,9 +22,9 @@ const DashboardLayoutRoute = ({component: Component, ...rest}) => {
     return (
 
         <Route {...rest} render={matchProps => (
-            <DashboardLayout>
+            <DefaultLayout>
                 <Component {...matchProps} />
-            </DashboardLayout>
+            </DefaultLayout>
         )}/>
     )
 };

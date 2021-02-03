@@ -1,0 +1,87 @@
+.loginImg div {
+    text-align: center;
+}
+
+.loginImg img {
+    width: 74px;
+    height: 74px;
+    border: 10px solid #ededed;
+    border-radius: 50%;
+    margin: 0 auto 18px;
+}
+
+.buttonAuth {
+    background: transparent;
+    border: solid 1px #75b209;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    display: table;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #666;
+}
+
+#buttonId {
+    padding: 0 0 0;
+    background: #fff;
+    display: table;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#buttonId i {
+    font-size: 32px;
+    color: #75b209;
+}
+
+#buttonId div:hover {
+    background: #75b209;
+    cursor: pointer;
+    border-color: #75b209;
+    transition: 0.4s;
+}
+
+#buttonId div:hover i,
+#buttonId div:hover h4,
+#buttonId div:hover {
+    color: #fff;
+    transition: 0.4s;
+}
+
+
+#buttonId button:hover {
+    background: #75b209;
+    cursor: pointer;
+    border-color: #75b209;
+    transition: 0.4s;
+}
+
+#buttonId button:hover i,
+#buttonId button:hover h4,
+#buttonId button:hover {
+    color: #fff;
+    transition: 0.4s;
+}
+
+.checkboxAuth {
+    color: #666;
+    font-size: 13px;
+    padding-bottom: 11px;
+}
+
+.checkboxAuth label {
+    font-weight: 400;
+    margin-left: 5px;
+}
+
+.authLink {
+    color: #666 !important;
+    font-size: 13px;
+}
+
+.authLink:hover {
+    color: #75b209 !important;
+}
