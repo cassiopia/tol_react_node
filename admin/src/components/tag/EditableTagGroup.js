@@ -21,27 +21,47 @@ class EditableTagGroup extends React.Component {
     }
 
     componentDidMount() {
-        TagService.getTags(this.props.itemId, this.props.pageType, this.props.tagType)
-            .then(response => {
+        const itemId = this.props.itemId;
 
-                this.setState(
-                    {
-                        tags: response.data
-                    }
-                );
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        // if item Id = 0 that it is a new page and it hasn't tags
+        if (itemId !== "0") {
+            TagService.getTags(itemId, this.props.pageType, this.props.tagType)
+                .then(response => {
 
+                    const responseTags = response.data;
+
+                    this.setState(
+                        {
+                            tags: responseTags
+                        }
+                    );
+
+                    const tagIgs = this.getTagIds(responseTags);
+                    this.props.parentCallback(tagIgs);
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        }
+        else {
+
+            this.setState(
+                {
+                    tags: []
+                }
+            );
+        }
     }
 
     handleClose = removedTagId => {
-        const tags = this.state.tags.filter(tag => tag !== removedTagId);
+        const tags = this.state.tags.filter(tag => tag.id !== removedTagId);
 
         TagService.remove(removedTagId)
             .then(response => {
                 this.setState({tags});
+
+                const tagIgs = this.getTagIds(tags);
+                this.props.parentCallback(tagIgs);
             })
             .catch(e => {
                 console.log(e);
@@ -71,6 +91,9 @@ class EditableTagGroup extends React.Component {
 
             TagService.addTag(data)
                 .then(response => {
+                    console.log('А изначально что в тэгах? ');
+                    console.log(tags);
+
                     tags = [...tags, response.data];
 
                     this.setState({
@@ -78,11 +101,23 @@ class EditableTagGroup extends React.Component {
                         inputVisible: false,
                         inputValue: '',
                     });
+
+                    const tagIgs = this.getTagIds(tags);
+
+                    console.log('А что у нас  в тэгах? ');
+                    console.log(tags);
+                    this.props.parentCallback(tagIgs);
                 })
                 .catch(e => {
                     console.log(e);
                 });
         }
+    };
+
+    getTagIds = tags => {
+        return tags.map((tag, index) => {
+            return tag.id;
+        });
     };
 
     handleEditInputChange = e => {

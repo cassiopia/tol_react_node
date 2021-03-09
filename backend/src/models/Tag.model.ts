@@ -23,7 +23,8 @@ Tag.init(
             primaryKey: true
         },
         title: {
-            type: new DataTypes.STRING
+            type: new DataTypes.STRING,
+            unique: true
         },
         type: {
             type: new DataTypes.STRING

@@ -21,9 +21,13 @@ const tagTypeCountry = "country";
 export default function ArticleDetails() {
 
     const [article, setArticle] = useState([]);
+
     const [isImagePreview, setImagePreview] = useState(false);
     const [imageSrc, setImageSrc] = useState("");
     const [previewImgSrc, setPreviewImgSrc] = useState("");
+
+    const [tagIdsYear, setTagIdsYear] = useState([]);
+    const [tagIdsCountry, setTagIdsCountry] = useState([]);
 
     const [form] = Form.useForm();
     // todo Разобраться как сделать полее воода больше
@@ -58,8 +62,17 @@ export default function ArticleDetails() {
             title: values.title,
             description: quill.getText(),
             pageType: pageTypeBlog,
-            imageSrc: imageSrc
+            imageSrc: imageSrc,
+            tagIdsYear: tagIdsYear,
+            tagIdsCountry: tagIdsCountry
+
         };
+
+        console.log('Тэги года!');
+        console.log(tagIdsYear);
+
+        console.log('Тэги страны!');
+        console.log(tagIdsCountry);
 
         sendData(data);
     };
@@ -85,7 +98,7 @@ export default function ArticleDetails() {
             })
             .catch(e => {
                 Notification.errorNotification('Ошибка сохранения данных!');
-                console.log(e);
+                console.log('Ошибка сохранения данных!');
             });
     };
 
@@ -122,6 +135,22 @@ export default function ArticleDetails() {
         setImageSrc("");
     };
 
+    const childrenTagIdsYear = (tagIds) => {
+
+        console.log('А что приходит от ребенка (Год)?');
+        console.log(tagIds);
+
+        setTagIdsYear(tagIds);
+    };
+
+    const childrenTagIdsCountry = (tagIds) => {
+
+        console.log('А что приходит от ребенка (Страна)?');
+        console.log(tagIds);
+
+        setTagIdsCountry(tagIds);
+    };
+
     useEffect(() => {
         if (articleId) {
             setArticleData();
@@ -137,58 +166,61 @@ export default function ArticleDetails() {
                     <div id="m-blog-content">
                         <article className="item">
 
-                                <div className="row">
-                                    <div className="col-md-12 imgDivLabel">
-                                        {/*todo Разобраться как сделать * у лэйбла. antd разметка при данном положенеии лэйбла не подходит*/}
-                                        <label
-                                            htmlFor="imageSrcInput"
-                                        >
-                                            Ссылка на изображение:
-                                        </label>
-                                    </div>
-                                    <div className="col-md-12">
+                            <div className="row">
+                                <div className="col-md-12 imgDivLabel">
+                                    {/*todo Разобраться как сделать * у лэйбла. antd разметка при данном положенеии лэйбла не подходит*/}
+                                    <label
+                                        htmlFor="imageSrcInput"
+                                    >
+                                        Ссылка на изображение:
+                                    </label>
+                                </div>
+                                <div className="col-md-12">
 
-                                        <Input name="imageSrcInput" id="imageSrcInput" onChange={showPreview}
-                                               value={imageSrc} required />
+                                    <Input name="imageSrcInput" id="imageSrcInput" onChange={showPreview}
+                                           value={imageSrc} required/>
 
-                                        <div className={isImagePreview ? 'mp-thumb imgDivPreview' : 'mp-thumb'}>
+                                    <div className={isImagePreview ? 'mp-thumb imgDivPreview' : 'mp-thumb'}>
 
-                                            <img id="imageFilePreview" src={previewImgSrc}
-                                                 className="img-responsive"
-                                                 alt=""/>
+                                        <img id="imageFilePreview" src={previewImgSrc}
+                                             className="img-responsive"
+                                             alt=""/>
 
-                                            <div className="overlay1-hr">
-                                                <a href="/" onClick={resetImagePreview} className="link">
-                                                    <i className="fa fa-trash-o fa-lg"></i>
-                                                </a>
-                                            </div>
+                                        <div className="overlay1-hr">
+                                            <a href="/" onClick={resetImagePreview} className="link">
+                                                <i className="fa fa-trash-o fa-lg"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                {articleId &&
-                                <>
-                                    <div className="row">
-                                        <div className="tagsYearRowDiv col-md-12">
-                                            <span className="tagsYearLabelDiv">Год: </span>
-                                            <span className="tagsYearContentDiv">
+                            {/*{articleId &&*/}
+                            <>
+                                <div className="row">
+                                    <div className="tagsYearRowDiv col-md-12">
+                                        <span className="tagsYearLabelDiv">Год: </span>
+                                        <span className="tagsYearContentDiv">
                                                 <EditableTagGroup tagType={tagTypeYear} pageType={pageTypeBlog}
-                                                                  itemId={articleId}/>
-                                            </span>
-                                        </div>
-                                    </div>
+                                                                  itemId={articleId ? articleId : '0'}
+                                                                  parentCallback={childrenTagIdsYear}/>
 
-                                    <div className="row">
-                                        <div className="tagsCountryRowDiv col-md-12">
-                                            <span className="tagsCountryLabelDiv">Страна: </span>
-                                            <span className="tagsCountryContentDiv">
-                                            <EditableTagGroup tagType={tagTypeCountry} pageType={pageTypeBlog}
-                                                              itemId={articleId}/>
-                                        </span>
-                                        </div>
+                                            </span>
                                     </div>
-                                </>
-                                }
+                                </div>
+
+                                <div className="row">
+                                    <div className="tagsCountryRowDiv col-md-12">
+                                        <span className="tagsCountryLabelDiv">Страна: </span>
+                                        <span className="tagsCountryContentDiv">
+                                            <EditableTagGroup tagType={tagTypeCountry} pageType={pageTypeBlog}
+                                                              itemId={articleId ? articleId : '0'}
+                                                              parentCallback={childrenTagIdsCountry}/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </>
+                            {/*}*/}
 
                             <Form form={form} name="control-hooks" onFinish={onFinish}>
                                 <div className={articleId ? 'row' : 'divMargin row'}>
