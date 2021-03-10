@@ -5,7 +5,6 @@ import {PageTag} from "../../models/PageTag.model";
 import {Album} from "../../models/Album.model";
 
 export class TagController {
-
     public addTag(req: Request, res: Response) {
 
         Tag.findOrCreate({
@@ -19,7 +18,17 @@ export class TagController {
         }).catch((err: Error) => res.status(500).json(err));
     }
 
+
+    private _checkTag() {
+        console.log(' Нужно проверить тэг');
+    }
+
     public editTag(req: Request, res: Response) {
+
+        // todo Проверять, присутствует ли тэг  на других страницах. Если да, то редактировать нельзя
+        // todo Возможно не плохо бы знать айдишник страницы на которой происходит действо
+
+        this._checkTag();
 
         Tag.update(
             {
@@ -54,6 +63,9 @@ export class TagController {
     public deleteTag(req: Request, res: Response) {
 
         const id = req.params.id;
+
+        // todo Проверять, присутствует ли тэг  на других страницах. Если да, то удалять нельзя
+        // todo Возможно не плохо бы знать айдишник страницы на которой происходит действо
 
         Tag.destroy({
             where: {id: id}

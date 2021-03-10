@@ -4,9 +4,6 @@ import {PageImage} from '../../models/PageImage.model';
 import {Tag} from "../../models/Tag.model";
 import {PageTag} from "../../models/PageTag.model";
 
-// @ts-ignore
-import {NextFunction} from '@types/express';
-//import {PageMid} from "../../middleware/Page";
 
 // todo Навести марафет в этом классе
 export class PageController {
@@ -26,42 +23,14 @@ export class PageController {
                         }).then((pageImage: PageImage) => res.status(201).json(pageImage))
                             .catch((err: Error) => res.status(500).json(err));
 
-                        const tagIds = req.body.tagIds;
-
                         const tagIdsYear = req.body.tagIdsYear;
                         const tagIdsCountry = req.body.tagIdsCountry;
 
                         if ((tagIdsYear && tagIdsYear.length > 0) ||
                             (tagIdsCountry && tagIdsCountry.length > 0)) {
 
-                            // todo усок идентичный блоку редактирования. Разобраться  как вытащить в общий метод
-
-                            var insertArray: object[] = [];
-
-                            if ((tagIdsYear && tagIdsYear.length > 0) && (tagIdsCountry && tagIdsCountry.length > 0)) {
-
-                                const resultArray = tagIdsCountry.concat(tagIdsYear);
-                                resultArray.map(function (tagId: number) {
-                                    insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
-                                });
-                            } else if (tagIdsYear && tagIdsYear.length > 0) {
-
-                                tagIdsYear.map(function (tagId: number) {
-                                    insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
-                                });
-                            } else {
-                                tagIdsCountry.map(function (tagId: number) {
-                                    insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
-                                });
-                            }
-
-                            PageTag.bulkCreate(insertArray)
-                                .then(pageTag => {
-                                    (pageTag: PageTag) => res.json(pageTag);
-                                })
-                                .catch(
-                                    (err: Error) => res.status(500).json(err)
-                                );
+                            const insertArray = this._prepareArrayPageTags(tagIdsYear, tagIdsCountry, pageId);
+                            this._insertTagId(insertArray, res);
                         }
 
 
@@ -75,12 +44,8 @@ export class PageController {
             .catch((err: Error) => res.status(500).json(err))
     }
 
-    public prepareArrayPageTags(next:NextFunction) {
-        console.log('Test information!');
-        return '12345';
-    }
 
-    public update(req: Request, res: Response, next: NextFunction) {
+    public update(req: Request, res: Response) {
         const pageId = req.body.id;
 
 
@@ -112,48 +77,16 @@ export class PageController {
                     if ((tagIdsYear && tagIdsYear.length > 0) ||
                         (tagIdsCountry && tagIdsCountry.length > 0)) {
 
-                        // this._pageTagsUpdate(req, res);
 
                         PageTag.destroy({
                             where: {pageId: pageId}
                         })
                             .then(
                                 num => {
-                                    // todo Понять как выносить в отдельный метод
                                     // todo Вообе нав сю эту бадягу написать тэсты, и чем быстрее тем лучше
 
-                                    var insertArray: object[] = [];
-
-                                    if ((tagIdsYear && tagIdsYear.length > 0) && (tagIdsCountry && tagIdsCountry.length > 0)) {
-
-                                        const resultArray = tagIdsCountry.concat(tagIdsYear);
-                                        resultArray.map(function (tagId: number) {
-                                            insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
-                                        });
-                                    } else if (tagIdsYear && tagIdsYear.length > 0) {
-
-                                        tagIdsYear.map(function (tagId: number) {
-                                            insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
-                                        });
-                                    } else {
-                                        tagIdsCountry.map(function (tagId: number) {
-                                            insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
-                                        });
-                                    }
-
-                                   // const inserTmp = this.prepareArrayPageTags(next);
-                                    //console.log('Если без вызова метода, то все хорошо...');
-
-
-                                    // const insertArray = this._prepareArrayPageTags(tagIdsYear, tagIdsCountry, pageId);
-                                    //
-                                    PageTag.bulkCreate(insertArray)
-                                        .then(pageTag => {
-                                            (pageTag: PageTag) => res.json(pageTag);
-                                        })
-                                        .catch(
-                                            (err: Error) => res.status(500).json(err)
-                                        );
+                                    const insertArray = this._prepareArrayPageTags(tagIdsYear, tagIdsCountry, pageId);
+                                    this._insertTagId(insertArray, res);
                                 }
                             )
                             .catch(err => {
@@ -183,30 +116,41 @@ export class PageController {
     }
 
     // todo Окучить метод учитывая типы данных. Разобраться с типами входных данных any -- не вариант!
+    // todo И можно обозначить тип выходных данных
 
-    // public _prepareArrayPageTags(tagIdsYear: any, tagIdsCountry: any, pageId: any) {
-    //     var insertArray: object[] = [];
-    //
-    //     if ((tagIdsYear && tagIdsYear.length > 0) && (tagIdsCountry && tagIdsCountry.length > 0)) {
-    //
-    //         const resultArray = tagIdsCountry.concat(tagIdsYear);
-    //         resultArray.map(function (tagId: number) {
-    //             insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
-    //         });
-    //     } else if (tagIdsYear && tagIdsYear.length > 0) {
-    //
-    //         tagIdsYear.map(function (tagId: number) {
-    //             insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
-    //         });
-    //     } else {
-    //         tagIdsCountry.map(function (tagId: number) {
-    //             insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
-    //         });
-    //     }
-    //     return insertArray;
-    // }
+    private _prepareArrayPageTags(tagIdsYear: any, tagIdsCountry: any, pageId: any) {
+        var insertArray: object[] = [];
 
+        if ((tagIdsYear && tagIdsYear.length > 0) && (tagIdsCountry && tagIdsCountry.length > 0)) {
 
+            const resultArray = tagIdsCountry.concat(tagIdsYear);
+            resultArray.map(function (tagId: number) {
+                insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
+            });
+        } else if (tagIdsYear && tagIdsYear.length > 0) {
+
+            tagIdsYear.map(function (tagId: number) {
+                insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
+            });
+        } else {
+            tagIdsCountry.map(function (tagId: number) {
+                insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
+            });
+        }
+
+        return insertArray;
+    }
+
+    // todo  any -- не вариант!
+    private _insertTagId(insertArray: any, res: Response) {
+        PageTag.bulkCreate(insertArray)
+            .then(pageTag => {
+                (pageTag: PageTag) => res.json(pageTag);
+            })
+            .catch(
+                (err: Error) => res.status(500).json(err)
+            );
+    }
 
 
     public getAllByPageType(req: Request, res: Response) {
