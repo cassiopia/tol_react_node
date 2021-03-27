@@ -17,6 +17,7 @@ export default function AlbumsList() {
     const [albums, setAlbums] = useState([]);
 
     const fetchData = async () => {
+        // todo Cделать через сервис
         axios.get('http://localhost:3000/portfolio/get_albums')
             .then(function (response) {
                 setIsLoaded(true);

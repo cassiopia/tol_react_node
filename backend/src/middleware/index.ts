@@ -1,5 +1,8 @@
-const page = require("./Page");
+const authJwt = require("./AuthJwt");
+// @ts-ignore
+const verifySignUp = require("./VerifySignUp");
 
 module.exports = {
-    page
+    authJwt,
+    verifySignUp
 };

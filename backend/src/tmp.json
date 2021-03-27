@@ -1,13 +1,7 @@
-[
-  Node
-] (node:17868) UnhandledPromiseRejectionWarning: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
-[Node]     at ServerResponse.setHeader (_http_outgoing.js: 535: 11)
-[Node]     at ServerResponse.header (/home/cassiopia/www/tol_react_node/backend/node_modules/express/lib/response.js: 771: 10)
-[Node]     at ServerResponse.send (/home/cassiopia/www/tol_react_node/backend/node_modules/express/lib/response.js: 170: 12)
-[Node]     at ServerResponse.json (/home/cassiopia/www/tol_react_node/backend/node_modules/express/lib/response.js: 267: 15)
-[Node]     at /home/cassiopia/www/tol_react_node/backend/dist/components/Page/PageController.js: 73: 53
-[Node]     at processTicksAndRejections (internal/process/task_queues.js: 97: 5)
-[Node] (Use `node --trace-warnings ...` to show where the warning was created)
-[Node] (node: 17868) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
-[Node] (node: 17868) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
-
+"data": [
+"lNO5AzS",
+"bd4URdO",
+"47BjJf5",
+"ReaaF1Y",
+"nSUJArS"
+],

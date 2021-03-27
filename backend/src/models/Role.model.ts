@@ -1,32 +1,32 @@
 import {Model, DataTypes} from "sequelize";
 import {database} from "../config/database";
 
-export class Tag extends Model {
+export class Role extends Model {
     public id!: number;
-    public title!: string;
-    public type!: string;
+    public name!: string;
     // timestamps!
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
+    public deletedAt!: Date;
 }
 
-Tag.init(
+Role.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        title: {
-            type: new DataTypes.STRING,
-            unique: true
-        },
-        type: {
+        name: {
             type: new DataTypes.STRING
-        }
+        },
+        deletedAt: {
+            type: new DataTypes.DATE
+        },
     },
     {
-        tableName: "tag",
-        sequelize: database
+        tableName: "role",
+        sequelize: database,
+        paranoid: true
     }
 );

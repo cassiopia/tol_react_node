@@ -10,6 +10,9 @@
     margin: 0 auto 18px;
 }
 
+.buttonAuth:focus {
+    outline-style: none;
+}
 .buttonAuth {
     background: transparent;
     border: solid 1px #75b209;
@@ -84,4 +87,9 @@
 
 .authLink:hover {
     color: #75b209 !important;
+}
+
+.formErrors {
+    color: red;
+    margin-left: 50px;
 }

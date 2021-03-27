@@ -3,29 +3,17 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import './css/style.css';
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import AuthenticationService from "../../services/AuthenticationService";
+import {useForm} from "react-hook-form";
+import _ from "lodash/fp";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
     },
     image: {
-        // todo Фотки где каська в шкафу поставить что бы линия дверки была по лиии блока формы (типо выглядывает из за блока формы)
         //backgroundImage: 'url(https://i.imgur.com/NG5KNsw.jpg)',
         //backgroundImage: 'url(https://i.imgur.com/WT9To6C.jpg?3)',
         backgroundImage: 'url(https://i.imgur.com/ZweZXUD.jpg?1)',
@@ -51,8 +39,24 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SignInSide() {
+export default function Login() {
     const classes = useStyles();
+
+    const login = data => {
+        sendData(data);
+    };
+
+    const sendData = (data) => {
+        AuthenticationService.login(data)
+            .then(response => {
+                //todo Подумать что отрисовать / вызвать тут. Может показать менюшку и отрисовать котика? :)
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+    const {register, handleSubmit, errors} = useForm();
 
     return (
         <Grid container component="main" className={classes.root}>
@@ -69,20 +73,43 @@ export default function SignInSide() {
                         </div>
                     </div>
 
-                    <form className="contact-form" data-animated="0" id="contactForm" method="post">
+                    <form className="contact-form" data-animated="0" id="contactForm" onSubmit={handleSubmit(login)}>
                         <div className="mc-email">
-                            <input type="email" name="senderEmail" id="senderEmail" placeholder="Email"
-                                   required/>
+                            <input
+                                name="email"
+                                id="email"
+                                placeholder="Email"
+                                ref={register({
+                                    required: true,
+                                    pattern: /^\S+@\S+$/i
+                                })}
+                            />
+                            {_.get("email.type", errors) === "required" && (
+                                <p className="formErrors">Пожалуйста, введите Ваш Email</p>
+                            )}
+                            {_.get("email.type", errors) === "pattern" && (
+                                <p className="formErrors">Пожалуйста, введите верный Email</p>
+                            )}
                             <span><i className="fa fa-envelope-o"></i></span>
                         </div>
                         <div className="mc-website">
-                            <input type="password" name="password" id="subject" placeholder="Пароль"/>
+                            <input
+                                name="password"
+                                type="password"
+                                placeholder="Пароль"
+                                ref={register({
+                                    required: true
+                                })}
+                            />
+                            {_.get("password.type", errors) === "required" && (
+                                <p className="formErrors">Пожалуйста, введите Ваш пароль</p>
+                            )}
                             <span><i className="fa fa-lock"></i></span>
                         </div>
 
                         <div className="checkboxAuth">
                             <input type="checkbox" id="remember" name="remember"/>
-                            <label htmlFor="remember">Remember me</label>
+                            <label htmlFor="remember">Запомнить меня</label>
                         </div>
 
                         <div id="buttonId">
@@ -94,16 +121,15 @@ export default function SignInSide() {
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" className="authLink">
-                                    Forgot password?
+                                    Забыли пароль?
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" className="authLink">
-                                    {"Don't have an account? Sign Up"}
+                                <Link href="/registration" className="authLink">
+                                    {"Нету аккаунта? Зарегестрироваться"}
                                 </Link>
                             </Grid>
                         </Grid>
-
                     </form>
                 </div>
             </Grid>
