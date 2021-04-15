@@ -8,7 +8,10 @@ module.exports = (app: any) => {
 
     router.post("/create_page", page.create.bind(page));
     router.put("/update_page", page.update.bind(page));
-    router.get("/get_by_page_type/:pageType", page.getAllByPageType);
+    router.get(
+        "/get_by_page_type/:pageType",
+        page.getAllByPageType
+    );
     router.get("/get_one_by_id/:pageId", page.getOneById);
     router.delete("/:id", page.softDeletePage);
 

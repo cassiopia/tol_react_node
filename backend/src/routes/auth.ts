@@ -11,7 +11,7 @@ module.exports = (app: any) => {
     router.post(
         "/registration",
         [
-            verifySignUp.checkDuplicateUsernameOrEmail
+            verifySignUp.checkDuplicateEmail
             ,
             verifySignUp.checkRolesExisted
         ],

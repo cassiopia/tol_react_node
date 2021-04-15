@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import './css/style.css';
@@ -58,8 +58,6 @@ export default function AlbumsList() {
     } else if (!isLoaded) {
         return <div>Загрузка...</div>;
     } else {
-        console.log(albums);
-
         const albumList = albums.map((album, index) => {
 
             if ((index) % 2 === 0) {
@@ -70,7 +68,6 @@ export default function AlbumsList() {
         });
 
         return (
-
             <div className="row">
                 <div className="addAlbumDiv col-md-12">
                     <div className="article-comment-form">
@@ -90,10 +87,7 @@ export default function AlbumsList() {
                         <li><a href="#"><span>3</span></a></li>
                     </ul>
                 </div>
-
             </div>
-
         )
     }
-
 }

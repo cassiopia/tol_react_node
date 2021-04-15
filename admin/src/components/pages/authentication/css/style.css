@@ -89,7 +89,20 @@
     color: #75b209 !important;
 }
 
+.authLinkDialog {
+    color: #75b209 !important;
+    font-size: 13px;
+}
+
+.authLinkDialog:hover {
+    color: #666 !important;
+}
+
 .formErrors {
     color: red;
     margin-left: 50px;
+}
+
+.formDialogErrors {
+    color: red;
 }

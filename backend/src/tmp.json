@@ -5,3 +5,22 @@
 "ReaaF1Y",
 "nSUJArS"
 ],
+
+
+{/*{currentUser ? (*/}
+{/*    <>*/}
+{/*        ++++++++++++++++++++*/}
+{/*        <DefaultLayoutRoute path="/blog" component={Blog}/>*/}
+{/*        <DefaultLayoutRoute path="/article-details" component={ArticleDetails}/>*/}
+{/*        <DefaultLayoutRoute path="/portfolio" component={Portfolio}/>*/}
+{/*        <DefaultLayoutRoute path="/album-details" component={AlbumDetails}/>*/}
+{/*    </>*/}
+{/*) : (*/}
+{/*    <>*/}
+{/*        !!!!!!!!!!!!!!!!!!!!!!!!!*/}
+{/*        <AuthenticationLayoutRoute path="/login" component={Login}/>*/}
+{/*        <AuthenticationLayoutRoute path="/registration" component={Registration}/>*/}
+{/*    </>*/}
+{/*)}*/}
+
+{'name': ''}

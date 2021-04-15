@@ -12,8 +12,7 @@ class MenuHeader extends Component {
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                 </button>
-                <a className="navbar-brand" href="/"><img src={logo} className="img-responsive"
-                                                          alt=""/></a>
+                <a className="navbar-brand" href="/"><img src={logo} className="img-responsive" alt=""/></a>
             </>
         );
     }

@@ -1,17 +1,12 @@
 import React, {Component} from 'react';
 import Route from './components/routes/Route';
 
-class App extends Component {
-    render() {
-        return (
-            <>
-                <div>
-                    <Route/>
-                </div>
-            </>
-
-        );
-    }
+export default function App() {
+    return (
+        <>
+            <div>
+                <Route/>
+            </div>
+        </>
+    )
 }
-
-export default App;

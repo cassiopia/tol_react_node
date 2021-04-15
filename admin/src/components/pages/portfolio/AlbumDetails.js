@@ -15,7 +15,6 @@ import PortfolioService from "../../services/PortfolioService";
 // todo редусмотреть что в описание может быть ссылка на отчет. Сделать атк что бы привела в нужный рздел
 // todo добавить возможность добавлять тэги
 
-
 export default function AlbumDetails() {
 
     let query = useQuery();

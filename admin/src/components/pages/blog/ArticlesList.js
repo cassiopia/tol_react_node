@@ -29,9 +29,8 @@ export default function ArticlesList() {
         retrieveArticles();
     }, []);
 
-
     const removePage = (articleId) => {
-         //eslint-disable-next-line no-restricted-globals
+        //eslint-disable-next-line no-restricted-globals
         event.preventDefault();
 
         PageService.remove(articleId)
@@ -56,7 +55,7 @@ export default function ArticlesList() {
                          <Link to={urlLinkDetails} data-hover="Подробнее">Подробнее</Link>
                     </span>
                     <div className="overlay1-hr">
-                        <a href="/" onClick={()=>removePage(articleId)} className="link">
+                        <a href="/" onClick={() => removePage(articleId)} className="link">
                             <i className="fa fa-trash-o fa-lg"></i>
                         </a>
                     </div>
@@ -72,8 +71,6 @@ export default function ArticlesList() {
     } else if (!isLoaded) {
         return <div>Загрузка...</div>;
     } else {
-        console.log(articles);
-
         const articleList = articles.map((article, index) => {
 
             if ((index) % 2 === 0) {
@@ -84,7 +81,6 @@ export default function ArticlesList() {
         });
 
         return (
-
             <>
                 <div className="row">
                     <div className="addArticleDiv col-md-12">
@@ -105,11 +101,8 @@ export default function ArticlesList() {
                             <li><a href="#"><span>3</span></a></li>
                         </ul>
                     </div>
-
                 </div>
             </>
-
         )
     }
-
 }

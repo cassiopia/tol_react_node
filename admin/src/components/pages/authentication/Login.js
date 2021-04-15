@@ -8,6 +8,7 @@ import './css/style.css';
 import AuthenticationService from "../../services/AuthenticationService";
 import {useForm} from "react-hook-form";
 import _ from "lodash/fp";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
     const classes = useStyles();
+    const history = useHistory();
 
     const login = data => {
         sendData(data);
@@ -49,7 +51,7 @@ export default function Login() {
     const sendData = (data) => {
         AuthenticationService.login(data)
             .then(response => {
-                //todo Подумать что отрисовать / вызвать тут. Может показать менюшку и отрисовать котика? :)
+                history.push('/blog');
             })
             .catch(e => {
                 console.log(e);

@@ -10,8 +10,8 @@ const AlbumDetails = lazy(() => import("../pages/portfolio/AlbumDetails"));
 const Login = lazy(() => import("../pages/authentication/Login"));
 const Registration = lazy(() => import("../pages/authentication/Registration"));
 
-
 class Route extends Component {
+
     render() {
         return (
             <Switch>
@@ -19,12 +19,14 @@ class Route extends Component {
                     <ReactRouter exact path="/">
                         <Redirect to="/login"/>
                     </ReactRouter>
-                    <AuthenticationLayoutRoute path="/login" component={Login}/>
-                    <AuthenticationLayoutRoute path="/registration" component={Registration}/>
+
                     <DefaultLayoutRoute path="/blog" component={Blog}/>
                     <DefaultLayoutRoute path="/article-details" component={ArticleDetails}/>
                     <DefaultLayoutRoute path="/portfolio" component={Portfolio}/>
                     <DefaultLayoutRoute path="/album-details" component={AlbumDetails}/>
+
+                    <AuthenticationLayoutRoute path="/login" component={Login}/>
+                    <AuthenticationLayoutRoute path="/registration" component={Registration}/>
                 </Suspense>
             </Switch>
         );
@@ -32,4 +34,3 @@ class Route extends Component {
 }
 
 export default Route;
-

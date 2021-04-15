@@ -1,36 +1,21 @@
 import {Request, Response, NextFunction} from 'express';
 import {User} from '../models/User.model';
 
-const checkDuplicateUsernameOrEmail = (req: Request, res: Response, next: NextFunction) => {
-
-    //Username
+const checkDuplicateEmail = (req: Request, res: Response, next: NextFunction) => {
+    // Email
     User.findOne({
         where: {
-            name: req.body.name
+            email: req.body.email
         }
     }).then(user => {
         if (user) {
             res.status(400).send({
-                message: "Failed! Username is already in use!"
+                message: "Ошибка! Email " + req.body.email + " уже используется!"
             });
             return;
         }
 
-        // Email
-        User.findOne({
-            where: {
-                email: req.body.email
-            }
-        }).then(user => {
-            if (user) {
-                res.status(400).send({
-                    message: "Failed! Email is already in use!"
-                });
-                return;
-            }
-
-            next();
-        });
+        next();
     });
 };
 
@@ -50,11 +35,10 @@ const checkRolesExisted = (req: Request, res: Response, next: NextFunction) => {
     }
 
     next();
-
 };
 
 const verifySignUp = {
-    checkDuplicateUsernameOrEmail: checkDuplicateUsernameOrEmail,
+    checkDuplicateEmail: checkDuplicateEmail,
     checkRolesExisted: checkRolesExisted
 };
 

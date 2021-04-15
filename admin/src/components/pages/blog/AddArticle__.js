@@ -2,13 +2,13 @@ import Breadcrumbs from "../../breadcrumbs/Breadcrumbs";
 import React from "react";
 import {Button, Form, Input, message} from "antd";
 import {useQuill} from "react-quilljs";
-import BlogService from "../../services/BlogService";
+import BlogService from "../../services/BlogService__";
 import {useLocation} from "react-router-dom";
 import 'quill/dist/quill.snow.css';
 import 'antd/dist/antd.css';
 import './css/style.css';
 
-export default function AddArticle() {
+export default function AddArticle__() {
     const [form] = Form.useForm();
     // todo Разобраться как сделать полее воода больше
     const {quill, quillRef} = useQuill();

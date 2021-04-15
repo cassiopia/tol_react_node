@@ -8,22 +8,22 @@ module.exports = (app: any) => {
 
     const user = new UserController();
 
-    router.get("/api/test/all", user.allAccess);
+    router.get("/allUser", user.allAccess);
 
     router.get(
-        "/api/test/user",
+        "/user",
         [authJwt.verifyToken],
         user.userBoard
     );
 
     router.get(
-        "/api/test/mod",
+        "/moderator",
         [authJwt.verifyToken, authJwt.isModerator],
         user.moderatorBoard
     );
 
     router.get(
-        "/api/test/admin",
+        "/admin",
         [authJwt.verifyToken, authJwt.isAdmin],
         user.adminBoard
     );

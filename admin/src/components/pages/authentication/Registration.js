@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
@@ -8,6 +8,8 @@ import './css/style.css';
 import {useForm} from "react-hook-form";
 import _ from "lodash/fp";
 import AuthenticationService from "../../services/AuthenticationService";
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,20 +42,50 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Registration() {
+    const [open, setOpen] = useState(false);
+    const [typeDialog, setTypeDialog] = useState('');
+    const [messageDialog, setMessageDialog] = useState('');
+
     const classes = useStyles();
 
     const createAccount = data => {
         sendData(data);
     };
 
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    function SimpleDialog(props) {
+        return (
+            <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+                <DialogTitle id="simple-dialog-title">
+                    {typeDialog === 'success' ? (
+                        <>
+                            <span>Авторизация прошла успешно!</span>
+                            <Link href="/login" className="authLinkDialog"> Пожалуйста авторизируйтесь.</Link>
+                        </>
+
+                    ) : (<span className="formDialogErrors">{messageDialog} </span>)}
+                </DialogTitle>
+            </Dialog>
+        );
+    }
+
     const sendData = (data) => {
-        console.log(data);
         AuthenticationService.registration(data)
-            .then(response => {
-                //todo Подумать что отрисовать / вызвать тут. Может показать менюшку и отрисовать котика? :)
+            .then(() => {
+                setTypeDialog('success');
+                handleOpen();
             })
             .catch(e => {
-                console.log(e);
+                setTypeDialog('error');
+                setMessageDialog(e.response.data.message);
+                handleOpen();
             });
     };
 
@@ -76,7 +108,8 @@ export default function Registration() {
                         </div>
                     </div>
 
-                    <form className="contact-form" data-animated="0" id="contactForm" onSubmit={handleSubmit(createAccount)}>
+                    <form className="contact-form" data-animated="0" id="contactForm"
+                          onSubmit={handleSubmit(createAccount)}>
                         <div className="mc-name">
                             <input
                                 name="name"
@@ -153,6 +186,8 @@ export default function Registration() {
                             </Grid>
                         </Grid>
                     </form>
+
+                    <SimpleDialog open={open} onClose={handleClose}/>
                 </div>
             </Grid>
         </Grid>
