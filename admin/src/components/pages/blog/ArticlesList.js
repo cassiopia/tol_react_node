@@ -50,7 +50,7 @@ export default function ArticlesList() {
         return <div key={articleId} className="col-md-6" data-animated="0">
             <div className="item" key={articleId}>
                 <div className="mp-thumb articleImg" style={styleUrl}>
-                    <span className="rmore">
+                    <span className="rmoreBlog">
                         <Link to={urlLinkDetails} data-hover="Подробнее">Подробнее</Link>
                     </span>
                     <div className="overlay1-hr">
