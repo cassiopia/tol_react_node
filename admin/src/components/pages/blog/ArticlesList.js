@@ -45,14 +45,13 @@ export default function ArticlesList() {
     const renderDiv = (articleId, articleTitle, articleDescription, articleImage) => {
 
         const urlLinkDetails = `/article-details?id=${articleId}`;
+        const styleUrl = {backgroundImage: `url(${articleImage})`};
 
         return <div key={articleId} className="col-md-6" data-animated="0">
             <div className="item" key={articleId}>
-                <div className="mp-thumb">
-                    <img src={articleImage} className="img-responsive" alt=""/>
-
+                <div className="mp-thumb articleImg" style={styleUrl}>
                     <span className="rmore">
-                         <Link to={urlLinkDetails} data-hover="Подробнее">Подробнее</Link>
+                        <Link to={urlLinkDetails} data-hover="Подробнее">Подробнее</Link>
                     </span>
                     <div className="overlay1-hr">
                         <a href="/" onClick={() => removePage(articleId)} className="link">
@@ -72,12 +71,7 @@ export default function ArticlesList() {
         return <div>Загрузка...</div>;
     } else {
         const articleList = articles.map((article, index) => {
-
-            if ((index) % 2 === 0) {
-                return renderDiv(article.id, article.title, article.description, article.PageImages[0].imageSrc);
-            } else {
-                return renderDiv(article.id, article.title, article.description, article.PageImages[0].imageSrc);
-            }
+            return renderDiv(article.id, article.title, article.description, article.PageImages[0].imageSrc, index);
         });
 
         return (

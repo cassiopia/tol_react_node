@@ -53,3 +53,10 @@
 .mp-thumb:hover .link {
     z-index: 10;
 }
+
+.articleImg {
+    padding-bottom: 70%;
+    background-size: cover;
+    background-position: center;
+    background-repeat:no-repeat;
+}

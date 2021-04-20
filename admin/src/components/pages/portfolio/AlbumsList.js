@@ -59,12 +59,7 @@ export default function AlbumsList() {
         return <div>Загрузка...</div>;
     } else {
         const albumList = albums.map((album, index) => {
-
-            if ((index) % 2 === 0) {
-                return renderDiv(album.id, album.cover, album.title, album.description);
-            } else {
-                return renderDiv(album.id, album.cover, album.title, album.description);
-            }
+            return renderDiv(album.id, album.cover, album.title, album.description);
         });
 
         return (
