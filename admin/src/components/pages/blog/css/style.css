@@ -50,6 +50,10 @@
     color: #40a9ff;
 }
 
+.ant-tag {
+    border: 1px solid #75b209;
+}
+
 .mp-thumb:hover .link {
     z-index: 10;
 }
@@ -101,8 +105,8 @@
     visibility: visible;
     width: 100%;
     height: 100%;
-    top: 0%;
-    left: 0%;
+    top: 0;
+    left: 0;
 }
 
 #m-blog-content .item:hover .rmoreBlog {
@@ -111,6 +115,6 @@
     visibility: visible;
     width: 100%;
     height: 100%;
-    top: 0%;
-    left: 0%;
+    top: 0;
+    left: 0;
 }

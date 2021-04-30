@@ -9,7 +9,7 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Box from '@material-ui/core/Box';
 import './css/style.css';
-// import SelectedFilter from "./SelectedFilter";
+import SelectedFilter from "./SelectedFilter";
 
 const useStyles = makeStyles((theme) => ({
     chips: {
@@ -71,7 +71,7 @@ export default function Filter() {
     return (
         <>
             <div style={{width: '100%'}}>
-                <Box display="flex" p={1} pt={0}>
+                <Box display="flex" p={1} pt={0.5}>
                     <Box p={1} flexGrow={1}>
                         <FormControl className="filterFormControl">
                             <InputLabel>
@@ -121,7 +121,7 @@ export default function Filter() {
                     </Box>
                 </Box>
             </div>
-            {/*<div><SelectedFilter/></div>*/}
+            <div><SelectedFilter/></div>
         </>
     );
 }
