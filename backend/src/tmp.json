@@ -5,25 +5,13 @@
 "ReaaF1Y",
 "nSUJArS"
 ],
-
-
-{/*{currentUser ? (*/}
-{/*    <>*/}
-{/*        ++++++++++++++++++++*/}
-{/*        <DefaultLayoutRoute path="/blog" component={Blog}/>*/}
-{/*        <DefaultLayoutRoute path="/article-details" component={ArticleDetails}/>*/}
-{/*        <DefaultLayoutRoute path="/portfolio" component={Portfolio}/>*/}
-{/*        <DefaultLayoutRoute path="/album-details" component={AlbumDetails}/>*/}
-{/*    </>*/}
-{/*) : (*/}
-{/*    <>*/}
-{/*        !!!!!!!!!!!!!!!!!!!!!!!!!*/}
-{/*        <AuthenticationLayoutRoute path="/login" component={Login}/>*/}
-{/*        <AuthenticationLayoutRoute path="/registration" component={Registration}/>*/}
-{/*    </>*/}
-{/*)}*/}
-
-{'name': ''}
-
-https://i.imgur.com/jvCO1m8.jpg
-https://i.imgur.com/EjVT4Tx.jpg
+TypeError: selected.join is not a function
+renderValue
+src/components/filter/Filter.js:129
+126 |     value={personName}
+127 |     onChange={handleChange}
+128 |     input={<Input/>}
+> 129 |     renderValue={(selected) => selected.join(', ')}
+| ^  130 |     MenuProps={MenuProps}
+131 | >
+132 |     {names.map((name) => (

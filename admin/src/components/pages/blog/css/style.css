@@ -1,5 +1,4 @@
 .addArticleDiv {
-    margin: 0 0 25px;
     text-align: center;
 }
 
@@ -64,8 +63,8 @@
 
 .rmoreBlog {
     position: absolute;
-    width: 0%;
-    height: 0%;
+    width: 0;
+    height: 0;
     top: 42%;
     left: 50%;
     background: rgba(255, 255, 255, 0.8);

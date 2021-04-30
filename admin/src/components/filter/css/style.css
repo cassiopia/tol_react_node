@@ -1,0 +1,53 @@
+.sortFormControl {
+    min-width: 130px !important;
+    max-width: 140px !important;
+}
+
+.filterFormControl {
+    min-width: 80px !important;
+    max-width: 80px !important;
+}
+
+.MuiFormLabel-root {
+    color: #666 !important;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 15px !important;
+}
+
+.MuiSelect-icon {
+    color: #666666 !important;
+    top: unset !important;
+}
+
+.MuiFormLabel-root.Mui-focused {
+    color: #75b209 !important;
+    border-color: #75b209 !important;
+}
+
+.Mui-focused * {
+    color: #75b209 !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #75b209 !important;
+}
+
+.MuiInput-underline:hover:not(.Mui-disabled):before {
+    border-bottom: 1px solid #75b209 !important;
+}
+
+.MuiInput-underline:before {
+    border-bottom: unset !important;
+}
+
+.MuiInput-underline:after {
+    border-bottom: 1px solid #75b209 !important;
+}
+
+.MuiSelect-select:focus {
+    background-color: #ffffff !important;
+}
+
+.filterFormControl:hover * {
+    color: #75b209 !important;
+}

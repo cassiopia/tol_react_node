@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import './css/style.css';
 import PageService from "../../services/PageService";
 import Notification from "../../notification/Notification";
+import Filter from "../../filter/Filter";
 
 const pageTypeBlog = "blog";
 
@@ -86,7 +87,7 @@ export default function ArticlesList() {
                             </Link>
                         </div>
                     </div>
-
+                    <Filter/>
                     {articleList}
                     <div className="page-nav" data-animated="0">
                         <ul>
