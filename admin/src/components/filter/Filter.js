@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles, useTheme, withStyles} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -10,6 +10,11 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Box from '@material-ui/core/Box';
 import './css/style.css';
 import SelectedFilter from "./SelectedFilter";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = makeStyles((theme) => ({
     chips: {
@@ -60,62 +65,104 @@ function getStyles(name, personName, theme) {
 // todo Интерная логика. Разобрать ее по косточкам
 export default function Filter() {
     const classes = useStyles();
-    const [age, setAge] = React.useState('');
-    const [personName, setPersonName] = React.useState([]);
+    //const [age, setAge] = React.useState('');
+    const [personName, setPersonName] = useState([]);
+    const [filterValue, setFilterValue] = useState([]);
+
+    const [open, setOpen] = useState(false);
+    const [age, setAge] = useState('');
+
+    const handleFilterChange = (event) => {
+        setFilterValue(event.target.value);
+    };
 
     const handleChange = (event) => {
-        setAge(event.target.value);
-        setPersonName(event.target.value);
+        setAge(Number(event.target.value) || '');
     };
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
 
     return (
         <>
             <div style={{width: '100%'}}>
                 <Box display="flex" p={1} pt={0.5}>
                     <Box p={1} flexGrow={1}>
-                        <FormControl className="filterFormControl">
-                            <InputLabel>
-                                Фильтры
-                            </InputLabel>
-                            <Select
-                                id="filterx"
-                                multiple
-                                value={personName}
-                                onChange={handleChange}
-                                input={<Input/>}
-                                renderValue={(selected) => selected.join(', ')}
-                                MenuProps={MenuProps}
-                            >
-                                {names.map((name) => (
-                                    <MenuItem key={name} value={name}>
-                                        <Checkbox checked={personName.indexOf(name) > -1}/>
-                                        <ListItemText primary={name}/>
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Box>
 
+                        <div className="filterButtonFormControl">
+                            <Button onClick={handleClickOpen} className="filterButton">
+                                <i className="fa fa-filter" aria-hidden="true"></i>
+                                <span className="filterButtonSpan"> Фильтры </span>
+                            </Button>
+                            <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}>
+                                <DialogTitle>Fill the form</DialogTitle>
+                                <DialogContent>
+                                    <form className={classes.container}>
+                                        <FormControl className={classes.formControl}>
+                                            <InputLabel htmlFor="demo-dialog-native">Age</InputLabel>
+                                            <Select
+                                                native
+                                                value={age}
+                                                onChange={handleChange}
+                                                input={<Input id="demo-dialog-native"/>}
+                                            >
+                                                <option aria-label="None" value=""/>
+                                                <option value={10}>Ten</option>
+                                                <option value={20}>Twenty</option>
+                                                <option value={30}>Thirty</option>
+                                            </Select>
+                                        </FormControl>
+                                        <FormControl className={classes.formControl}>
+                                            <InputLabel id="demo-dialog-select-label">Age</InputLabel>
+                                            <Select
+                                                labelId="demo-dialog-select-label"
+                                                id="demo-dialog-select"
+                                                value={age}
+                                                onChange={handleChange}
+                                                input={<Input/>}
+                                            >
+                                                <MenuItem value="">
+                                                    <em>None</em>
+                                                </MenuItem>
+                                                <MenuItem value={10}>Ten</MenuItem>
+                                                <MenuItem value={20}>Twenty</MenuItem>
+                                                <MenuItem value={30}>Thirty</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </form>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleClose} color="primary">
+                                        Cancel
+                                    </Button>
+                                    <Button onClick={handleClose} color="primary">
+                                        Ok
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </div>
+                    </Box>
                     <Box p={1}>
                         <FormControl className="sortFormControl">
-                            <InputLabel>
-                                Сортировать по:
-                            </InputLabel>
+                            <InputLabel id="demo-controlled-open-select-label">Сортировать по:</InputLabel>
                             <Select
-                                id="sort"
-                                multiple
-                                value={personName}
+                                labelId="demo-controlled-open-select-label"
+                                id="demo-controlled-open-select"
+                                value={age}
                                 onChange={handleChange}
-                                input={<Input/>}
-                                renderValue={(selected) => selected.join(', ')}
-                                MenuProps={MenuProps}
                             >
-                                {names.map((name) => (
-                                    <MenuItem key={name} value={name}>
-                                        <Checkbox checked={personName.indexOf(name) > -1}/>
-                                        <ListItemText primary={name}/>
-                                    </MenuItem>
-                                ))}
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={10}>Ten</MenuItem>
+                                <MenuItem value={20}>Twenty</MenuItem>
+                                <MenuItem value={30}>Thirty</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>

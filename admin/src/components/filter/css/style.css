@@ -52,6 +52,49 @@
     color: #75b209 !important;
 }
 
+.sortFormControl:hover * {
+    color: #75b209 !important;
+}
+
+/***** Filter Button *****/
+
+.filterButton {
+    color: #666 !important;
+    border: 1px solid #666 !important;
+}
+
+.filterButton:hover {
+    color: #75b209 !important;
+    border: 1px solid #75b209 !important;
+    background-color: #ffffff !important;
+}
+
+.filterButtonSpan {
+    margin-left: 2px !important;
+}
+
+.filterButtonFormControl {
+    min-width: 80px !important;
+    max-width: 80px !important;
+    margin-top: 10px !important;
+}
+
+.sortNewFormControl {
+    min-width: 130px !important;
+    max-width: 140px !important;
+}
+
+.sortNewFormControl:hover * {
+    color: #75b209 !important;
+}
+
+.MuiButton-root {
+    font-size: 14px !important;
+    text-transform: unset !important;
+    font-weight: unset !important;
+}
+
+
 /***** Selected Filter *****/
 
 .MuiChip-colorPrimary {
@@ -72,4 +115,20 @@
 
 .makeStyles-chip-8 {
     margin: unset !important;
+}
+
+.divT1 {
+    background-color: yellow !important;
+}
+
+.divT2 {
+    background-color: orangered !important;
+}
+
+.divT3 {
+    background-color: #bce8f1 !important;
+}
+
+.divT4 {
+    background-color: pink !important;
 }
