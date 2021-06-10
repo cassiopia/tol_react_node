@@ -1,17 +1,19 @@
-"data": [
-"lNO5AzS",
-"bd4URdO",
-"47BjJf5",
-"ReaaF1Y",
-"nSUJArS"
-],
-TypeError: selected.join is not a function
-renderValue
-src/components/filter/Filter.js:129
-126 |     value={personName}
-127 |     onChange={handleChange}
-128 |     input={<Input/>}
-> 129 |     renderValue={(selected) => selected.join(', ')}
-| ^  130 |     MenuProps={MenuProps}
-131 | >
-132 |     {names.map((name) => (
+#####################
+[Node] {
+[Node]   id: null,
+[Node]   title: '222222',
+[Node]   description: '222222\n',
+[Node]   pageType: 'blog',
+[Node]   imageSrc: 'https://i.imgur.com/8xdeLLX.jpg',
+[Node]   tagIdsYear: [ 1, 2 ],
+[Node]   tagIdsCountry: [ 3 ]
+[Node] }
+
+
+ERROR:  ОШИБКА:  INSERT или UPDATE в таблице "page_tag" нарушает ограничение внешнего ключа "page_tag_tag_id_fkey"
+ПОДРОБНОСТИ:  Ключ (tag_id)=(32) отсутствует в таблице "tag".
+
+
+SQL state: 23503
+Detail: Ключ (tag_id)=(32) отсутствует в таблице "tag".
+DelTest

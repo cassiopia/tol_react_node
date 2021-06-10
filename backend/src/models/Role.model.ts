@@ -5,9 +5,9 @@ export class Role extends Model {
     public id!: number;
     public name!: string;
     // timestamps!
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
-    public deletedAt!: Date;
+    public readonly created_at!: Date;
+    public readonly updated_at!: Date;
+    public deleted_at!: Date;
 }
 
 Role.init(
@@ -20,8 +20,17 @@ Role.init(
         name: {
             type: new DataTypes.STRING
         },
+        createdAt: {
+            type: new DataTypes.DATE,
+            field: 'created_at'
+        },
+        updatedAt: {
+            type: new DataTypes.DATE,
+            field: 'updated_at'
+        },
         deletedAt: {
-            type: new DataTypes.DATE
+            type: new DataTypes.DATE,
+            field: 'deleted_at'
         },
     },
     {

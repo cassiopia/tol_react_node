@@ -7,8 +7,8 @@ export class User extends Model {
     public email!: string;
     public password!: string;
     // timestamps!
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+    public readonly created_at!: Date;
+    public readonly updated_at!: Date;
     public deletedAt!: Date;
 }
 
@@ -29,8 +29,17 @@ User.init(
             type: new DataTypes.STRING
         },
         deletedAt: {
-            type: new DataTypes.DATE
+            type: new DataTypes.DATE,
+            field: 'deleted_at'
         },
+        createdAt: {
+            type: new DataTypes.DATE,
+            field: 'created_at'
+        },
+        updatedAt: {
+            type: new DataTypes.DATE,
+            field: 'updated_at'
+        }
     },
     {
         tableName: "user",

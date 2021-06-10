@@ -12,8 +12,8 @@ const editTag = data => {
     return http.put("/tag/edit_tag", data);
 };
 
-const remove = id => {
-    return http.delete(`/tag/${id}`);
+const remove = (id, isDeletingApproved) => {
+    return http.delete(`/tag/${id}/${isDeletingApproved}`);
 };
 
 export default {

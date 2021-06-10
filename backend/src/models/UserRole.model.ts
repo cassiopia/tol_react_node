@@ -3,11 +3,11 @@ import {database} from "../config/database";
 
 export class UserRole extends Model {
     public id!: number;
-    public userId!: number;
-    public roleId!: number;
+    public user_id!: number;
+    public role_id!: number;
     // timestamps!
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+    public readonly created_at!: Date;
+    public readonly updated_at!: Date;
 }
 
 UserRole.init(
@@ -17,6 +17,14 @@ UserRole.init(
             autoIncrement: true,
             primaryKey: true
         },
+        createdAt: {
+            type: new DataTypes.DATE,
+            field: 'created_at'
+        },
+        updatedAt: {
+            type: new DataTypes.DATE,
+            field: 'updated_at'
+        }
     },
     {
         tableName: "user_role",

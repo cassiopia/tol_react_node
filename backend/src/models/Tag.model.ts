@@ -5,9 +5,8 @@ export class Tag extends Model {
     public id!: number;
     public title!: string;
     public type!: string;
-    // timestamps!
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+    public readonly created_at!: Date;
+    public readonly updated_at!: Date;
 }
 
 Tag.init(
@@ -23,6 +22,14 @@ Tag.init(
         },
         type: {
             type: new DataTypes.STRING
+        },
+        createdAt: {
+            type: new DataTypes.DATE,
+            field: 'created_at'
+        },
+        updatedAt: {
+            type: new DataTypes.DATE,
+            field: 'updated_at'
         }
     },
     {

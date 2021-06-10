@@ -6,7 +6,7 @@ import {PlusOutlined} from '@ant-design/icons';
 import TagService from "../services/TagService";
 
 
-class EditableTagGroup extends React.Component {
+class EditableTagGroupBack extends React.Component {
     state = {
        // tags: ['Unremovable', 'Tag 2', 'Tag 3'],
         tags: [],
@@ -208,4 +208,4 @@ class EditableTagGroup extends React.Component {
     }
 }
 
-export default EditableTagGroup;
+export default EditableTagGroupBack;

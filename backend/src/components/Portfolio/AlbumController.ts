@@ -1,7 +1,5 @@
 import {Request, Response} from 'express';
 import {Album, AlbumInterface} from '../../models/Album.model';
-import {UpdateOptions, DestroyOptions} from 'sequelize';
-
 
 export class AlbumController {
 
@@ -24,9 +22,9 @@ export class AlbumController {
         const albumHash: string = req.body.albumHash;
 
         Album.findOrCreate({
-            where: {albumHash: albumHash},
+            where: {album_hash: albumHash},
             defaults: {
-                albumHash: albumHash,
+                album_hash: albumHash,
                 title: req.body.title,
                 description: req.body.description
             }
@@ -39,18 +37,16 @@ export class AlbumController {
                         title: req.body.title,
                         description: req.body.description
                     },
-                    {where: {albumHash: albumHash}}
+                    {where: {album_hash: albumHash}}
                 ).then(
                     () => res.send({id: album.getDataValue('id'), message: "success"})
 
                 ).catch((err: Error) => res.status(500).json(err));
             }
             else {
-               // () => res.status(202).json({id: album.getDataValue('id'), message: "success"});
-                res.send({id: album.getDataValue('id'), message: "success"});
+               res.send({id: album.getDataValue('id'), message: "success"});
             }
 
-            //res.send(album.getDataValue('id'));
         })
             .catch((err: Error) => res.status(500).json(err));
     }
@@ -59,7 +55,7 @@ export class AlbumController {
 
         const albumHash: string = req.params.albumHash;
 
-        Album.findOne<Album>({where: {albumHash: albumHash}})
+        Album.findOne<Album>({where: {album_hash: albumHash}})
             .then((album: Album | null) => {
                 if (album) {
                     res.json(album)
@@ -69,33 +65,5 @@ export class AlbumController {
                 }
             })
             .catch((err: Error) => res.status(500).json(err))
-
     }
-
-    // public show (req: Request, res: Response) {
-    //     const nodeId : number = req.params.id;
-    //
-    //     Album.findByPk<Album>(nodeId)
-    //         .then((node : Album|null) => {
-    //             if (node) {
-    //                 res.json(node)
-    //             } else {
-    //                 res.status(404).json({errors: ['Node not found']})
-    //             }
-    //         })
-    //         .catch((err : Error) => res.status(500).json(err))
-    // }
-
-
-    // public delete (req: Request, res: Response) {
-    //     const nodeId : number = req.params.id;
-    //     const options : DestroyOptions = {
-    //         where: {id: nodeId},
-    //         limit: 1
-    //     };
-    //
-    //     Album.destroy(options)
-    //         .then(() => res.status(204).json({data: "success"}))
-    //         .catch((err : Error) => res.status(500).json(err))
-    // }
 }

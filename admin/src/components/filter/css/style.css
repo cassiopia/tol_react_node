@@ -94,6 +94,19 @@
     font-weight: unset !important;
 }
 
+/***** Filter Dialog *****/
+.filterDialog {
+    height: 700px !important;
+}
+
+/***** Sort Dialog *****/
+.sortItemSpanIcon{
+    margin-left: 3px !important;
+}
+
+.sortSelectItem {
+    font-size: 12px !important;
+}
 
 /***** Selected Filter *****/
 

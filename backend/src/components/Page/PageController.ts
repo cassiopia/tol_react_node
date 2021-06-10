@@ -1,15 +1,18 @@
 import {Request, Response} from 'express';
-import {Page, PageInterface} from '../../models/Page.model';
+import {Page} from '../../models/Page.model';
 import {PageImage} from '../../models/PageImage.model';
-import {Tag} from "../../models/Tag.model";
 import {PageTag} from "../../models/PageTag.model";
 
 
-// todo Навести марафет в этом классе
 export class PageController {
 
     public create(req: Request, res: Response) {
-        const params: PageInterface = req.body;
+
+        const params = {
+            title: req.body.title,
+            description: req.body.description,
+            page_type: req.body.pageType,
+        };
 
         Page.create<Page>(params)
             .then(
@@ -18,8 +21,8 @@ export class PageController {
 
                     if (pageId) {
                         PageImage.create({
-                            pageId: pageId,
-                            imageSrc: req.body.imageSrc
+                            page_id: pageId,
+                            image_src: req.body.imageSrc
                         }).then((pageImage: PageImage) => res.status(201).json(pageImage))
                             .catch((err: Error) => res.status(500).json(err));
 
@@ -60,7 +63,7 @@ export class PageController {
                 if (pageId) {
                     PageImage.update<PageImage>(
                         {
-                            imageSrc: req.body.imageSrc
+                            image_src: req.body.imageSrc
                         },
                         {where: {id: pageId}}
                     ).then(
@@ -77,13 +80,15 @@ export class PageController {
                     if ((tagIdsYear && tagIdsYear.length > 0) ||
                         (tagIdsCountry && tagIdsCountry.length > 0)) {
 
+                        // todo Если удаляю последний тэг со страницы и потом сохраняю, то вылетает с ошибкой
+
 
                         PageTag.destroy({
-                            where: {pageId: pageId}
+                            where: {page_id: pageId}
                         })
                             .then(
                                 num => {
-                                    // todo Вообе нав сю эту бадягу написать тэсты, и чем быстрее тем лучше
+                                    // todo Тут проситься тест
 
                                     const insertArray = this._prepareArrayPageTags(tagIdsYear, tagIdsCountry, pageId);
                                     this._insertTagId(insertArray, res);
@@ -95,8 +100,9 @@ export class PageController {
                                 });
                             });
                     } else {
-                        // todo Чета тут придумать, вместо этого сонсольлога
-                        console.log('!!!!!!!!!');
+                        res.status(500).send({
+                            message: "Could not delete Tags"
+                        });
                     }
 
 
@@ -115,34 +121,30 @@ export class PageController {
 
     }
 
-    // todo Окучить метод учитывая типы данных. Разобраться с типами входных данных any -- не вариант!
-    // todo И можно обозначить тип выходных данных
-
-    private _prepareArrayPageTags(tagIdsYear: any, tagIdsCountry: any, pageId: any) {
+    private _prepareArrayPageTags(tagIdsYear: Array<number>, tagIdsCountry: Array<number>, pageId: number) {
         var insertArray: object[] = [];
 
         if ((tagIdsYear && tagIdsYear.length > 0) && (tagIdsCountry && tagIdsCountry.length > 0)) {
 
             const resultArray = tagIdsCountry.concat(tagIdsYear);
             resultArray.map(function (tagId: number) {
-                insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
+                insertArray = [...insertArray, {tag_id: tagId, page_id: pageId}];
             });
         } else if (tagIdsYear && tagIdsYear.length > 0) {
 
             tagIdsYear.map(function (tagId: number) {
-                insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
+                insertArray = [...insertArray, {tag_id: tagId, page_id: pageId}];
             });
         } else {
             tagIdsCountry.map(function (tagId: number) {
-                insertArray = [...insertArray, {tagId: tagId, pageId: pageId}];
+                insertArray = [...insertArray, {tag_id: tagId, page_id: pageId}];
             });
         }
 
         return insertArray;
     }
 
-    // todo  any -- не вариант!
-    private _insertTagId(insertArray: any, res: Response) {
+    private _insertTagId(insertArray: Array<object>, res: Response) {
         PageTag.bulkCreate(insertArray)
             .then(pageTag => {
                 (pageTag: PageTag) => res.json(pageTag);
@@ -158,7 +160,7 @@ export class PageController {
         Page.findAll<Page>(
             {
                 where: {
-                    pageType: req.params.pageType
+                    page_type: req.params.pageType
                 },
                 include: [{
                     model: PageImage
@@ -184,10 +186,7 @@ export class PageController {
                     id: req.params.pageId
                 },
                 include: [{
-                    model: PageImage,
-                    // where: {
-                    //     id: req.params.pageId
-                    // }
+                    model: PageImage
                 }]
             })
             .then((page: Page | null) => {

@@ -3,11 +3,11 @@ import {database} from "../config/database";
 
 export class PageImage extends Model {
     public id!: number;
-    public imageSrc!: string;
-    public pageId!: string;
+    public image_src!: string;
+    public page_id!: string;
     // timestamps!
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+    public readonly created_at!: Date;
+    public readonly updated_at!: Date;
 }
 
 PageImage.init(
@@ -17,12 +17,20 @@ PageImage.init(
             autoIncrement: true,
             primaryKey: true
         },
-        imageSrc: {
+        image_src: {
             type: new DataTypes.STRING
         },
-        pageId: {
+        page_id: {
             type: new DataTypes.INTEGER
         },
+        createdAt: {
+            type: new DataTypes.DATE,
+            field: 'created_at'
+        },
+        updatedAt: {
+            type: new DataTypes.DATE,
+            field: 'updated_at'
+        }
     },
     {
         tableName: "page_image",

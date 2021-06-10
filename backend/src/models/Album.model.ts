@@ -3,16 +3,16 @@ import {database} from "../config/database";
 
 export class Album extends Model {
     public id!: number;
-    public albumHash!: string;
+    public album_hash!: string;
     public title!: string;
     public description!: string;
     // timestamps!
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+    public readonly created_at!: Date;
+    public readonly updated_at!: Date;
 }
 
 export interface AlbumInterface {
-    albumHash: string;
+    album_hash: string;
     title: string;
     description: string;
 }
@@ -24,7 +24,7 @@ Album.init(
             autoIncrement: true,
             primaryKey: true
         },
-        albumHash: {
+        album_hash: {
             type: new DataTypes.STRING
         },
         title: {
@@ -32,6 +32,14 @@ Album.init(
         },
         description: {
             type: new DataTypes.STRING
+        },
+        createdAt: {
+            type: new DataTypes.DATE,
+            field: 'created_at'
+        },
+        updatedAt: {
+            type: new DataTypes.DATE,
+            field: 'updated_at'
         }
     },
     {

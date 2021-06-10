@@ -72,7 +72,7 @@ export default function ArticlesList() {
         return <div>Загрузка...</div>;
     } else {
         const articleList = articles.map((article, index) => {
-            return renderDiv(article.id, article.title, article.description, article.PageImages[0].imageSrc, index);
+            return renderDiv(article.id, article.title, article.description, article.PageImages[0].image_src, index);
         });
 
         return (

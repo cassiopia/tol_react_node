@@ -4,19 +4,31 @@ import '../pages/portfolio/css/tags.css';
 import {Tag, Input, Tooltip} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import TagService from "../services/TagService";
+import Notification from './Notification';
 
-
+// todo Вычистить файл от всех моих todo-шных размышлений! И хорошеннько все потестировать!
 class EditableTagGroup extends React.Component {
 
     constructor() {
         super();
         this.state = {
             tags: null,
+            tagsProperties: null,
             inputVisible: false,
             inputValue: '',
             editInputIndex: -1,
             editInputValue: '',
             editInputId: '',
+            prevTitle: '',
+            prevEditInputIndex: '',
+            isEditingApproved: false,
+            isDeletingApproved: false,
+            isEditResponseError: false,
+            isDeleteResponseError: false,
+            dataEdit: [],
+            dataDelete: [],
+            deletingTagIndex: '',
+            isTagApproveDialog: true
         };
     }
 
@@ -30,9 +42,17 @@ class EditableTagGroup extends React.Component {
 
                     const responseTags = response.data;
 
+                    const tagsProperties = responseTags.map((tag, index) => {
+                        return {
+                            'id' : tag.id,
+                            'visible' : true
+                        };
+                    });
+
                     this.setState(
                         {
-                            tags: responseTags
+                            tags: responseTags,
+                            tagsProperties: tagsProperties
                         }
                     );
 
@@ -42,8 +62,7 @@ class EditableTagGroup extends React.Component {
                 .catch(e => {
                     console.log(e);
                 });
-        }
-        else {
+        } else {
 
             this.setState(
                 {
@@ -53,18 +72,28 @@ class EditableTagGroup extends React.Component {
         }
     }
 
-    handleClose = removedTagId => {
-        const tags = this.state.tags.filter(tag => tag.id !== removedTagId);
 
-        TagService.remove(removedTagId)
+    handleClose = async (removedTagId, index) => {
+
+        var dataDelete = {
+            tagId: removedTagId,
+            isDeletingApproved: this.state.isDeletingApproved
+        };
+
+        await TagService.remove(removedTagId, this.state.isDeletingApproved)
             .then(response => {
+                const tags = this.state.tags.filter(tag => tag.id !== removedTagId);
                 this.setState({tags});
 
                 const tagIgs = this.getTagIds(tags);
                 this.props.parentCallback(tagIgs);
             })
             .catch(e => {
-                console.log(e);
+                if (e.response.status === 403) {
+                    this.setState({isDeleteResponseError: true});
+                    this.setState({dataDelete: dataDelete});
+                    this.setState({deletingTagIndex: index});
+                }
             });
     };
 
@@ -76,7 +105,9 @@ class EditableTagGroup extends React.Component {
         this.setState({inputValue: e.target.value});
     };
 
+
     handleInputConfirm = () => {
+
         const {inputValue} = this.state;
         let {tags} = this.state;
 
@@ -91,21 +122,26 @@ class EditableTagGroup extends React.Component {
 
             TagService.addTag(data)
                 .then(response => {
-                    console.log('А изначально что в тэгах? ');
-                    console.log(tags);
+
+                    // todo response.data Можно вынести в переменную и потом протестить!
 
                     tags = [...tags, response.data];
 
+                    let tagsProperties = {
+                        'id' : response.data,
+                        'visible' : true
+                    };
+
+                    tagsProperties = [...this.state.tagsProperties, tagsProperties];
+
                     this.setState({
                         tags,
+                        tagsProperties: tagsProperties,
                         inputVisible: false,
                         inputValue: '',
                     });
 
                     const tagIgs = this.getTagIds(tags);
-
-                    console.log('А что у нас  в тэгах? ');
-                    console.log(tags);
                     this.props.parentCallback(tagIgs);
                 })
                 .catch(e => {
@@ -125,30 +161,44 @@ class EditableTagGroup extends React.Component {
     };
 
     handleEditInputConfirm = () => {
-        this.setState(({tags, editInputIndex, editInputValue, editInputId}) => {
 
-            const newTags = [...tags];
+        this.setState(({tags, editInputIndex, editInputValue, editInputId, isEditingApproved}) => {
+
+            var dataEdit = {
+                title: editInputValue,
+                tagId: editInputId,
+                tagType: this.props.tagType,
+                pageType: this.props.pageType,
+                itemId: this.props.itemId,
+                isEditingApproved: isEditingApproved
+            };
+
+            let newTags = [...tags];
 
             if ((newTags[editInputIndex]['title'] !== editInputValue) && this.isTagDuplication(tags, editInputValue)) {
 
+                let prevTitle = newTags[editInputIndex]['title'];
+
                 newTags[editInputIndex]['title'] = editInputValue;
 
-                var data = {
-                    title: editInputValue,
-                    tagId: editInputId,
-                    tagType: this.props.tagType
-                };
-
-                TagService.editTag(data)
+                TagService.editTag(dataEdit)
                     .then(response => {
-                        console.log(response.data);
+                        // todo Какая должна быть реакция..?
+                        // todo Если так, то нужно релоадить компонент... в предыдущей версии этого не было
+
                     })
                     .catch(e => {
-                        console.log(e);
+                        if (e.response.status === 403) {
+                            this.setState({isEditResponseError: true});
+                            this.setState({dataEdit: dataEdit});
+                        }
                     });
+
 
                 return {
                     tags: newTags,
+                    prevTitle: prevTitle,
+                    prevEditInputIndex: editInputIndex,
                     editInputIndex: -1,
                     editInputValue: '',
                 };
@@ -177,16 +227,47 @@ class EditableTagGroup extends React.Component {
     };
 
     getTagTitleList = data => {
-        return data.map((tag, index) => {
+        return data.map((tag) => {
             return tag.title;
         });
     };
 
+    tagEditApprove = isTagApproveDialog => {
+        this.setState({isTagApproveDialog: isTagApproveDialog});
+        this.setState({isEditResponseError: false});
+
+        if (!isTagApproveDialog) {
+            let approvedTags = this.state.tags;
+            approvedTags[this.state.prevEditInputIndex]['title'] = this.state.prevTitle;
+            this.setState({tags: approvedTags});
+        }
+    };
+
+    tagDeleteApprove = isTagApproveDialog => {
+        this.setState({isTagApproveDialog: isTagApproveDialog});
+        this.setState({isDeleteResponseError: false});
+
+        if (isTagApproveDialog) {
+            let tagsProperties = this.state.tagsProperties;
+            tagsProperties[this.state.deletingTagIndex] = false;
+
+            this.setState({tagsProperties: tagsProperties});
+        }
+    };
+
     render() {
-        const {tags, inputVisible, inputValue, editInputIndex, editInputValue} = this.state;
+        const {tags, inputVisible, inputValue, editInputIndex, editInputValue, isEditResponseError, dataEdit, isDeleteResponseError, dataDelete} = this.state;
 
         return (
             <>
+                {isEditResponseError && (
+                    <Notification data={dataEdit} parentCallback={this.tagEditApprove} notificationType="editing"/>
+                )}
+
+                {isDeleteResponseError && (
+                    <Notification data={dataDelete} parentCallback={this.tagDeleteApprove} notificationType="deleting"/>
+                )}
+
                 {tags && (
                     tags.map((tag, index) => {
                         if (editInputIndex === index) {
@@ -212,7 +293,8 @@ class EditableTagGroup extends React.Component {
                                 className="edit-tag"
                                 key={tag.title}
                                 closable={true}
-                                onClose={() => this.handleClose(tag.id)}
+                                visible={this.state.tagsProperties[index]['visible']}
+                                onClose={() => this.handleClose(tag.id, index)}
                             >
                   <span
                       onDoubleClick={e => {

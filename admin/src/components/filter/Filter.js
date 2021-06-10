@@ -15,6 +15,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const useStyles = makeStyles((theme) => ({
     chips: {
@@ -40,6 +41,7 @@ const MenuProps = {
     },
 };
 
+// todo Вытащить данные с вервера и нормально сделать чекбоксы. За имя и кey. И сделать отображение галок
 const names = [
     'Oliver Hansen',
     'Van Henry',
@@ -53,31 +55,25 @@ const names = [
     'Kelly Snyder',
 ];
 
-function getStyles(name, personName, theme) {
-    return {
-        fontWeight:
-            personName.indexOf(name) === -1
-                ? theme.typography.fontWeightRegular
-                : theme.typography.fontWeightMedium,
-    };
-}
 
-// todo Интерная логика. Разобрать ее по косточкам
 export default function Filter() {
     const classes = useStyles();
-    //const [age, setAge] = React.useState('');
-    const [personName, setPersonName] = useState([]);
-    const [filterValue, setFilterValue] = useState([]);
 
+    const [filterValue, setFilterValue] = useState([]);
     const [open, setOpen] = useState(false);
-    const [age, setAge] = useState('');
+    const [order, setOrder] = useState('');
+    const [isFilterApprove, setFilterApprove] = useState(false);
 
     const handleFilterChange = (event) => {
-        setFilterValue(event.target.value);
+        console.log(event.target.name);
+        console.log(event.target.checked);
+        //setFilterValue(event.target.value);
+        setFilterValue({...filterValue, [event.target.name]: event.target.checked});
+        console.log(filterValue);
     };
 
-    const handleChange = (event) => {
-        setAge(Number(event.target.value) || '');
+    const handleOrderChange = (event) => {
+        setOrder(Number(event.target.value) || '');
     };
 
     const handleClickOpen = () => {
@@ -85,6 +81,13 @@ export default function Filter() {
     };
 
     const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleApproveClose = () => {
+        // todo Тут будет посыл на сервер
+        // todo Ставить этот фильтр когда придет положительный ответ с сервера
+        setFilterApprove(true);
         setOpen(false);
     };
 
@@ -100,49 +103,29 @@ export default function Filter() {
                                 <i className="fa fa-filter" aria-hidden="true"></i>
                                 <span className="filterButtonSpan"> Фильтры </span>
                             </Button>
-                            <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}>
-                                <DialogTitle>Fill the form</DialogTitle>
+                            <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}
+                                    className="filterDialog">
+                                <DialogTitle>Выберите критерии фильтрации: </DialogTitle>
                                 <DialogContent>
-                                    <form className={classes.container}>
+                                    <form>
                                         <FormControl className={classes.formControl}>
-                                            <InputLabel htmlFor="demo-dialog-native">Age</InputLabel>
-                                            <Select
-                                                native
-                                                value={age}
-                                                onChange={handleChange}
-                                                input={<Input id="demo-dialog-native"/>}
-                                            >
-                                                <option aria-label="None" value=""/>
-                                                <option value={10}>Ten</option>
-                                                <option value={20}>Twenty</option>
-                                                <option value={30}>Thirty</option>
-                                            </Select>
-                                        </FormControl>
-                                        <FormControl className={classes.formControl}>
-                                            <InputLabel id="demo-dialog-select-label">Age</InputLabel>
-                                            <Select
-                                                labelId="demo-dialog-select-label"
-                                                id="demo-dialog-select"
-                                                value={age}
-                                                onChange={handleChange}
-                                                input={<Input/>}
-                                            >
-                                                <MenuItem value="">
-                                                    <em>None</em>
-                                                </MenuItem>
-                                                <MenuItem value={10}>Ten</MenuItem>
-                                                <MenuItem value={20}>Twenty</MenuItem>
-                                                <MenuItem value={30}>Thirty</MenuItem>
-                                            </Select>
+                                            {names.map((name) => (
+                                                <FormControlLabel
+                                                    control={<Checkbox checked={false} onChange={handleFilterChange}
+                                                                       name={name}/>}
+                                                    label={name}
+                                                    key={name}
+                                                />
+                                            ))}
                                         </FormControl>
                                     </form>
                                 </DialogContent>
                                 <DialogActions>
                                     <Button onClick={handleClose} color="primary">
-                                        Cancel
+                                        Отмена
                                     </Button>
-                                    <Button onClick={handleClose} color="primary">
-                                        Ok
+                                    <Button onClick={handleApproveClose} color="primary">
+                                        Фильтровать
                                     </Button>
                                 </DialogActions>
                             </Dialog>
@@ -151,24 +134,45 @@ export default function Filter() {
                     <Box p={1}>
                         <FormControl className="sortFormControl">
                             <InputLabel id="demo-controlled-open-select-label">Сортировать по:</InputLabel>
+                            {/*todo Этот селект отрывается от селекта при прокрутке сайта*/}
                             <Select
-                                labelId="demo-controlled-open-select-label"
-                                id="demo-controlled-open-select"
-                                value={age}
-                                onChange={handleChange}
+                                // labelId="demo-controlled-open-select-label"
+                                // id="demo-controlled-open-select"
+                                value={order}
+                                onChange={handleOrderChange}
                             >
-                                <MenuItem value="">
-                                    <em>None</em>
+                                <MenuItem value={1} className="sortSelectItem">
+                                    По дате добавления
+                                    <span className="sortItemSpanIcon">
+                                    <i className="fa fa-sort-amount-desc" aria-hidden="true"></i>
+                                    </span>
                                 </MenuItem>
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
+                                <MenuItem value={2} className="sortSelectItem">
+                                    По дате добавления
+                                    <span className="sortItemSpanIcon">
+                                    <i className="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                                    </span>
+                                </MenuItem>
+                                <MenuItem value={3} className="sortSelectItem">
+                                    По алфавиту
+                                    <span className="sortItemSpanIcon">
+                                    <i className="fa fa-sort-alpha-desc" aria-hidden="true"></i>
+                                    </span>
+                                </MenuItem>
+                                <MenuItem value={4} className="sortSelectItem">
+                                    По алфавиту
+                                    <span className="sortItemSpanIcon">
+                                    <i className="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                                    </span>
+                                </MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
                 </Box>
             </div>
+            {isFilterApprove &&
             <div><SelectedFilter/></div>
+            }
         </>
     );
 }

@@ -7,16 +7,15 @@ import {useLocation, useHistory} from "react-router-dom";
 import 'quill/dist/quill.snow.css';
 import 'antd/dist/antd.css';
 import './css/style.css';
-import Notification from '../../notification/Notification';
 import EditableTagGroup from "../../tag/EditableTagGroup";
+import Notification from "../../notification/Notification";
+
 
 const pageTypeBlog = "blog";
 
 const tagTypeYear = "year";
 const tagTypeCountry = "country";
 
-// todo Доработать:
-// todo 1. Сделать добавление тэгов на странице создания страницы. Сохранять в БД при нажатиии на кнопку сохранить. Возможно сделать опцию, что бы не потерять существующие наработки
 
 export default function ArticleDetails() {
 
@@ -44,8 +43,8 @@ export default function ArticleDetails() {
                 const data = response.data;
                 setArticle(data);
                 setForm(data.title, data.description);
-                setPreviewImgSrc(data.PageImages[0].imageSrc);
-                setImageSrc(data.PageImages[0].imageSrc);
+                setPreviewImgSrc(data.PageImages[0].image_src);
+                setImageSrc(data.PageImages[0].image_src);
                 setImagePreview(true);
             })
             .catch(e => {
@@ -65,7 +64,6 @@ export default function ArticleDetails() {
             imageSrc: imageSrc,
             tagIdsYear: tagIdsYear,
             tagIdsCountry: tagIdsCountry
-
         };
 
         console.log('Тэги года!');
@@ -73,6 +71,9 @@ export default function ArticleDetails() {
 
         console.log('Тэги страны!');
         console.log(tagIdsCountry);
+
+        console.log('Data');
+        console.log(data);
 
         sendData(data);
     };

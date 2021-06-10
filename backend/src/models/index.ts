@@ -9,30 +9,30 @@ import {UserRole} from "./UserRole.model";
 
 Page.belongsToMany(Tag, {
     through: PageTag,
-    foreignKey: 'pageId'
+    foreignKey: 'page_id'
 });
 
 Tag.belongsToMany(Page, {
     through: PageTag,
-    foreignKey: 'tagId'
+    foreignKey: 'tag_id'
 });
 
 Page.hasMany(PageImage, {
-    foreignKey: 'pageId'
+    foreignKey: 'page_id'
 });
 
 PageImage.belongsTo(Page, {
-    foreignKey: 'pageId'
+    foreignKey: 'page_id'
 });
 
 Role.belongsToMany(User, {
     through: UserRole,
-    foreignKey: "roleId"
+    foreignKey: "role_id"
 });
 
 User.belongsToMany(Role, {
     through: UserRole,
-    foreignKey: "userId"
+    foreignKey: "user_id"
 });
 
 Role.create({
