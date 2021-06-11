@@ -17,3 +17,19 @@ ERROR:  ОШИБКА:  INSERT или UPDATE в таблице "page_tag" нар�
 SQL state: 23503
 Detail: Ключ (tag_id)=(32) отсутствует в таблице "tag".
 DelTest
+
+[Node] Executing (default): UPDATE "page" SET "title"=$1,"description"=$2,"updated_at"=$3 WHERE ("deleted_at" IS NULL AND "id" = $4)
+[Node] Executing (default): DELETE FROM "page_tag" WHERE "page_id" = '2'
+[Node] Executing (default): UPDATE "page_image" SET "image_src"=$1,"updated_at"=$2 WHERE "id" = $3
+[Node] Executing (default): INSERT INTO "page_tag" ("id","created_at","updated_at","page_id","tag_id") VALUES (DEFAULT,'2021-06-10 18:27:56.496 +00:00','2021-06-10 18:27:56.496 +00:00','2',55),(DEFAULT,'2021-06-10 18:27:56.496 +00:00','2021-06-10 18:27:56.496 +00:00','2',56) RETURNING "id","created_at","updated_at","page_id","tag_id";
+
+Executing (default): UPDATE "page" SET "title"=$1,"description"=$2,"updated_at"=$3 WHERE ("deleted_at" IS NULL AND "id" = $4)
+[Node] Executing (default): DELETE FROM "page_tag" WHERE "page_id" = '2'
+[Node] Executing (default): UPDATE "page_image" SET "image_src"=$1,"updated_at"=$2 WHERE "id" = $3
+[Node] Executing (default): INSERT INTO "page_tag" ("id","created_at","updated_at","page_id","tag_id") VALUES (DEFAULT,'2021-06-10 18:52:52.167 +00:00','2021-06-10 18:52:52.167 +00:00','2',55) RETURNING "id","created_at","updated_at","page_id","tag_id";
+
+
+UnhandledPromiseRejectionWarning: Unhandled promise rejection.
+This error originated either by throwing inside of an async function without a catch block,
+or by rejecting a promise which was not handled with .catch().
+To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict`

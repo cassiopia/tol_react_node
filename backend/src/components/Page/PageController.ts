@@ -68,10 +68,7 @@ export class PageController {
                         {where: {id: pageId}}
                     ).then(
                         (page) => res.status(202).json(page)
-                    )
-                        .catch((err: Error) => res.status(500).json(err));
-
-                    // todo Мессаги тут служеюные. Крепко подумать над их содержимым
+                    ).catch((err: Error) => res.status(500).json(err));
 
                     const tagIdsYear = req.body.tagIdsYear;
                     const tagIdsCountry = req.body.tagIdsCountry;
@@ -80,16 +77,12 @@ export class PageController {
                     if ((tagIdsYear && tagIdsYear.length > 0) ||
                         (tagIdsCountry && tagIdsCountry.length > 0)) {
 
-                        // todo Если удаляю последний тэг со страницы и потом сохраняю, то вылетает с ошибкой
-
-
                         PageTag.destroy({
                             where: {page_id: pageId}
                         })
                             .then(
                                 num => {
                                     // todo Тут проситься тест
-
                                     const insertArray = this._prepareArrayPageTags(tagIdsYear, tagIdsCountry, pageId);
                                     this._insertTagId(insertArray, res);
                                 }
@@ -99,12 +92,7 @@ export class PageController {
                                     message: "Could not delete Tags with pageId=" + pageId
                                 });
                             });
-                    } else {
-                        res.status(500).send({
-                            message: "Could not delete Tags"
-                        });
                     }
-
 
                 } else {
                     res.send({
@@ -113,12 +101,7 @@ export class PageController {
                 }
 
             }
-        )
-            .catch(
-                (err: Error) => res.status(500).json(err)
-            )
-
-
+        ).catch((err: Error) => res.status(500).json(err))
     }
 
     private _prepareArrayPageTags(tagIdsYear: Array<number>, tagIdsCountry: Array<number>, pageId: number) {
