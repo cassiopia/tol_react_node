@@ -23,18 +23,12 @@ export default function Notification(props) {
         setIsModalVisible(false);
         props.data.isDeletingApproved = true;
 
-        // todo Когда удаляю тэг, после подтверждения  вмодальном окне, то удаляются ещё все тэги с другой страницы
-        // todo !!! Хорошенько протестировать этот момент!
-        // todo При сохранении удаляет все тэги со страницы. Когда нотификэйшен. А когда нет?
-
-        console.log('props.data in handleDeleteOk');
-        console.log(props.data);
         TagService.remove(props.data.tagId, props.data.isDeletingApproved)
             .then(response => {
-                props.parentCallback(true);
+                props.parentCallback(true, props.data.tagId);
             })
             .catch(e => {
-                props.parentCallback(false);
+                props.parentCallback(false, props.data.tagId);
             });
     };
 

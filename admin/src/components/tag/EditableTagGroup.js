@@ -6,7 +6,6 @@ import {PlusOutlined} from '@ant-design/icons';
 import TagService from "../services/TagService";
 import Notification from './Notification';
 
-// todo Вычистить файл от всех моих todo-шных размышлений! И хорошеннько все потестировать!
 class EditableTagGroup extends React.Component {
 
     constructor() {
@@ -44,8 +43,8 @@ class EditableTagGroup extends React.Component {
 
                     const tagsProperties = responseTags.map((tag, index) => {
                         return {
-                            'id' : tag.id,
-                            'visible' : true
+                            'id': tag.id,
+                            'visible': true
                         };
                     });
 
@@ -123,13 +122,13 @@ class EditableTagGroup extends React.Component {
             TagService.addTag(data)
                 .then(response => {
 
-                    // todo response.data Можно вынести в переменную и потом протестить!
+                    const responseData = response.data;
 
-                    tags = [...tags, response.data];
+                    tags = [...tags, responseData];
 
                     let tagsProperties = {
-                        'id' : response.data,
-                        'visible' : true
+                        'id': responseData,
+                        'visible': true
                     };
 
                     tagsProperties = [...this.state.tagsProperties, tagsProperties];
@@ -182,11 +181,6 @@ class EditableTagGroup extends React.Component {
                 newTags[editInputIndex]['title'] = editInputValue;
 
                 TagService.editTag(dataEdit)
-                    .then(response => {
-                        // todo Какая должна быть реакция..?
-                        // todo Если так, то нужно релоадить компонент... в предыдущей версии этого не было
-
-                    })
                     .catch(e => {
                         if (e.response.status === 403) {
                             this.setState({isEditResponseError: true});
@@ -243,7 +237,7 @@ class EditableTagGroup extends React.Component {
         }
     };
 
-    tagDeleteApprove = isTagApproveDialog => {
+    tagDeleteApprove = (isTagApproveDialog, removedTagId) => {
         this.setState({isTagApproveDialog: isTagApproveDialog});
         this.setState({isDeleteResponseError: false});
 
@@ -252,6 +246,12 @@ class EditableTagGroup extends React.Component {
             tagsProperties[this.state.deletingTagIndex] = false;
 
             this.setState({tagsProperties: tagsProperties});
+
+            const tags = this.state.tags.filter(tag => tag.id !== removedTagId);
+            this.setState({tags});
+
+            const tagIgs = this.getTagIds(tags);
+            this.props.parentCallback(tagIgs);
         }
     };
 

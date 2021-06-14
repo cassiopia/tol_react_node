@@ -66,15 +66,6 @@ export default function ArticleDetails() {
             tagIdsCountry: tagIdsCountry
         };
 
-        console.log('Тэги года!');
-        console.log(tagIdsYear);
-
-        console.log('Тэги страны!');
-        console.log(tagIdsCountry);
-
-        console.log('Data');
-        console.log(data);
-
         sendData(data);
     };
 
@@ -99,7 +90,6 @@ export default function ArticleDetails() {
             })
             .catch(e => {
                 Notification.errorNotification('Ошибка сохранения данных!');
-                console.log('Ошибка сохранения данных!');
             });
     };
 

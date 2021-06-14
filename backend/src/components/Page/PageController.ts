@@ -36,7 +36,6 @@ export class PageController {
                             this._insertTagId(insertArray, res);
                         }
 
-
                     } else {
                         res.send({
                             message: `Cannot create page!`
