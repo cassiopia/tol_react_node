@@ -3,8 +3,6 @@ import {Tag} from '../../models/Tag.model';
 import {Page} from '../../models/Page.model';
 import {PageTag} from "../../models/PageTag.model";
 
-// todo Cелать "не прямое удаление" тэга со страницы и в модель внести соответствующие поля
-
 export class TagController {
     public addTag(req: Request, res: Response) {
 
