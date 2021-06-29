@@ -121,6 +121,7 @@ export default function Filter() {
                                     </form>
                                 </DialogContent>
                                 <DialogActions>
+                                    {/*todo Стилизовать кнопки что бы соответвовали общему внешнему виду*/}
                                     <Button onClick={handleClose} color="primary">
                                         Отмена
                                     </Button>

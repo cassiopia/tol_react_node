@@ -12,7 +12,7 @@ class EditableTagGroup extends React.Component {
         super();
         this.state = {
             tags: null,
-            tagsProperties: null,
+            tagsProperties: [],
             inputVisible: false,
             inputValue: '',
             editInputIndex: -1,
