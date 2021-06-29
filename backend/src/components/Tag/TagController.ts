@@ -49,8 +49,7 @@ export class TagController {
                 {
                     title: req.body.title,
                 },
-                // todo  А нужно ли реально tagType? Следующим коммитом хорошенько проверить
-                {where: {id: req.body.tagId, type: req.body.tagType}}
+                {where: {id: req.body.tagId}}
             ).then(
                 () => res.status(202).json({data: "success"})
             ).catch((err: Error) => res.status(500).json(err));
