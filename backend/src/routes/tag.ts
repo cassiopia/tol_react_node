@@ -12,6 +12,10 @@ module.exports = (app: any) => {
 
     router.get("/get_tags/:itemId/:tagType/:pageType", tag.getTags);
 
+    router.get("/get_all_tags", tag.getAllTags);
+
+    router.get("/get_tags_by_page_type/:pageType", tag.getTagsByPageType);
+
     router.delete("/:id(\\d+)/:isDeletingApproved(true|false)", tag.deleteTag.bind(tag));
 
     app.use('/tag', router);

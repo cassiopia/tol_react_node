@@ -20,10 +20,18 @@ const remove = id => {
     return http.delete(`/page/${id}`);
 };
 
+const getByPageTypeAndTagIds = (pageType, tagIds) => {
+    // todo Массив тэгов разложить в строку. Делать тут или до того как сюда передам. Подумать
+    //todo Попробовать что-то типа  tagIds = [1,2,3] проверить пройдет ли такое на бэк
+
+    return http.get(`/page/get_by_page_type_and_tag_ids/${pageType}/${tagIds}`);
+};
+
 export default {
     getByPageType,
     getOneById,
     savePage,
-    remove
+    remove,
+    getByPageTypeAndTagIds
 };
 

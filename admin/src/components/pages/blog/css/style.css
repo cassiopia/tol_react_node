@@ -36,8 +36,8 @@
 
 .ant-btn-primary {
     color: #fff !important;
-    background-color: #75b209;
-    border: #75b209;
+    background-color: #75b209 !important;
+    border: #75b209 !important;
 }
 
 .ant-btn-primary:hover,

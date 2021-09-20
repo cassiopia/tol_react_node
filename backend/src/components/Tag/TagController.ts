@@ -5,7 +5,6 @@ import {PageTag} from "../../models/PageTag.model";
 
 export class TagController {
     public addTag(req: Request, res: Response) {
-
         Tag.findOrCreate({
             where: {title: req.body.title},
             defaults: {
@@ -18,9 +17,7 @@ export class TagController {
     }
 
     private async _checkTag(tagId: number) {
-
         if (tagId) {
-
             return await PageTag.count({
                 where: {tag_id: [tagId]}
             }).then(dataCount => {
@@ -40,11 +37,9 @@ export class TagController {
     }
 
     public async editTag(req: Request, res: Response) {
-
         let isDataCountValid = await this._checkTag(req.body.tagId);
 
         if (isDataCountValid || req.body.isEditingApproved) {
-
             Tag.update(
                 {
                     title: req.body.title,
@@ -60,9 +55,7 @@ export class TagController {
     }
 
     public getTags(req: Request, res: Response) {
-
         if (req.params.itemId) {
-
             Tag.findAll<Tag>({
                 where: {
                     type: req.params.tagType
@@ -81,7 +74,20 @@ export class TagController {
     }
 
     public getTagsByPageType(req: Request, res: Response) {
+        Tag.findAll<Tag>({
+            attributes: ['id', 'type', 'title'],
+            include: [{
+                model: Page,
+                attributes: ['page_type'],
+                where: {page_type: req.params.pageType}
+            }]
+        }).then(tag => {
+            console.log(tag);
+            res.json(tag);
+        }).catch((err: Error) => res.status(500).json(err));
+    }
 
+    public getAllTags(req: Request, res: Response) {
         Tag.findAll<Tag>({
             where: {
                 type: req.params.tagType,
@@ -95,14 +101,11 @@ export class TagController {
     }
 
     public async deleteTag(req: Request, res: Response) {
-
         const isDeletingApproved = JSON.parse(req.params.isDeletingApproved);
         const tagId = Number(req.params.id);
-
         let isDataCountValid = await this._checkTag(tagId);
 
         if (isDataCountValid || isDeletingApproved) {
-
             Tag.destroy({
                 where: {id: tagId}
             })

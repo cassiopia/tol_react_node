@@ -33,6 +33,7 @@ function ChipDelIcon(props) {
 
 export default function SelectedFilter() {
     const classes = useStyles();
+    // todo  может тайтлы передавать?
     const [chipData, setChipData] = React.useState([
         {key: 0, label: 'Angular'},
         {key: 1, label: 'jQuery'},
@@ -64,7 +65,5 @@ export default function SelectedFilter() {
                 })}
             </div>
         </>
-
-
     );
 }

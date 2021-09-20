@@ -25,6 +25,15 @@ PageImage.belongsTo(Page, {
     foreignKey: 'page_id'
 });
 
+// todo Если будут глюки -- смотреть тут ;)
+Page.hasMany(PageTag, {
+    foreignKey: 'page_id'
+});
+
+PageTag.belongsTo(Page, {
+    foreignKey: 'page_id'
+});
+
 Role.belongsToMany(User, {
     through: UserRole,
     foreignKey: "role_id"

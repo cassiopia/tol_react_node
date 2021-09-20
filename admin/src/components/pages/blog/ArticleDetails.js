@@ -127,18 +127,10 @@ export default function ArticleDetails() {
     };
 
     const childrenTagIdsYear = (tagIds) => {
-
-        console.log('А что приходит от ребенка (Год)?');
-        console.log(tagIds);
-
         setTagIdsYear(tagIds);
     };
 
     const childrenTagIdsCountry = (tagIds) => {
-
-        console.log('А что приходит от ребенка (Страна)?');
-        console.log(tagIds);
-
         setTagIdsCountry(tagIds);
     };
 

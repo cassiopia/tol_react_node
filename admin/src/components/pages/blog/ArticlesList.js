@@ -66,6 +66,12 @@ export default function ArticlesList() {
         </div>
     };
 
+    const selectedIds = (tagIds) => {
+
+        // todo Реализовать метод
+    };
+
+
     if (error) {
         return <div>Ошибка: {error.message}</div>;
     } else if (!isLoaded) {
@@ -87,7 +93,7 @@ export default function ArticlesList() {
                             </Link>
                         </div>
                     </div>
-                    <Filter/>
+                    <Filter pageType={pageTypeBlog} parentCallback={selectedIds}/>
                     {articleList}
                     <div className="page-nav" data-animated="0">
                         <ul>

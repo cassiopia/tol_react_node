@@ -12,6 +12,10 @@ module.exports = (app: any) => {
         "/get_by_page_type/:pageType",
         page.getAllByPageType
     );
+    router.get(
+        "/get_by_page_type_and_tag_ids/:pageType/:tagIds",
+         page.getByPageTypeAndTagIds
+    );
     router.get("/get_one_by_id/:pageId", page.getOneById);
     router.delete("/:id", page.softDeletePage);
 

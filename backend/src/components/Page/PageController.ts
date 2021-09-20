@@ -3,6 +3,7 @@ import {Page} from '../../models/Page.model';
 import {PageImage} from '../../models/PageImage.model';
 import {PageTag} from "../../models/PageTag.model";
 
+const {Op} = require("sequelize");
 
 export class PageController {
 
@@ -179,6 +180,28 @@ export class PageController {
                 }
             })
             .catch((err: Error) => res.status(500).json(err));
+    }
+
+    public getByPageTypeAndTagIds(req: Request, res: Response) {
+        const arrTagIds = req.params.tagIds.split(',');
+
+        Page.findAll<Page>({
+            where: {
+                page_type: req.params.pageType
+            },
+            include: [{
+                model: PageTag,
+                where: {
+                    tag_id: {
+                        [Op.in]: arrTagIds
+                    }
+                }
+            }]
+        }).then(page => {
+            res.json(page);
+        }).catch((err: Error) => {
+            res.status(500).json(err)
+        });
     }
 
     public softDeletePage(req: Request, res: Response) {

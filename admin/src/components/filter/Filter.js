@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState, Suspense} from 'react';
 import {makeStyles, useTheme, withStyles} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -16,60 +16,26 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-
-const useStyles = makeStyles((theme) => ({
-    chips: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    chip: {
-        margin: 2,
-    },
-    noLabel: {
-        marginTop: theme.spacing(3),
-    },
-}));
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        },
-    },
-};
-
-// todo Вытащить данные с вервера и нормально сделать чекбоксы. За имя и кey. И сделать отображение галок
-const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
-];
+import FormGroup from '@material-ui/core/FormGroup';
+import FormLabel from '@material-ui/core/FormLabel';
+import TagService from "../services/TagService";
+import PageService from "../services/PageService";
+import Notification from "../notification/Notification";
 
 
-export default function Filter() {
-    const classes = useStyles();
+export default function Filter(props) {
 
     const [filterValue, setFilterValue] = useState([]);
+    const [yearTags, setYearTags] = useState([]);
+    const [countryTags, setCountryTags] = useState([]);
     const [open, setOpen] = useState(false);
     const [order, setOrder] = useState('');
     const [isFilterApprove, setFilterApprove] = useState(false);
+    const [selectedTagsIds, setSelectedTagsIds] = useState([]);
 
     const handleFilterChange = (event) => {
-        console.log(event.target.name);
-        console.log(event.target.checked);
-        //setFilterValue(event.target.value);
-        setFilterValue({...filterValue, [event.target.name]: event.target.checked});
-        console.log(filterValue);
+        // todo Подумать, возможно хранить только true значения
+        setFilterValue({...filterValue, [event.target.id]: event.target.checked});
     };
 
     const handleOrderChange = (event) => {
@@ -84,12 +50,112 @@ export default function Filter() {
         setOpen(false);
     };
 
-    const handleApproveClose = () => {
-        // todo Тут будет посыл на сервер
-        // todo Ставить этот фильтр когда придет положительный ответ с сервера
+    const setFilterData = () => {
+        TagService.getTagsByPageType(props.pageType)
+            .then(response => {
+                groupTagByTagType(response.data);
+            })
+            .catch(e => {
+                Notification.errorNotification('Ошибка загрузки данных!');
+                console.log(e);
+            });
+    };
+
+    const groupTagByTagType = (tags) => {
+        let yearTitles = [];
+        let countryTitles = [];
+
+        tags.map((tag) => {
+                if (tag.type === 'year') {
+                    yearTitles = {...yearTitles, [tag.id]: tag.title};
+                } else if (tag.type === 'country') {
+                    countryTitles = {...countryTitles, [tag.id]: tag.title};
+                } else {
+                    // todo Возможно залогировать,  а что выводить пользователю? Может прогуглить этот вопрос...Частый он у тебя
+                    console.log('Не регламентированная категория фильтра');
+                }
+            }
+        );
+        setYearTags(yearTitles);
+        setCountryTags(countryTitles);
+    };
+
+    const sendFilterData = (filterIds) => {
+        PageService.getByPageTypeAndTagIds(props.pageType, filterIds)
+            .then(response => {
+                console.log(response.data);
+                // todo Перезагрузить парента. Придумать как :)
+            })
+            .catch(e => {
+                Notification.errorNotification('Ошибка загрузки данных!');
+                console.log(e);
+            });
+
+    };
+
+    const handleApprove = () => {
         setFilterApprove(true);
+        const filterIds = Object.keys(filterValue).toString();
+        localStorage.setItem('filter', JSON.stringify(filterValue));
+        sendFilterData(filterIds);
         setOpen(false);
     };
+
+    const listYearCheckbox = () => {
+        const formControlLabel = [];
+        for (let tagId in yearTags) {
+            const isChecked = (filterValue[tagId] !== undefined) ? filterValue[tagId] : false;
+            formControlLabel.push(<FormControlLabel
+                control={
+                    <Checkbox
+                        checked={isChecked}
+                        onChange={handleFilterChange}
+                        name={yearTags[tagId]}
+                        className="checkboxStyle"
+                        id={tagId}
+                    />
+                }
+                label={yearTags[tagId]}
+                key={yearTags[tagId]}
+            />);
+        }
+
+        return formControlLabel;
+    };
+
+    const listCountryCheckbox = () => {
+        const formControlLabel = [];
+        for (let tagId in countryTags) {
+            const isChecked = (filterValue[tagId] !== undefined) ? filterValue[tagId] : false;
+            formControlLabel.push(<FormControlLabel
+                control={
+                    <Checkbox
+                        checked={isChecked}
+                        onChange={handleFilterChange}
+                        name={countryTags[tagId]}
+                        className="checkboxStyle"
+                        id={tagId}
+                    />
+                }
+                label={countryTags[tagId]}
+                key={countryTags[tagId]}
+            />)
+        }
+        return formControlLabel;
+    };
+
+    const isFilterInLocalStorage = () => {
+        const localStorageKeys = Object.keys(localStorage);
+        return localStorageKeys.includes('filter');
+    };
+
+    useEffect(() => {
+        setFilterData();
+        if (isFilterInLocalStorage()) {
+            const localStorageItem = JSON.parse(localStorage.getItem('filter'));
+            setFilterValue(localStorageItem);
+        }
+    }, []);
 
 
     return (
@@ -98,34 +164,43 @@ export default function Filter() {
                 <Box display="flex" p={1} pt={0.5}>
                     <Box p={1} flexGrow={1}>
 
-                        <div className="filterButtonFormControl">
+                        <div>
                             <Button onClick={handleClickOpen} className="filterButton">
                                 <i className="fa fa-filter" aria-hidden="true"></i>
-                                <span className="filterButtonSpan"> Фильтры </span>
+                                <span className="filterButtonSpan"> Фильтры  </span>
                             </Button>
-                            <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}
-                                    className="filterDialog">
-                                <DialogTitle>Выберите критерии фильтрации: </DialogTitle>
+
+                            <Dialog
+                                disableBackdropClick
+                                disableEscapeKeyDown
+                                fullWidth={true}
+                                maxWidth="xs"
+                                open={open}
+                                onClose={handleClose}
+
+                            >
                                 <DialogContent>
                                     <form>
-                                        <FormControl className={classes.formControl}>
-                                            {names.map((name) => (
-                                                <FormControlLabel
-                                                    control={<Checkbox checked={false} onChange={handleFilterChange}
-                                                                       name={name}/>}
-                                                    label={name}
-                                                    key={name}
-                                                />
-                                            ))}
+                                        <FormControl>
+                                            <FormLabel className="checkboxGroupLabel">Год:</FormLabel>
+                                            <FormGroup>
+                                                {listYearCheckbox()}
+                                            </FormGroup>
+
+                                            <FormLabel
+                                                className="checkboxGroupLabel checkboxGroupCountryLabel">Страна:</FormLabel>
+                                            <FormGroup>
+                                                {listCountryCheckbox()}
+                                            </FormGroup>
                                         </FormControl>
                                     </form>
                                 </DialogContent>
                                 <DialogActions>
-                                    {/*todo Стилизовать кнопки что бы соответвовали общему внешнему виду*/}
-                                    <Button onClick={handleClose} color="primary">
+
+                                    <Button onClick={handleClose} className="btnFilterCancel">
                                         Отмена
                                     </Button>
-                                    <Button onClick={handleApproveClose} color="primary">
+                                    <Button onClick={handleApprove} className="btnFilterApprove">
                                         Фильтровать
                                     </Button>
                                 </DialogActions>
@@ -171,9 +246,10 @@ export default function Filter() {
                     </Box>
                 </Box>
             </div>
-            {isFilterApprove &&
-            <div><SelectedFilter/></div>
+            {Object.keys(filterValue).length > 0 &&
+            <div><SelectedFilter selectedTagsIds={selectedTagsIds}/></div>
             }
+
         </>
     );
 }

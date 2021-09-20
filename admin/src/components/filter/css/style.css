@@ -100,7 +100,7 @@
 }
 
 /***** Sort Dialog *****/
-.sortItemSpanIcon{
+.sortItemSpanIcon {
     margin-left: 3px !important;
 }
 
@@ -144,4 +144,38 @@
 
 .divT4 {
     background-color: pink !important;
+    border: 1px solid red !important;
+
+}
+
+.checkboxGroupLabel {
+    color: #75b209 !important;
+    font-size: 18px !important;
+}
+
+.checkboxGroupCountryLabel {
+    margin-top: 15px !important;
+}
+
+.btnFilterApprove {
+    color: #fff !important;
+    background-color: #75b209 !important;
+    border: 1px solid #75b209 !important;
+}
+
+.btnFilterCancel {
+    color: #40a9ff !important;
+    border: 1px solid #d9d9d9 !important;
+}
+
+.btnFilterCancel:hover {
+    border: 1px solid #40a9ff !important;
+}
+
+.MuiTypography-body1 {
+    font-size: 15px !important;
+}
+
+.checkboxStyle {
+    color: #75b209 !important;
 }
