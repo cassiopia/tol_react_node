@@ -34,7 +34,6 @@ export default function Filter(props) {
     const [selectedTagsIds, setSelectedTagsIds] = useState([]);
 
     const handleFilterChange = (event) => {
-        // todo Подумать, возможно хранить только true значения
         setFilterValue({...filterValue, [event.target.id]: event.target.checked});
     };
 
@@ -150,6 +149,8 @@ export default function Filter(props) {
     };
 
     useEffect(() => {
+        // todo Fто будет если тэга в БД уже нету, а в локал сторадже нету? Интересно было бы написать тэст
+        // todo Dозможно в локал стор сразу записывать и потом менять гостояние галок
         setFilterData();
         if (isFilterInLocalStorage()) {
             const localStorageItem = JSON.parse(localStorage.getItem('filter'));
