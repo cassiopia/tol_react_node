@@ -12,26 +12,25 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.10.0",
     "axios": "^0.20.0",
-    "babel-jest": "^24.9.0",
     "bootstrap": "^4.5.3",
-    "jest": "^24.9.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
+    "quill": "^1.3.7",
     "react": "^17.0.2",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.2",
     "react-hook-form": "^6.14.0",
-    "react-quill": "^1.3.5",
     "react-quilljs": "^1.2.12",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.3.0",
+    "react-scripts": "^4.0.3",
     "react-test-renderer": "^17.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3002 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "jest": "jest"
   },
   "proxy": "http://localhost:3002",
   "eslintConfig": {
@@ -49,10 +48,18 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "resetMocks": false,
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
+  },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@testing-library/react-hooks": "^7.0.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "jest-localstorage-mock": "^2.4.18"
   }
 }

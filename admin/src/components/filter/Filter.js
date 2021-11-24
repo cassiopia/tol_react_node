@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Suspense} from 'react';
+import React, {useEffect, useState, Suspense, useCallback} from 'react';
 import {makeStyles, useTheme, withStyles} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -21,9 +21,9 @@ import FormLabel from '@material-ui/core/FormLabel';
 import TagService from "../services/TagService";
 import PageService from "../services/PageService";
 import Notification from "../notification/Notification";
+import FilterLogic from "./FilterLogic";
 
-
-export default function Filter(props) {
+function Filter(props) {
 
     const [filterValue, setFilterValue] = useState([]);
     const [yearTags, setYearTags] = useState([]);
@@ -151,8 +151,9 @@ export default function Filter(props) {
     useEffect(() => {
         // todo Fто будет если тэга в БД уже нету, а в локал сторадже нету? Интересно было бы написать тэст
         // todo Dозможно в локал стор сразу записывать и потом менять гостояние галок
+        // todo Вынести в FiltelLogic b думать как развязать... если развязывать....
         setFilterData();
-        if (isFilterInLocalStorage()) {
+        if (FilterLogic().isFilterInLocalStorage()) {
             const localStorageItem = JSON.parse(localStorage.getItem('filter'));
             setFilterValue(localStorageItem);
         }
@@ -161,6 +162,8 @@ export default function Filter(props) {
 
     return (
         <>
+            <div>Test Text !!!!!!! </div>
+            <div>{FilterLogic().nameFilterToUpperCase('Test Text !!!!!!!')}</div>
             <div style={{width: '100%'}}>
                 <Box display="flex" p={1} pt={0.5}>
                     <Box p={1} flexGrow={1}>
@@ -254,3 +257,5 @@ export default function Filter(props) {
         </>
     );
 }
+
+export default Filter;
