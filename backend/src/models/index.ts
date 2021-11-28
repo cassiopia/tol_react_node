@@ -7,6 +7,8 @@ import {Role} from "./Role.model";
 import {User} from "./User.model";
 import {UserRole} from "./UserRole.model";
 
+(async () => {
+
 Page.belongsToMany(Tag, {
     through: PageTag,
     foreignKey: 'page_id'
@@ -44,6 +46,11 @@ User.belongsToMany(Role, {
     foreignKey: "user_id"
 });
 
+
+//await database.sync({ force: true });
+//console.log("All models were synchronized successfully.");
+database.sync().then(() => console.log("All models were synchronized successfully."));
+
 Role.create({
     id: 1,
     name: "user"
@@ -59,5 +66,4 @@ Role.create({
     name: "admin"
 });
 
-//database.sync({ force: true }).then(() => console.log("All models were synchronized successfully."));
-database.sync().then(() => console.log("All models were synchronized successfully."));
+})().catch(alert);
