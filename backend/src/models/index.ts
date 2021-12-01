@@ -46,10 +46,8 @@ import {UserRole} from "./UserRole.model";
         foreignKey: "user_id"
     });
 
-
-//await database.sync({ force: true });
-//console.log("All models were synchronized successfully.");
-    database.sync().then(() => console.log("All models were synchronized successfully."));
+    await database.sync().then(() => console.log("All models were synchronized successfully."));
+    //await database.sync({ force: true }).then(() => console.log("All models were synchronized successfully."));
     const defaultRoles = [{id: 1, name: "user"}, {id: 2, name: "moderator"}, {id: 3, name: "admin"}];
     await Role.bulkCreate(defaultRoles, {ignoreDuplicates: true});
 })();
