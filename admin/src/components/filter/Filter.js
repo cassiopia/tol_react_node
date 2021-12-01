@@ -151,7 +151,7 @@ function Filter(props) {
     useEffect(() => {
         // todo Fто будет если тэга в БД уже нету, а в локал сторадже нету? Интересно было бы написать тэст
         // todo Dозможно в локал стор сразу записывать и потом менять гостояние галок
-        // todo Вынести в FiltelLogic b думать как развязать... если развязывать....
+
         setFilterData();
         if (FilterLogic().isFilterInLocalStorage()) {
             const localStorageItem = JSON.parse(localStorage.getItem('filter'));

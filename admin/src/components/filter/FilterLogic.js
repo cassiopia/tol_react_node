@@ -7,16 +7,10 @@ export default function FilterLogic() {
         return nameFilter.toLowerCase();
     };
 
-    const testFunc = () => {
-        return 'Yes! :)'
-    };
-
     const isFilterInLocalStorage = () => {
         const localStorageKeys = Object.keys(localStorage);
-        console.log('++++++++++++++++++', localStorageKeys.includes('filter'));
-        console.log('#############', localStorage);
         return localStorageKeys.includes('filter');
     };
 
-    return {nameFilterToUpperCase, nameFilterToLowerCase, testFunc, isFilterInLocalStorage};
+    return {nameFilterToUpperCase, nameFilterToLowerCase, isFilterInLocalStorage};
 }
