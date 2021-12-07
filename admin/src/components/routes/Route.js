@@ -15,7 +15,7 @@ class Route extends Component {
     render() {
         return (
             <Switch>
-                <Suspense style="color:red" fallback={<div>Loading...</div>}>
+                <Suspense style="color:red" fallback={<div>Loading ^))))...</div>}>
                     <ReactRouter exact path="/">
                         <Redirect to="/login"/>
                     </ReactRouter>

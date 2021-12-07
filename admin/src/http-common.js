@@ -1,13 +1,16 @@
 import axios from "axios";
+import { setupCache } from 'axios-cache-adapter';
 
-// todo Очень хочется прикрутить https://www.npmjs.com/package/axios-cache-adapter
-// todo и ещё поиграть с информацией отсюда https://nuancesprog.ru/p/11916/
+const cache = setupCache({
+    maxAge: 15 * 60 * 1000
+});
 
 const http = axios.create({
+    adapter: cache.adapter,
     baseURL: "http://localhost:3000/",
     headers: {
         "Content-type": "application/json"
-    }
+    },
 });
 
 export default http;
