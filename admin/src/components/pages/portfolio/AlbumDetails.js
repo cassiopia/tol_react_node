@@ -125,19 +125,6 @@ export default function AlbumDetails() {
         return new URLSearchParams(useLocation().search);
     }
 
-    const {register, handleSubmit, setValue} = useForm();
-    const onSubmit = data => console.log(data);
-
-    const handleChange = (e) => {
-        alert(e.target.value);
-        setValue("AntdInput", e.target.value);
-    };
-
-    const editorChange = (e) => {
-        alert(e.target.value);
-        setValue("EditorInput", e.target.value);
-    };
-
     useEffect(() => {
         setAlbumData();
     }, [quill]);

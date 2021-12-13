@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Route from './components/routes/Route';
 
 export default function App() {
