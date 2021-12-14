@@ -158,8 +158,6 @@ function Filter(props) {
 
     return (
         <>
-            <div>Test Text !!!!!!! </div>
-            <div>{FilterLogic().nameFilterToUpperCase('Test Text !!!!!!!')}</div>
             <div style={{width: '100%'}}>
                 <Box display="flex" p={1} pt={0.5}>
                     <Box p={1} flexGrow={1}>
