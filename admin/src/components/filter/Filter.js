@@ -171,7 +171,6 @@ function Filter(props) {
                             </Button>
 
                             <Dialog
-                                disableBackdropClick
                                 disableEscapeKeyDown
                                 fullWidth={true}
                                 maxWidth="xs"
