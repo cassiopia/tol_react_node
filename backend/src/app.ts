@@ -5,7 +5,7 @@ const app = express();
 const cors = require("cors");
 
 var corsOptions = {
-    origin: ["http://localhost:3001", "http://localhost:3002"],
+    origin: ["http://localhost:3001", "http://localhost:3002", "http://localhost:3003"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept, x-access-token"
 };
