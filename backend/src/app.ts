@@ -5,9 +5,10 @@ const app = express();
 const cors = require("cors");
 
 var corsOptions = {
-    origin: ["http://localhost:3001", "http://localhost:3002", "http://localhost:3003"],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept, x-access-token"
+    origin: ["http://localhost:3009"],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    allowedHeaders: "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept, x-access-token, range, prefer",
+    exposedHeaders: "Content-Range"
 };
 
 app.use(cors(corsOptions));
@@ -15,7 +16,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Express configuration
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3010);
 
 /**
  * Primary app routes.

@@ -64,9 +64,13 @@ exports.getAlbums = function (request: Request, response: Response) {
 
     axios.get(
         'https://api.imgur.com/3/account/triponlife/albums',
-        {'headers': {'Authorization': 'Bearer ' + accessToken}}
+        {'headers': {
+            'Authorization': 'Bearer ' + accessToken
+        }}
     )
         .then(function (resp: AxiosResponse) {
+            response.header('Access-Control-Expose-Headers', ['Content-Range']);
+            response.header('Content-Range', [' posts 0-24/*']);
             response.send(resp.data);
         })
         .catch(function (err: AxiosError) {
